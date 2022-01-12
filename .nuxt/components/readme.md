@@ -11,5 +11,5 @@ You can directly use them in pages and other components without the need to impo
 - `<Logo>` | `<logo>` (components/Logo.vue)
 - `<VuetifyLogo>` | `<vuetify-logo>` (components/VuetifyLogo.vue)
 - `<SidebarRightSidebarViewer>` | `<sidebar-right-sidebar-viewer>` (components/Sidebar/RightSidebarViewer.vue)
-- `<UserEditProfileModal>` | `<user-edit-profile-modal>` (components/user/EditProfileModal.vue)
 - `<StoriesAddClientModal>` | `<stories-add-client-modal>` (components/stories/AddClientModal.vue)
+- `<UserEditProfileModal>` | `<user-edit-profile-modal>` (components/user/EditProfileModal.vue)

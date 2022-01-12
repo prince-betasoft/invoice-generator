@@ -14,10 +14,10 @@
   "SidebarRightSidebarViewer": {
     "description": "Auto imported from components/Sidebar/RightSidebarViewer.vue"
   },
-  "UserEditProfileModal": {
-    "description": "Auto imported from components/user/EditProfileModal.vue"
-  },
   "StoriesAddClientModal": {
     "description": "Auto imported from components/stories/AddClientModal.vue"
+  },
+  "UserEditProfileModal": {
+    "description": "Auto imported from components/user/EditProfileModal.vue"
   }
 }
