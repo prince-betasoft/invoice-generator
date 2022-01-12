@@ -1,53 +1,52 @@
-import colors from 'vuetify/es5/util/colors'
+import colors from "vuetify/es5/util/colors";
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   telemetry: false,
-  target: 'server',
+  target: "server",
   ssr: true,
-  serverMiddleware: ['~/server-middleware/logger'],
+  serverMiddleware: ["~/server-middleware/logger"],
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - Invoice Builder',
+    titleTemplate: "%s - Invoice Builder",
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
-        name: 'description',
-        hid: 'description',
-        content: 'Invoice Builder, build interesting Invoices.',
+        name: "description",
+        hid: "description",
+        content: "Invoice Builder, build interesting Invoices.",
       },
     ],
     // link: [{ rel: 'icon', type: 'image/x-icon', href: '/fav.png' }],
     script: [
       {
-        hid: 'recaptcha',
+        hid: "recaptcha",
         src:
-          'https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit',
+          "https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit",
         defer: true,
         async: true,
       },
     ],
     script: [
       {
-        type: 'text/javascript',
+        type: "text/javascript",
         src:
-          'https://maps.googleapis.com/maps/api/js?key=AIzaSyDtglyu-Rpd79oIKATLCn3XqA-2F49Kcj0&libraries=places'
-      }
-    ]
+          "https://maps.googleapis.com/maps/api/js?key=AIzaSyDtglyu-Rpd79oIKATLCn3XqA-2F49Kcj0&libraries=places",
+      },
+    ],
   },
   router: {
     middleware: [],
   },
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/assets/css/admin-style.css', '@/assets/css/style.css'],
+  css: ["@/assets/css/admin-style.css", "@/assets/css/style.css"],
 
   plugins: [
-    { src: '~/plugins/firebase.js', mode: 'client' },
-    { src: '~/plugins/fireauth.js', mode: 'client' },
-    { src: '~/plugins/dashboard-plugins.js', mode: 'client' },
-    { src: '~/plugins/vuelidate.js', mode: 'client' },
-    { src: '~/plugins/linkify.js', mode: 'client' },
+    { src: "~/plugins/firebase.js", mode: "client" },
+    { src: "~/plugins/fireauth.js", mode: "client" },
+    { src: "~/plugins/dashboard-plugins.js", mode: "client" },
+    { src: "~/plugins/vuelidate.js", mode: "client" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -56,31 +55,31 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
+    "@nuxt/typescript-build",
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify',
-    '@nuxtjs/dotenv',
-    '@nuxtjs/axios',
+    "@nuxtjs/vuetify",
+    "@nuxtjs/dotenv",
+    "@nuxtjs/axios",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/axios', 'vue-sweetalert2/nuxt', '@nuxtjs/pwa'],
+  modules: ["@nuxtjs/axios", "vue-sweetalert2/nuxt", "@nuxtjs/pwa"],
   dotenv: {
-    path: './env',
+    path: "./env",
     systemvars: true,
     filename: (() => {
-      let env = ''
+      let env = "";
       switch (process.env.NUXT_ENV_APP) {
-        case 'prod':
-          env = '.env.prod'
-          break
-        case 'dev':
-          env = '.env.dev'
-          break
+        case "prod":
+          env = ".env.prod";
+          break;
+        case "dev":
+          env = ".env.dev";
+          break;
         default:
-          env = '.env.dev'
+          env = ".env.dev";
       }
-      return env
+      return env;
     })(),
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -89,13 +88,13 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en',
+      lang: "en",
     },
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ["~/assets/variables.scss"],
     theme: {
       dark: false,
       themes: {
@@ -116,4 +115,4 @@ export default {
   build: {
     extractCSS: false,
   },
-}
+};

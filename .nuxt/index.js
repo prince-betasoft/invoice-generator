@@ -24,7 +24,6 @@ import nuxt_plugin_firebase_34d6f55a from 'nuxt_plugin_firebase_34d6f55a' // Sou
 import nuxt_plugin_fireauth_22211b23 from 'nuxt_plugin_fireauth_22211b23' // Source: ..\\plugins\\fireauth.js (mode: 'client')
 import nuxt_plugin_dashboardplugins_120380b4 from 'nuxt_plugin_dashboardplugins_120380b4' // Source: ..\\plugins\\dashboard-plugins.js (mode: 'client')
 import nuxt_plugin_vuelidate_4be431c8 from 'nuxt_plugin_vuelidate_4be431c8' // Source: ..\\plugins\\vuelidate.js (mode: 'client')
-import nuxt_plugin_linkify_3d32042a from 'nuxt_plugin_linkify_3d32042a' // Source: ..\\plugins\\linkify.js (mode: 'client')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -259,10 +258,6 @@ async function createApp(ssrContext, config = {}) {
 
   if (process.client && typeof nuxt_plugin_vuelidate_4be431c8 === 'function') {
     await nuxt_plugin_vuelidate_4be431c8(app.context, inject)
-  }
-
-  if (process.client && typeof nuxt_plugin_linkify_3d32042a === 'function') {
-    await nuxt_plugin_linkify_3d32042a(app.context, inject)
   }
 
   // Lock enablePreview in context

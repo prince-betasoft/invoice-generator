@@ -3,7 +3,7 @@
     <div>
       <div class="dashboard-sidebar-logo-wrapper"></div>
       <h3>Create your first invoice now</h3>
-      <v-btn to="/admin/newInvoice" class="download-btn"> New Invoice</v-btn>
+      <v-btn to="/profile/new-invoice" class="download-btn"> New Invoice</v-btn>
     </div>
   </v-main>
 </template>

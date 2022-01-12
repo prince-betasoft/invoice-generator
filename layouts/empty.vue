@@ -32,28 +32,9 @@ export default {
       fixed: false,
       items: [
         {
-          icon: "mdi-apps",
-          title: "Story",
-          to: "/story",
-        },
-        {
           icon: "mdi-chart-bubble",
           title: "Login",
           to: "/login",
-        },
-      ],
-      socials: [
-        {
-          icon: "mdi-facebook",
-          color: "indigo",
-        },
-        {
-          icon: "mdi-twitter",
-          color: "cyan darken-1",
-        },
-        {
-          icon: "mdi-gmail",
-          color: "red lighten-3",
         },
       ],
       miniVariant: false,

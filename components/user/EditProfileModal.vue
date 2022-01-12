@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center">
     <v-dialog v-model="isVisible" persistent max-width="600px">
-      <v-card class="addnew-story">
+      <v-card class="addnew-invoice">
         <v-card-title>
           <span class="text-h5">User Profile</span>
         </v-card-title>
@@ -68,37 +68,6 @@
                       v-if="uploadValue"
                     ></v-progress-linear>
                   </label>
-                </v-col>
-                <v-col cols="12" class="pl-0 py-0 mt-4">
-                  <label>Default Story Image</label>
-                  <label>
-                    <v-file-input
-                      @change="uploadImage"
-                      accept="image/*"
-                      ref="story_image"
-                      id="story_upload"
-                      style="display: none; object-fit: cover"
-                    ></v-file-input>
-                    <div class="image-upload-section mt-1">
-                      <v-img
-                        :src="user_data.default_story_pic"
-                        v-if="user_data.default_story_pic"
-                        style="width: 100%"
-                        height="200px"
-                      ></v-img>
-                      <div
-                        class="inner-content"
-                        v-if="!user_data.default_story_pic"
-                      >
-                        <v-icon> mdi-camera </v-icon>
-                        <p>Click here to upload the story image</p>
-                      </div>
-                    </div>
-                  </label>
-                  <v-progress-linear
-                    :value="uploadPercentage"
-                    v-if="uploadPercentage"
-                  ></v-progress-linear>
                 </v-col>
               </v-row>
             </v-container>
@@ -179,27 +148,6 @@ export default {
         }
       );
     },
-    uploadImage(evt) {
-      var imageRef = storage.ref();
-      var thisRef = imageRef.child(evt.name);
-      const storageRef = thisRef.put(evt);
-      storageRef.on(
-        `state_changed`,
-        (snapshot) => {
-          this.uploadPercentage =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        },
-        (error) => {
-          console.log(error.message);
-        },
-        () => {
-          this.uploadPercentage = 100;
-          storageRef.snapshot.ref.getDownloadURL().then((url) => {
-            this.user_data.default_story_pic = url;
-          });
-        }
-      );
-    },
     async UpdateProfile() {
       this.uploadValue = 0;
       if (this.$refs.profile_form.validate()) {
@@ -208,7 +156,6 @@ export default {
           first_name: this.user_data.first_name,
           last_name: this.user_data.last_name,
           profile_pic: this.user_data.profile_pic,
-          default_story_pic: this.user_data.default_story_pic,
           updated_at: timestamp,
         };
         try {
@@ -245,7 +192,7 @@ export default {
 };
 </script>
 <style scoped>
-.addnew-story .image-upload-section {
+.addnew-invoice .image-upload-section {
   border: 2px dashed #ddd;
   border-radius: 4px;
   padding: 20px;

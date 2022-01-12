@@ -48,10 +48,10 @@ export default {
 
         )
         await firestore.collection('users').doc(user.uid).get().then((doc) => {
-             this.$router.push('/admin/invoice')
+             this.$router.push('/profile/dashboard')
         })
         // dispatch('current_user', user.uid)
-        // this.$router.push('/admin/invoice')
+        // this.$router.push('/profile/dashboard')
       } catch (error) {
         commit('setLoading', false)
         commit('setError', error)
@@ -97,7 +97,7 @@ export default {
           let user = {
             email: googleUser.email,
           }
-          this.$router.push('/admin/invoice')
+          this.$router.push('/profile/dashboard')
         } else {
           auth().signOut()
           this.$swal.fire({
