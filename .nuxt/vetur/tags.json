@@ -11,13 +11,10 @@
   "VuetifyLogo": {
     "description": "Auto imported from components/VuetifyLogo.vue"
   },
-  "SidebarRightSidebarViewer": {
-    "description": "Auto imported from components/Sidebar/RightSidebarViewer.vue"
+  "ClientsAddClientModal": {
+    "description": "Auto imported from components/clients/AddClientModal.vue"
   },
   "UserEditProfileModal": {
     "description": "Auto imported from components/user/EditProfileModal.vue"
-  },
-  "StoriesAddClientModal": {
-    "description": "Auto imported from components/stories/AddClientModal.vue"
   }
 }

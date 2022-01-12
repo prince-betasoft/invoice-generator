@@ -24,7 +24,7 @@
         </v-list-item>
       </template>
       <v-list>
-        <v-list-item to="/admin/invoice" router exact>
+        <v-list-item to="/profile/all-invoices" router exact>
           <v-list-item-icon class="dashboard-sidebar-document-wrapper">
           </v-list-item-icon>
           <v-list-item-content>
@@ -35,7 +35,7 @@
             >
           </v-list-item-content>
         </v-list-item>
-        <v-list-item to="/admin/clients" router exact>
+        <v-list-item to="/profile/clients" router exact>
           <v-list-item-icon class="dashboard-sidebar-account-wrapper">
           </v-list-item-icon>
           <v-list-item-content>
@@ -46,7 +46,7 @@
             >
           </v-list-item-content>
         </v-list-item>
-        <v-list-item to="/admin/userDetails" router exact>
+        <v-list-item to="/profile/settings" router exact>
           <v-list-item-icon class="dashboard-sidebar-settings-wrapper">
           </v-list-item-icon>
           <v-list-item-content>
@@ -57,11 +57,11 @@
             >
           </v-list-item-content>
         </v-list-item>
-        <v-divider style="margin-top: 35px"></v-divider>
+        <v-divider></v-divider>
         <v-btn class="sidebar-paymentbtn-wrapper">
           International Payments
         </v-btn>
-        <v-divider style="margin-bottom: 35px"></v-divider>
+        <v-divider></v-divider>
         <v-list-item>
           <v-list-item-icon class="dashboard-sidebar-logout-wrapper">
           </v-list-item-icon>
@@ -96,7 +96,7 @@
         <v-icon
           class="back-icon mobile-hide pl-4"
           @click="goBack"
-          v-if="$route.path !== '/admin/invoice'"
+          v-if="$route.path !== '/profile/dashboard'"
         >
           mdi-arrow-left
         </v-icon>
@@ -147,7 +147,7 @@
         </v-card-actions>
       </v-app-bar>
     </v-container>
-    <v-main class="storypage">
+    <v-main class="invoicepage">
       <v-container>
         <nuxt />
       </v-container>
@@ -234,5 +234,17 @@ export default {
   margin-bottom: 0px !important;
   word-break: break-all;
   font-size: 14px;
+}
+button.sidebar-paymentbtn-wrapper {
+  background: #90a7b8 !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-size: 13px !important;
+  border-radius: 3px;
+  margin: 25px 42px !important;
+  letter-spacing: 0.5px !important;
+  text-transform: capitalize;
+  padding: 0 10px !important;
 }
 </style>

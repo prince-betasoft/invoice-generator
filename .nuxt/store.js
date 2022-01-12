@@ -19,7 +19,7 @@ let store = {};
 
   resolveStoreModules(require('..\\store\\auth.js'), 'auth.js')
   resolveStoreModules(require('..\\store\\main.js'), 'main.js')
-  resolveStoreModules(require('..\\store\\modules\\stories.js'), 'modules/stories.js')
+  resolveStoreModules(require('..\\store\\modules\\client.js'), 'modules/client.js')
 
   // If the environment supports hot reloading...
 
@@ -28,7 +28,7 @@ let store = {};
     module.hot.accept([
       '..\\store\\auth.js',
       '..\\store\\main.js',
-      '..\\store\\modules\\stories.js',
+      '..\\store\\modules\\client.js',
     ], () => {
       // Update `root.modules` with the latest definitions.
       updateModules()

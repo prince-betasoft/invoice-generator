@@ -1,5 +1,5 @@
 export default function ({ store, redirect, route }) {
   if (route.path === '/') {
-    return redirect('/admin/invoice')
+    return redirect('/profile/dashboard')
   }
 }
