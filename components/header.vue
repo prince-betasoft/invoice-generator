@@ -20,7 +20,7 @@
               <v-btn
                 class="registerbtn ml-2"
                 :ripple="{ center: true }"
-                to="/admin/invoice"
+                to="/profile/dashboard"
                 v-if="isLoggedUser"
                 >Dashboard</v-btn
               >

@@ -11,7 +11,7 @@
           {{ otherError }}
         </h1>
 
-        <p>Back to <NuxtLink to="/admin/invoice">home</NuxtLink></p>
+        <p>Back to <NuxtLink to="/profile/dashboard">home</NuxtLink></p>
       </div>
     </div>
   </v-app>
