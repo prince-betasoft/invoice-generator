@@ -1,0 +1,51 @@
+[
+  {
+    "name": "login",
+    "path": "/login",
+    "component": "D:\\\\Invoice-Builder\\\\pages\\\\login.vue",
+    "chunkName": "pages/login",
+    "_name": "_20ecfd68"
+  },
+  {
+    "name": "register",
+    "path": "/register",
+    "component": "D:\\\\Invoice-Builder\\\\pages\\\\register.vue",
+    "chunkName": "pages/register",
+    "_name": "_1e22f7e0"
+  },
+  {
+    "name": "admin-clients",
+    "path": "/admin/clients",
+    "component": "D:\\\\Invoice-Builder\\\\pages\\\\admin\\\\clients.vue",
+    "chunkName": "pages/admin/clients",
+    "_name": "_023fb274"
+  },
+  {
+    "name": "admin-invoice",
+    "path": "/admin/invoice",
+    "component": "D:\\\\Invoice-Builder\\\\pages\\\\admin\\\\invoice.vue",
+    "chunkName": "pages/admin/invoice",
+    "_name": "_56646d2a"
+  },
+  {
+    "name": "admin-newInvoice",
+    "path": "/admin/newInvoice",
+    "component": "D:\\\\Invoice-Builder\\\\pages\\\\admin\\\\newInvoice.vue",
+    "chunkName": "pages/admin/newInvoice",
+    "_name": "_1115259f"
+  },
+  {
+    "name": "admin-userDetails",
+    "path": "/admin/userDetails",
+    "component": "D:\\\\Invoice-Builder\\\\pages\\\\admin\\\\userDetails.vue",
+    "chunkName": "pages/admin/userDetails",
+    "_name": "_b8513b96"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "D:\\\\Invoice-Builder\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_25e1de35"
+  }
+]
