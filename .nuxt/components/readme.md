@@ -8,7 +8,9 @@ You can directly use them in pages and other components without the need to impo
 
 - `<Footer>` | `<footer>` (components/footer.vue)
 - `<Header>` | `<header>` (components/header.vue)
-- `<Logo>` | `<logo>` (components/Logo.vue)
+- `<Logo>` | `<logo>` (components/logo.vue)
 - `<VuetifyLogo>` | `<vuetify-logo>` (components/VuetifyLogo.vue)
-- `<ClientsAddClientModal>` | `<clients-add-client-modal>` (components/clients/AddClientModal.vue)
-- `<UserEditProfileModal>` | `<user-edit-profile-modal>` (components/user/EditProfileModal.vue)
+- `<InvoicesAddClientModal>` | `<invoices-add-client-modal>` (components/invoices/add-client-modal.vue)
+- `<InvoicesAddInvoiceModal>` | `<invoices-add-invoice-modal>` (components/invoices/add-invoice-modal.vue)
+- `<InvoicesAddSenderModal>` | `<invoices-add-sender-modal>` (components/invoices/add-sender-modal.vue)
+- `<UserEditProfileModal>` | `<user-edit-profile-modal>` (components/user/edit-profile-modal.vue)

@@ -22,8 +22,8 @@
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
-import AddClientModal from "@/components/clients/AddClientModal";
-import { auth } from "../../plugins/firebase";
+import AddClientModal from "@/components/invoices/add-client-modal";
+import { auth, storage, firestore, firebase } from "~/plugins/firebase";
 import { getUserFromCookie } from "../../helpers/index";
 export default {
   components: { AddClientModal },
@@ -56,8 +56,14 @@ export default {
     }),
   },
   methods: {
-    openAddClientModal() {
-      this.ShowAddClientModal = true;
+    async openAddClientModal() {
+      await firestore
+        .collection("clients")
+        .doc(auth().currentUser.uid)
+        .get()
+        .then(() => {
+          this.ShowAddClientModal = true;
+        });
     },
     UpdatedBy(id) {
       console.log(id);

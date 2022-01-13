@@ -65,11 +65,11 @@ export default {
   },
   computed: {
     isLoggedIn() {
-      // if (auth().currentUser != null) {
-      //   return true
-      // } else {
-      //   return false
-      // }
+      if (auth().currentUser != null) {
+        return true;
+      } else {
+        return false;
+      }
       return this.userLoggedIn;
     },
     ...mapGetters({

@@ -6,15 +6,21 @@
     "description": "Auto imported from components/header.vue"
   },
   "Logo": {
-    "description": "Auto imported from components/Logo.vue"
+    "description": "Auto imported from components/logo.vue"
   },
   "VuetifyLogo": {
     "description": "Auto imported from components/VuetifyLogo.vue"
   },
-  "ClientsAddClientModal": {
-    "description": "Auto imported from components/clients/AddClientModal.vue"
+  "InvoicesAddClientModal": {
+    "description": "Auto imported from components/invoices/add-client-modal.vue"
+  },
+  "InvoicesAddInvoiceModal": {
+    "description": "Auto imported from components/invoices/add-invoice-modal.vue"
+  },
+  "InvoicesAddSenderModal": {
+    "description": "Auto imported from components/invoices/add-sender-modal.vue"
   },
   "UserEditProfileModal": {
-    "description": "Auto imported from components/user/EditProfileModal.vue"
+    "description": "Auto imported from components/user/edit-profile-modal.vue"
   }
 }

@@ -161,7 +161,7 @@
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
-import EditProfileModal from "@/components/user/EditProfileModal.vue";
+import EditProfileModal from "@/components/user/edit-profile-modal.vue";
 import { auth, firestore } from "~/plugins/firebase";
 import Toaster from "~/services/sweetToaster.js";
 
