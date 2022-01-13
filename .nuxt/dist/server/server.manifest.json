@@ -1,0 +1,33 @@
+{
+  "entry": "server.js",
+  "files": {
+    "components/clients-add-client-modal.js": "components/clients-add-client-modal.js",
+    "components/logo.js": "components/logo.js",
+    "components/vuetify-logo.js": "components/vuetify-logo.js",
+    "pages/index.js": "pages/index.js",
+    "pages/login.js": "pages/login.js",
+    "pages/profile/all-invoices.js": "pages/profile/all-invoices.js",
+    "pages/profile/client/_clientId/index.js": "pages/profile/client/_clientId/index.js",
+    "pages/profile/clients.js": "pages/profile/clients.js",
+    "pages/profile/dashboard.js": "pages/profile/dashboard.js",
+    "pages/profile/new-invoice.js": "pages/profile/new-invoice.js",
+    "pages/profile/settings.js": "pages/profile/settings.js",
+    "pages/register.js": "pages/register.js",
+    "server.js": "server.js"
+  },
+  "maps": {
+    "components/clients-add-client-modal.js": "components/clients-add-client-modal.js.map",
+    "components/logo.js": "components/logo.js.map",
+    "components/vuetify-logo.js": "components/vuetify-logo.js.map",
+    "pages/index.js": "pages/index.js.map",
+    "pages/login.js": "pages/login.js.map",
+    "pages/profile/all-invoices.js": "pages/profile/all-invoices.js.map",
+    "pages/profile/client/_clientId/index.js": "pages/profile/client/_clientId/index.js.map",
+    "pages/profile/clients.js": "pages/profile/clients.js.map",
+    "pages/profile/dashboard.js": "pages/profile/dashboard.js.map",
+    "pages/profile/new-invoice.js": "pages/profile/new-invoice.js.map",
+    "pages/profile/settings.js": "pages/profile/settings.js.map",
+    "pages/register.js": "pages/register.js.map",
+    "server.js": "server.js.map"
+  }
+}
