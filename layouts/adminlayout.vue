@@ -97,11 +97,11 @@
         <v-card-actions class="top-admin-bar">
           <v-list-item class="grow">
             <v-list-item-avatar color="grey darken-3">
-              <v-img
+              <!-- <v-img
                 class="elevation-6"
                 alt=""
                 :src="current_user.profile_pic"
-              ></v-img>
+              ></v-img> -->
             </v-list-item-avatar>
             <v-list-item-content>
               <client-only>

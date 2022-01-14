@@ -72,8 +72,6 @@ export default {
         payload.role = "user";
         payload.is_verify = false;
         payload.id = user.uid;
-        payload.profile_pic =
-          "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y";
         payload.created_at = timestamp;
         payload.updated_at = timestamp;
         delete payload.password;
