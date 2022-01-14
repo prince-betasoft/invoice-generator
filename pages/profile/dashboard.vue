@@ -24,7 +24,6 @@ button.download-btn {
 button.download-btn:hover {
   background: #285cff !important;
 }
-
 a.router-link-wrapper {
   color: #fff !important;
 }

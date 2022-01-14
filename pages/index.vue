@@ -18,6 +18,32 @@
                 </p>
               </div>
             </v-col>
+            <v-col cols="12" sm="6" md="6">
+              <div class="welcome-left">
+                <img src="../assets/images/index-page.png" />
+              </div>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" sm="6" md="6">
+              <div class="welcome-left">
+                <img src="../assets/images/index-page2.png" />
+              </div>
+            </v-col>
+            <v-col cols="12" sm="6" md="6">
+              <div class="welcome-left">
+                <h3>Generate unlimited invoices & PDF download</h3>
+                <p>
+                  Using our online invoice maker, you can generate an unlimited
+                  number of invoices and download them as PDF without having to
+                  pay extra. Free Invoice Builder will help you to make invoices
+                  in the correct format with all essential elements. Plus, you
+                  can easily help you save, track and manage all your invoices &
+                  contacts, so you’ll never lose or misplace an invoice and
+                  clients business details.
+                </p>
+              </div>
+            </v-col>
           </v-row>
         </div>
       </v-card>

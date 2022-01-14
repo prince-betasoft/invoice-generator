@@ -3,63 +3,54 @@
     "name": "login",
     "path": "/login",
     "component": "D:\\\\Invoice-Builder\\\\pages\\\\login.vue",
-    "chunkName": "pages/login",
-    "_name": "_20ecfd68"
+    "chunkName": "pages/login"
   },
   {
     "name": "register",
     "path": "/register",
     "component": "D:\\\\Invoice-Builder\\\\pages\\\\register.vue",
-    "chunkName": "pages/register",
-    "_name": "_1e22f7e0"
+    "chunkName": "pages/register"
   },
   {
     "name": "profile-all-invoices",
     "path": "/profile/all-invoices",
     "component": "D:\\\\Invoice-Builder\\\\pages\\\\profile\\\\all-invoices.vue",
-    "chunkName": "pages/profile/all-invoices",
-    "_name": "_d4f8a444"
+    "chunkName": "pages/profile/all-invoices"
   },
   {
     "name": "profile-clients",
     "path": "/profile/clients",
     "component": "D:\\\\Invoice-Builder\\\\pages\\\\profile\\\\clients.vue",
-    "chunkName": "pages/profile/clients",
-    "_name": "_0bb31d28"
+    "chunkName": "pages/profile/clients"
   },
   {
     "name": "profile-dashboard",
     "path": "/profile/dashboard",
     "component": "D:\\\\Invoice-Builder\\\\pages\\\\profile\\\\dashboard.vue",
-    "chunkName": "pages/profile/dashboard",
-    "_name": "_121cacf8"
+    "chunkName": "pages/profile/dashboard"
   },
   {
     "name": "profile-new-invoice",
     "path": "/profile/new-invoice",
     "component": "D:\\\\Invoice-Builder\\\\pages\\\\profile\\\\new-invoice.vue",
-    "chunkName": "pages/profile/new-invoice",
-    "_name": "_6d9b1964"
+    "chunkName": "pages/profile/new-invoice"
   },
   {
     "name": "profile-settings",
     "path": "/profile/settings",
     "component": "D:\\\\Invoice-Builder\\\\pages\\\\profile\\\\settings.vue",
-    "chunkName": "pages/profile/settings",
-    "_name": "_e5dc7c22"
+    "chunkName": "pages/profile/settings"
   },
   {
     "name": "profile-client-clientId",
     "path": "/profile/client/:clientId",
     "component": "D:\\\\Invoice-Builder\\\\pages\\\\profile\\\\client\\\\_clientId\\\\index.vue",
-    "chunkName": "pages/profile/client/_clientId/index",
-    "_name": "_c9eee038"
+    "chunkName": "pages/profile/client/_clientId/index"
   },
   {
     "name": "index",
     "path": "/",
     "component": "D:\\\\Invoice-Builder\\\\pages\\\\index.vue",
-    "chunkName": "pages/index",
-    "_name": "_25e1de35"
+    "chunkName": "pages/index"
   }
 ]

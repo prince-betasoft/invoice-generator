@@ -1,7 +1,7 @@
 {
   "name": "invoice-builder",
   "short_name": "invoice-builder",
-  "description": "## Build Setup",
+  "description": "```bash\r # install dependencies\r $ npm install",
   "icons": [
     {
       "src": "/_nuxt/icons/icon_64x64.5f6a36.png",

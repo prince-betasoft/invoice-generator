@@ -62,13 +62,6 @@ button.new-client.v-btn {
 .user-name {
   color: #fff !important;
 }
-.invoice-build .blog-title {
-  margin-bottom: 15px;
-}
-.invoice-build .blog-title h3 {
-  font-size: 24px !important;
-  text-transform: uppercase;
-}
 .invoice-build {
   padding: 0px;
 }
@@ -84,13 +77,6 @@ button.new-client.v-btn {
 .invoice-build .v-card__actions > .v-btn.v-btn {
   padding: 0 8px;
   width: 25%;
-}
-.invoice-build .v-card.admin-blog-card {
-  border-radius: 5px;
-  margin-bottom: 100px !important;
-  position: relative;
-  max-width: 560px;
-  margin: auto;
 }
 .invoice-build .v-card__title {
   line-height: 1rem;
@@ -154,13 +140,9 @@ button.new-client.v-btn {
   margin-top: 30px;
   margin-bottom: 150px;
 }
-.admin-blog-card .v-image {
-  border-radius: 0 0 5px 5px;
-}
 .invoice-build .bottom-icons {
   margin-bottom: 20px;
 }
-
 .invoice-build .main-timeline:after {
   content: "";
   display: block;
@@ -240,27 +222,8 @@ button.new-client.v-btn {
   font-size: 40px !important;
   color: #277cee !important;
 }
-.admin-blog-card .center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
 .logo-admin.v-btn:focus::before {
   opacity: 0 !important;
-}
-.admin-blog-card .center img {
-  border-radius: 0 0 5px 5px;
-}
-.invoice-build .blog-title {
-  padding-left: 20px;
-  margin-bottom: 10px;
-  border-left: 3px solid #277cee;
-  background: #fff;
-  padding: 10px;
-  margin-top: 0;
-  margin-left: 0px;
-  font-family: "Poppins", sans-serif;
 }
 .invoice-build h3 {
   font-size: 15px;
@@ -285,21 +248,6 @@ button.new-client.v-btn {
 }
 .write-somethingtextarea .v-text-field {
   padding-top: 0px !important;
-}
-.inner-footer {
-  position: absolute !important;
-  width: 100%;
-  bottom: 0;
-  justify-content: center;
-  background-color: #494b4c !important;
-  padding: 10px;
-}
-.inner-footer span {
-  color: #fff !important;
-  padding-left: 10px;
-  font-size: 12px !important;
-  letter-spacing: 1px;
-  font-family: "Poppins", sans-serif;
 }
 .admin-left-content h3 {
   padding-left: 20px;
@@ -346,9 +294,6 @@ button.new-client.v-btn {
 .v-data-table > .v-data-table__wrapper > table > thead > tr > th {
   font-size: 14px !important;
 }
-.admin-blog-card:hover .edit-invoice-icon {
-  display: block !important;
-}
 .edit-invoice-icon {
   position: absolute !important;
   right: 10px;
@@ -388,15 +333,6 @@ button.new-client.v-btn {
 .back-icon {
   color: #fff !important;
   cursor: pointer;
-}
-.admin-blog-card iframe {
-  width: 100% !important;
-  height: 315px !important;
-  border-width: 0px !important;
-}
-.admin-blog-card .embed-responsive {
-  width: 100%;
-  display: flex;
 }
 .addnew-invoice .v-card__title {
   border-bottom: 1px solid #ddd !important;
@@ -454,9 +390,6 @@ button.new-client.v-btn {
 }
 .main-timeline.trashClients:before {
   top: 0 !important;
-}
-.admin-blog-card .v-card {
-  border-radius: 0px 0px 5px 5px !important;
 }
 .v-card .v-card__subtitle {
   line-height: 24px !important;
@@ -559,9 +492,6 @@ tbody tr:nth-of-type(odd) {
     margin-bottom: 30px;
     box-shadow: 1px 1px 5px 0px #bfb3b3;
   }
-  .v-data-footer {
-    justify-content: center !important;
-  }
   .invoicepage {
     padding-bottom: 10px !important;
   }
@@ -614,9 +544,6 @@ tbody tr:nth-of-type(odd) {
     width: 100%;
     padding: 0px;
   }
-  .inner-footer {
-    position: fixed !important;
-  }
   .pagenotfound h1 {
     font-size: 2em !important;
   }
@@ -636,14 +563,6 @@ tbody tr:nth-of-type(odd) {
 @media (max-device-width: 667px) and (max-device-height: 375px) {
   .invoice-build .main-timeline:before {
     left: 48% !important;
-  }
-}
-@media (max-width: 667px) {
-  .footer p {
-    line-height: 15px;
-    text-align: left;
-    padding-top: 12px;
-    font-size: 11px;
   }
 }
 @media (max-width: 540px) {
