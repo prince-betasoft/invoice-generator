@@ -93,23 +93,16 @@
         <v-btn class="menu-btn-mobile" @click.stop="drawer = !drawer">
           <v-icon> mdi-menu </v-icon>
         </v-btn>
-        <v-icon
-          class="back-icon mobile-hide pl-4"
-          @click="goBack"
-          v-if="$route.path !== '/profile/dashboard'"
-        >
-          mdi-arrow-left
-        </v-icon>
         <v-spacer />
         <v-card-actions class="top-admin-bar">
           <v-list-item class="grow">
-            <!-- <v-list-item-avatar color="grey darken-3">
+            <v-list-item-avatar color="grey darken-3">
               <v-img
                 class="elevation-6"
                 alt=""
                 :src="current_user.profile_pic"
               ></v-img>
-            </v-list-item-avatar> -->
+            </v-list-item-avatar>
             <v-list-item-content>
               <client-only>
                 <v-list-item-title

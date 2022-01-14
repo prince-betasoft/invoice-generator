@@ -307,7 +307,7 @@ export default {
         this.$emit("close");
     },
     ...mapActions({
-      addClient: "modules/client/addClient",
+      addInvoiceDetails: "modules/invoice/addInvoiceDetails",
     }),
     async onSubmit() {
       this.$v.$touch();
@@ -315,7 +315,7 @@ export default {
       this.loading = true;
       try {
         this.clientModel.id = "clients-" + nanoid();
-        await this.addClient(this.clientModel);
+        await this.addInvoiceDetails(this.clientModel);
         this.closeModal();
         this.$swal.fire({
           toast: true,

@@ -285,7 +285,6 @@ export default {
       isDeleted: false,
       slug: "",
     },
-
     loading: false,
   }),
   validations: {
@@ -337,7 +336,7 @@ export default {
         this.$emit("close");
     },
     ...mapActions({
-      addSender: "modules/sender/addSender",
+      addInvoiceDetails: "modules/invoice/addInvoiceDetails",
     }),
     async onSubmit() {
       this.$v.$touch();
@@ -345,7 +344,7 @@ export default {
       this.loading = true;
       try {
         this.senderModel.id = "sender-" + nanoid();
-        await this.addSender(this.senderModel);
+        await this.addInvoiceDetails(this.senderModel);
         this.closeModal();
         this.$swal.fire({
           toast: true,

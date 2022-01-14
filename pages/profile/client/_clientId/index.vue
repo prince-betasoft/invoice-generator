@@ -2,15 +2,6 @@
   <div class="invoice-build">
     <v-container>
       <v-row>
-        <v-col md="12" lg="12" xl="12" cols="12" class="py-0">
-          <v-icon
-            class="back-icon desktop-hide"
-            @click="$router.go(-1)"
-            v-if="$route.path !== '/profile/clients'"
-          >
-            mdi-arrow-left
-          </v-icon>
-        </v-col>
         <v-col md="3" lg="3" xl="3" cols="12" style="padding-top: 0px">
           <v-card elevation="6" class="autor-details">
             <div class="admin-left-content">

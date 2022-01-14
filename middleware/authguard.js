@@ -23,7 +23,7 @@ export default function ({ store, redirect, route }) {
       route.matched.some(
         (record) =>
           record.path !== "/login" &&
-          record.path !== "/:clientId/:clientSlug" &&
+          record.path !== "/:storyId/:storySlug" &&
           record.path !== ""
       )
     ) {

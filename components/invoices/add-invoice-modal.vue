@@ -131,13 +131,13 @@ export default {
       this.$emit("close");
     },
     ...mapActions({
-      addInvoiceType: "modules/invoice/addInvoiceType",
+      addInvoiceDetails: "modules/invoice/addInvoiceDetails",
     }),
     async onSubmitInvoice() {
       this.loading = true;
       try {
         this.invoiceTypeModel.id = "invoiceType-" + nanoid();
-        await this.addInvoiceType(this.invoiceTypeModel);
+        await this.addInvoiceDetails(this.invoiceTypeModel);
         this.closeModal();
         this.$swal.fire({
           toast: true,

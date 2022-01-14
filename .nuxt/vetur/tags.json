@@ -14,8 +14,20 @@
   "InvoicesAddClientModal": {
     "description": "Auto imported from components/invoices/add-client-modal.vue"
   },
+  "InvoicesAddCustomFieldOneModal": {
+    "description": "Auto imported from components/invoices/add-custom-field-one-modal.vue"
+  },
+  "InvoicesAddCustomFieldThreeModal": {
+    "description": "Auto imported from components/invoices/add-custom-field-three-modal.vue"
+  },
+  "InvoicesAddCustomFieldTwoModal": {
+    "description": "Auto imported from components/invoices/add-custom-field-two-modal.vue"
+  },
   "InvoicesAddInvoiceModal": {
     "description": "Auto imported from components/invoices/add-invoice-modal.vue"
+  },
+  "InvoicesAddPaymentDetailsModal": {
+    "description": "Auto imported from components/invoices/add-payment-details-modal.vue"
   },
   "InvoicesAddSenderModal": {
     "description": "Auto imported from components/invoices/add-sender-modal.vue"
