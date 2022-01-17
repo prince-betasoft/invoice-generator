@@ -87,6 +87,7 @@
 </template>
 <script>
 import { auth, storage, firestore, firebase } from "~/plugins/firebase";
+import Toaster from "~/services/sweetToaster.js";
 
 export default {
   props: {
@@ -165,26 +166,13 @@ export default {
             .update(payload);
           this.$store.dispatch("auth/current_user", auth().currentUser.uid);
           this.closeModal();
-          this.$swal.fire({
-            toast: true,
-            position: "top-end",
-            title: "Profile updated successfully",
-            icon: "success",
-            showConfirmButton: false,
-            timerProgressBar: true,
-            timer: 3000,
-          });
+          Toaster.success("Profile updated successfully", "success");
         } catch (error) {
           this.closeModal();
-          this.$swal.fire({
-            toast: true,
-            position: "top-end",
-            title: "Something went wrong. Please try again later",
-            icon: "warning",
-            showConfirmButton: false,
-            timerProgressBar: true,
-            timer: 3000,
-          });
+          Toaster.error(
+            "Something went wrong. Please try again later",
+            "error"
+          );
         }
       }
     },

@@ -174,6 +174,7 @@
                               class="form-control"
                               v-model="invoiceAllDetails.invoiceNumber"
                               placeholder="Invoice No"
+                              @keypress="onlyNumbers"
                               maxlength="20"
                               hide-details="auto"
                             />
@@ -275,7 +276,6 @@
                               <td></td>
                             </tr>
                           </thead>
-
                           <tbody>
                             <tr
                               class="item"
@@ -610,6 +610,7 @@
                             placeholder="Enter payment amount"
                             class="form-control"
                             v-model="invoiceAllDetails.invoicePayment"
+                            @keypress="onlyNumbers"
                             maxlength="16"
                             type="value"
                             hide-details="auto"
@@ -657,11 +658,7 @@
                               Please save the invoice before attempting to make
                               a copy
                             </p>
-                            <v-btn
-                              color="primary"
-                              text
-                              @click="copyinvoice = false"
-                            >
+                            <v-btn color="primary" text @click="copyItem()">
                               Ok
                             </v-btn>
                           </v-card-text>
@@ -741,8 +738,8 @@
             @close="ShowAddClientModal = false"
           />
           <add-invoice-modal
-            :addInvoiceModal="addInvoiceModal"
-            @close="addInvoiceModal = false"
+            :ShowAddInvoiceModal="ShowAddInvoiceModal"
+            @close="ShowAddInvoiceModal = false"
           />
           <add-sender-modal
             :ShowAddSenderModal="ShowAddSenderModal"
@@ -775,20 +772,21 @@
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
-import AddClientModal from "@/components/invoices/add-client-modal";
-import addInvoiceModal from "@/components/invoices/add-invoice-modal.vue";
-import addCustomFieldOneModal from "@/components/invoices/add-custom-field-one-modal.vue";
-import addCustomFieldTwoModal from "@/components/invoices/add-custom-field-two-modal.vue";
-import addCustomFieldThreeModal from "@/components/invoices/add-custom-field-three-modal.vue";
-import addPaymentDetailsModal from "@/components/invoices/add-payment-details-modal.vue";
-import AddSenderModal from "@/components/invoices/add-sender-modal.vue";
-import AddTaxModal from "@/components/invoices/add-client-modal";
+import AddClientModal from "@/components/invoices/modals/add-client-modal";
+import addInvoiceModal from "~/components/invoices/modals/add-invoice-modal.vue";
+import addCustomFieldOneModal from "~/components/invoices/modals/add-custom-field-one-modal.vue";
+import addCustomFieldTwoModal from "~/components/invoices/modals/add-custom-field-two-modal.vue";
+import addCustomFieldThreeModal from "~/components/invoices/modals/add-custom-field-three-modal.vue";
+import addPaymentDetailsModal from "~/components/invoices/modals/add-payment-details-modal.vue";
+import AddSenderModal from "~/components/invoices/modals/add-sender-modal.vue";
+import AddTaxModal from "@/components/invoices/modals/add-client-modal";
 import { auth, storage, firestore, firebase } from "~/plugins/firebase";
 import { getUserFromCookie } from "../../helpers/index";
 import VueCtkDateTimePicker from "vue-ctk-date-time-picker";
 import "vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css";
 import currencyJson from "~/data/currencies.json";
 import { nanoid } from "nanoid";
+import Toaster from "~/services/sweetToaster.js";
 
 export default {
   currencyJson: currencyJson,
@@ -842,6 +840,7 @@ export default {
     addCustomFieldTwoModal: false,
     addCustomFieldThreeModal: false,
     ShowAddSenderModal: false,
+    ShowAddInvoiceModal: false,
     dialogDelete: false,
     isHiddenCompanyInfo: true,
     isHiddenClientInfo: true,
@@ -1014,6 +1013,15 @@ export default {
           this.ShowAddSenderModal = true;
         });
     },
+    async addInvoiceDetails() {
+      await firestore
+        .collection("invoicetypes")
+        .doc(auth().currentUser.uid)
+        .get()
+        .then(() => {
+          this.ShowAddInvoiceModal = true;
+        });
+    },
     async openAddClientModal() {
       await firestore
         .collection("clients")
@@ -1023,15 +1031,7 @@ export default {
           this.ShowAddClientModal = true;
         });
     },
-    async addInvoiceDetails() {
-      await firestore
-        .collection("invoicetypes")
-        .doc(auth().currentUser.uid)
-        .get()
-        .then(() => {
-          this.addInvoiceModal = true;
-        });
-    },
+
     async addPaymentDetails() {
       await firestore
         .collection("paymentDetails")
@@ -1073,15 +1073,7 @@ export default {
       logoutUser: "auth/logout",
     }),
     deleteinvoiceField() {
-      this.$swal.fire({
-        toast: true,
-        position: "top-end",
-        title: "Invoice deleted successfully!",
-        icon: "success",
-        showConfirmButton: false,
-        timerProgressBar: true,
-        timer: 3000,
-      });
+      Toaster.success("Invoice deleted successfully!", "success");
       this.logoutUser();
     },
     deleteItem: function (index) {
@@ -1093,19 +1085,10 @@ export default {
         this.invoiceAllDetails.id = "invoiceType-" + nanoid();
         await this.addInvoiceDetails(this.invoiceAllDetails);
         this.onSubmitInvoiceBuild();
-        this.$swal.fire({
-          toast: true,
-          position: "top-end",
-          title: "Invoice Type added successfully",
-          icon: "success",
-          showConfirmButton: false,
-          timerProgressBar: true,
-          timer: 3000,
-        });
+        Toaster.success("Invoice Type added successfully", "success");
         this.loading = false;
       } catch (error) {
         this.loading = false;
-        console.log(error, "myerror");
       }
     },
     async onSubmitInvoiceBuild() {
@@ -1135,6 +1118,19 @@ export default {
           description: "",
         });
       }
+    },
+    copyItem() {
+      let url = window.location.origin + "/";
+      // let url = window.location.origin + "/" + item.id ;
+      navigator.clipboard
+        .writeText(url)
+        .then(() => {
+          Toaster.success("Link copied!", "success");
+          this.copyinvoice = false;
+        })
+        .catch(() => {
+          console.log("link copied!");
+        });
     },
     UpdatedBy(id) {
       console.log(id);

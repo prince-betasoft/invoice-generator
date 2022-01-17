@@ -7,11 +7,6 @@ export default {
       invoices: [],
     };
   },
-  mutations: {
-    setLoading(state, payload) {
-      state.loading = payload;
-    },
-  },
   actions: {
     async addInvoiceDetails({ dispatch, getters }, payload) {
       const timestamp = firebase.firestore.FieldValue.serverTimestamp();

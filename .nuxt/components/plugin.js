@@ -1,18 +1,15 @@
 import Vue from 'vue'
 
 const components = {
-  Footer: () => import('../..\\components\\footer.vue' /* webpackChunkName: "components/footer" */).then(c => c.default || c),
   Header: () => import('../..\\components\\header.vue' /* webpackChunkName: "components/header" */).then(c => c.default || c),
-  Logo: () => import('../..\\components\\logo.vue' /* webpackChunkName: "components/logo" */).then(c => c.default || c),
-  VuetifyLogo: () => import('../..\\components\\VuetifyLogo.vue' /* webpackChunkName: "components/vuetify-logo" */).then(c => c.default || c),
-  InvoicesAddClientModal: () => import('../..\\components\\invoices\\add-client-modal.vue' /* webpackChunkName: "components/invoices-add-client-modal" */).then(c => c.default || c),
-  InvoicesAddCustomFieldOneModal: () => import('../..\\components\\invoices\\add-custom-field-one-modal.vue' /* webpackChunkName: "components/invoices-add-custom-field-one-modal" */).then(c => c.default || c),
-  InvoicesAddCustomFieldThreeModal: () => import('../..\\components\\invoices\\add-custom-field-three-modal.vue' /* webpackChunkName: "components/invoices-add-custom-field-three-modal" */).then(c => c.default || c),
-  InvoicesAddCustomFieldTwoModal: () => import('../..\\components\\invoices\\add-custom-field-two-modal.vue' /* webpackChunkName: "components/invoices-add-custom-field-two-modal" */).then(c => c.default || c),
-  InvoicesAddInvoiceModal: () => import('../..\\components\\invoices\\add-invoice-modal.vue' /* webpackChunkName: "components/invoices-add-invoice-modal" */).then(c => c.default || c),
-  InvoicesAddPaymentDetailsModal: () => import('../..\\components\\invoices\\add-payment-details-modal.vue' /* webpackChunkName: "components/invoices-add-payment-details-modal" */).then(c => c.default || c),
-  InvoicesAddSenderModal: () => import('../..\\components\\invoices\\add-sender-modal.vue' /* webpackChunkName: "components/invoices-add-sender-modal" */).then(c => c.default || c),
-  UserEditProfileModal: () => import('../..\\components\\user\\edit-profile-modal.vue' /* webpackChunkName: "components/user-edit-profile-modal" */).then(c => c.default || c)
+  UserEditProfileModal: () => import('../..\\components\\user\\edit-profile-modal.vue' /* webpackChunkName: "components/user-edit-profile-modal" */).then(c => c.default || c),
+  InvoicesModalsAddClientModal: () => import('../..\\components\\invoices\\modals\\add-client-modal.vue' /* webpackChunkName: "components/invoices-modals-add-client-modal" */).then(c => c.default || c),
+  InvoicesModalsAddCustomFieldOneModal: () => import('../..\\components\\invoices\\modals\\add-custom-field-one-modal.vue' /* webpackChunkName: "components/invoices-modals-add-custom-field-one-modal" */).then(c => c.default || c),
+  InvoicesModalsAddCustomFieldThreeModal: () => import('../..\\components\\invoices\\modals\\add-custom-field-three-modal.vue' /* webpackChunkName: "components/invoices-modals-add-custom-field-three-modal" */).then(c => c.default || c),
+  InvoicesModalsAddCustomFieldTwoModal: () => import('../..\\components\\invoices\\modals\\add-custom-field-two-modal.vue' /* webpackChunkName: "components/invoices-modals-add-custom-field-two-modal" */).then(c => c.default || c),
+  InvoicesModalsAddInvoiceModal: () => import('../..\\components\\invoices\\modals\\add-invoice-modal.vue' /* webpackChunkName: "components/invoices-modals-add-invoice-modal" */).then(c => c.default || c),
+  InvoicesModalsAddPaymentDetailsModal: () => import('../..\\components\\invoices\\modals\\add-payment-details-modal.vue' /* webpackChunkName: "components/invoices-modals-add-payment-details-modal" */).then(c => c.default || c),
+  InvoicesModalsAddSenderModal: () => import('../..\\components\\invoices\\modals\\add-sender-modal.vue' /* webpackChunkName: "components/invoices-modals-add-sender-modal" */).then(c => c.default || c)
 }
 
 for (const name in components) {

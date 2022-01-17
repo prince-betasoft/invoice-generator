@@ -37,17 +37,13 @@ import { mapActions, mapGetters } from "vuex";
 import { auth } from "~/plugins/firebase";
 import { getUserFromCookie } from "~/helpers/index";
 export default {
-  asyncData({ req, redirect }) {
+  asyncData({ req }) {
     let user = null;
     if (process.server) {
       user = getUserFromCookie(req);
     } else {
       user = auth().currentUser;
     }
-    console.log("Here I am", user);
-    // if (!user) {
-    //   redirect('/login')
-    // }
     return { userLoggedIn: !!user };
   },
   methods: {
@@ -65,17 +61,11 @@ export default {
   },
   computed: {
     isLoggedIn() {
-      if (auth().currentUser != null) {
-        return true;
-      } else {
-        return false;
-      }
       return this.userLoggedIn;
     },
     ...mapGetters({
       isLoggedUser: "auth/isLoggedIn",
     }),
   },
-  methods: {},
 };
 </script>

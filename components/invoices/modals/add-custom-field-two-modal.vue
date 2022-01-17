@@ -4,22 +4,22 @@
       <v-card class="addnew-client">
         <v-card-text>
           <v-container>
-            <v-form @click="onSubmitFieldThree">
+            <v-form @click="onSubmitFieldTwo">
               <v-row>
                 <v-col cols="12" lg="12" class="pl-0 py-0 pt-3">
                   <label class="form-label-outside">Field Name</label>
                   <v-text-field
                     outlined
                     class="form-control"
-                    v-model="customFieldThree.fieldName"
+                    v-model="customFieldTwo.fieldName"
                     hide-details="auto"
                   ></v-text-field>
                   <div
-                    v-if="customFieldThree.fieldName.$error"
+                    v-if="customFieldTwo.fieldName.$error"
                     style="color: red"
                     class=""
                   >
-                    <span v-if="!customFieldThree.fieldName.maxLength"
+                    <span v-if="!customFieldTwo.fieldName.maxLength"
                       >You have reached your maximum limit of characters
                       allowed</span
                     >
@@ -31,19 +31,19 @@
                   <v-text-field
                     outlined
                     class="form-control"
-                    v-model="customFieldThree.fieldValue"
+                    v-model="customFieldTwo.fieldValue"
                     hide-details="auto"
                     required
                   ></v-text-field>
                   <div
-                    v-if="customFieldThree.fieldValue.$error"
+                    v-if="customFieldTwo.fieldValue.$error"
                     style="color: red"
                     class=""
                   >
-                    <span v-if="!$v.customFieldThree.fieldValue.required"
+                    <span v-if="!$v.customFieldTwo.fieldValue.required"
                       >Please complete this mandatory field</span
                     >
-                    <span v-if="!customFieldThree.fieldValue.maxLength"
+                    <span v-if="!customFieldTwo.fieldValue.maxLength"
                       >You have reached your maximum limit of characters
                       allowed</span
                     >
@@ -53,7 +53,7 @@
                   <label class="form-label-outside">Display Location</label>
                   <v-select
                     :items="displayLocation"
-                    v-model="customFieldThree.displayLocation"
+                    v-model="customFieldTwo.displayLocation"
                     outlined
                     item-text="name"
                     item-value="id"
@@ -69,7 +69,7 @@
           <v-btn
             class="btn-primary mr-2"
             text
-            @click="onSubmitFieldThree"
+            @click="onSubmitFieldTwo"
             :loading="loading"
           >
             Save
@@ -85,18 +85,20 @@ import { required, maxLength } from "vuelidate/lib/validators";
 import { nanoid } from "nanoid";
 import { mapActions, mapGetters } from "vuex";
 import currencyJson from "~/data/currencies.json";
+import Toaster from "~/services/sweetToaster.js";
+
 export default {
   currencyJson: currencyJson,
   props: {
-    addCustomFieldThreeModal: {
+    addCustomFieldTwoModal: {
       required: false,
       default: false,
       type: Boolean,
     },
   },
   data: () => ({
-    customFieldThree: {
-      fieldName: "Payment Details",
+    customFieldTwo: {
+      fieldName: "",
       fieldValue: "",
       displayLocation: "Description",
       isDeleted: false,
@@ -122,7 +124,7 @@ export default {
     loading: false,
   }),
   validations: {
-    customFieldThree: {
+    customFieldTwo: {
       fieldName: { maxLength: maxLength(50) },
       fieldValue: { required, maxLength: maxLength(50) },
     },
@@ -130,7 +132,7 @@ export default {
   computed: {
     isVisible: {
       get() {
-        return this.addCustomFieldThreeModal;
+        return this.addCustomFieldTwoModal;
       },
       set() {
         return false;
@@ -147,21 +149,13 @@ export default {
     ...mapActions({
       addInvoiceDetails: "modules/invoice/addInvoiceDetails",
     }),
-    async onSubmitFieldThree() {
+    async onSubmitFieldTwo() {
       this.loading = true;
       try {
-        this.customFieldThree.id = "customFieldThree-" + nanoid();
-        await this.addInvoiceDetails(this.customFieldThree);
+        this.customFieldTwo.id = "customFieldTwo-" + nanoid();
+        await this.addInvoiceDetails(this.customFieldTwo);
         this.closeModal();
-        this.$swal.fire({
-          toast: true,
-          position: "top-end",
-          title: "Details added successfully",
-          icon: "success",
-          showConfirmButton: false,
-          timerProgressBar: true,
-          timer: 3000,
-        });
+        Toaster.success("Details added successfully!", "success");
         this.loading = false;
       } catch (error) {
         this.loading = false;

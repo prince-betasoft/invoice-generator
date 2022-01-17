@@ -1,154 +1,267 @@
 <template>
-  <v-container class="mx-auto">
-    <div class="login">
-      <v-card class="v-card signup-form">
-        <v-row class="mb-6" no-gutters>
-          <v-col xs="12" sm="12" md="12">
-            <v-alert
-              type="error"
-              v-model="alert"
-              prominent
-              class="alert-msg-error"
-            >
-              {{ validationMsg }}
-            </v-alert>
-            <v-alert
-              type="success"
-              v-model="verificationAlert"
-              prominent
-              class="alert-msg-error"
-            >
-              {{ verificationMsg }}
-            </v-alert>
-            <div class="left-content">
-              <h3 class="logo-head"></h3>
-            </div>
-            <div class="right-content">
-              <v-form
-                ref="sender_form"
-                v-model="valid"
-                lazy-validation
-                @submit.prevent="onSubmit"
-              >
-                <v-row class="invoice-box">
-                  <v-col cols="12" sm="6" md="8" lg="8">
-                    <label class="form-label-outside">Sender / Name</label>
-                    <v-text-field
-                      outlined
-                      class="form-control"
-                      v-model="invoiceSenderView.senderName"
-                      hide-details="auto"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4" lg="4">
-                    <div class="country-selectb">
-                      <label class="form-label-outside">Country</label>
-                      <v-select
-                        v-model="invoiceSenderView.senderCountry"
-                        :items="currencies"
-                        outlined
-                        required
-                        class="form-control"
-                        item-text="name"
-                        item-value="id"
-                        hide-details="auto"
-                      ></v-select>
-                    </div>
-                  </v-col>
-                  <v-col cols="12" lg="6">
-                    <label class="form-label-outside">Address 1</label>
-                    <v-text-field
-                      outlined
-                      class="form-control"
-                      v-model="invoiceSenderView.senderAddress1"
-                      hide-details="auto"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" lg="6">
-                    <label class="form-label-outside">Email</label>
-                    <v-text-field
+  <v-main class="wrapper">
+    <v-card class="mx-auto" max-width="800">
+      <v-card-text>
+        <div>
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <label class="form-label-outside"
+                  ><h2 style="text-align: left">I am</h2></label
+                >
+                <v-radio-group v-model="senderModel.user_type" row>
+                  <v-radio label="an individual" value="Individual"></v-radio>
+                  <v-radio label="a company" value="Company"></v-radio>
+                </v-radio-group>
+              </v-col>
+              <v-card-actions class="sender-btnwrapper">
+                <v-btn
+                  class="btn-primary mr-2"
+                  text
+                  @click="onSubmitUserType"
+                  :loading="loading"
+                >
+                  Save
+                </v-btn>
+              </v-card-actions>
+            </v-row>
+          </v-container>
+
+          <br />
+          <hr />
+          <br />
+          <label class="form-label-outside"
+            ><h2 style="text-align: left">Invoice Sender Details</h2></label
+          >
+          <v-container>
+            <v-form lazy-validation @submit.prevent="onSubmit">
+              <v-row class="invoice-box">
+                <v-col cols="12" sm="6" md="8" lg="8">
+                  <label class="form-label-outside">Sender / Name</label>
+                  <v-text-field
+                    v-model="senderModel.senderName"
+                    required
+                    outlined
+                    hide-details="auto"
+                    dense
+                  ></v-text-field>
+                  <div
+                    v-if="$v.senderModel.senderName"
+                    style="color: red"
+                    class=""
+                  >
+                    <span v-if="!$v.senderModel.senderName.maxLength"
+                      >You have reached your maximum limit of characters
+                      allowed</span
+                    >
+                  </div>
+                </v-col>
+                <v-col cols="12" sm="6" md="4" lg="4">
+                  <div class="country-selectb">
+                    <label class="form-label-outside">Country*</label>
+                    <v-select
+                      v-model="senderModel.senderCountry"
+                      :items="countries"
                       outlined
                       required
                       class="form-control"
-                      maxlength="200"
-                      v-model="invoiceSenderView.senderEmail"
+                      item-text="name"
+                      item-value="id"
                       hide-details="auto"
-                      :rules="emailRules"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" lg="6">
-                    <label class="form-label-outside">Address 2</label>
-                    <v-text-field
-                      outlined
-                      maxlength="200"
-                      class="form-control"
-                      v-model="invoiceSenderView.senderAddress2"
-                      hide-details="auto"
-                    ></v-text-field>
-                  </v-col>
-
-                  <v-col cols="12" lg="6">
-                    <label class="form-label-outside">Phone</label>
-                    <v-text-field
-                      outlined
-                      onselectstart="return false"
-                      onpaste="return false;"
-                      onCopy="return false"
-                      onCut="return false"
-                      onDrag="return false"
-                      onDrop="return false"
-                      autocomplete="off"
-                      class="form-control"
-                      v-model="invoiceSenderView.senderPhone"
-                      hide-details="auto"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" lg="6">
-                    <label class="form-label-outside">Website</label>
-                    <v-text-field
-                      outlined
-                      class="form-control"
-                      v-model="invoiceSenderView.senderWebsite"
-                      hide-details="auto"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" lg="6">
-                    <label class="form-label-outside">
-                      PAN / Tax Registration Number</label
+                    ></v-select>
+                    <div
+                      v-if="$v.senderModel.senderCountry.$error"
+                      style="color: red"
+                      class=""
                     >
-                    <v-text-field
-                      outlined
-                      class="form-control"
-                      v-model="invoiceSenderView.senderTaxNumber"
-                      hide-details="auto"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
+                      <span v-if="!$v.senderModel.senderCountry.required"
+                        >Please complete this mandatory field</span
+                      >
+                    </div>
+                  </div>
+                </v-col>
+                <v-col cols="12" lg="6">
+                  <label class="form-label-outside">Address 1</label>
+                  <v-text-field
+                    outlined
+                    class="form-control"
+                    v-model="senderModel.senderAddress1"
+                    hide-details="auto"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" lg="6">
+                  <label class="form-label-outside">Email*</label>
+                  <v-text-field
+                    outlined
+                    required
+                    class="form-control"
+                    maxlength="200"
+                    v-model="senderModel.senderEmail"
+                    hide-details="auto"
+                    :rules="emailRules"
+                  ></v-text-field>
+                  <div
+                    v-if="$v.senderModel.senderEmail.$error"
+                    style="color: red"
+                    class=""
+                  >
+                    <span v-if="!$v.senderModel.senderEmail.required"
+                      >Please complete this mandatory field</span
+                    >
+                    <span v-if="!$v.senderModel.senderEmail.maxLength"
+                      >You have reached your maximum limit of characters
+                      allowed</span
+                    >
+                  </div>
+                </v-col>
+                <v-col cols="12" lg="6">
+                  <label class="form-label-outside">Address 2</label>
+                  <v-text-field
+                    outlined
+                    maxlength="200"
+                    class="form-control"
+                    v-model="senderModel.senderAddress2"
+                    hide-details="auto"
+                  ></v-text-field>
+                </v-col>
 
-                <v-btn
-                  color="primary"
-                  class="mr-4 submit-btn"
-                  type="submit"
-                  :loading="loader"
-                >
-                  Save Sender Details
-                </v-btn>
+                <v-col cols="12" lg="6">
+                  <label class="form-label-outside">Phone</label>
+                  <v-text-field
+                    outlined
+                    onselectstart="return false"
+                    onpaste="return false;"
+                    onCopy="return false"
+                    onCut="return false"
+                    onDrag="return false"
+                    onDrop="return false"
+                    autocomplete="off"
+                    class="form-control"
+                    v-model="senderModel.senderPhone"
+                    hide-details="auto"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" lg="6">
+                  <label class="form-label-outside">Website</label>
+                  <v-text-field
+                    outlined
+                    class="form-control"
+                    v-model="senderModel.senderWebsite"
+                    hide-details="auto"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" lg="6">
+                  <label class="form-label-outside">
+                    PAN / Tax Registration Number</label
+                  >
+                  <v-text-field
+                    outlined
+                    class="form-control"
+                    v-model="senderModel.senderTaxNumber"
+                    hide-details="auto"
+                  ></v-text-field>
+                </v-col>
+                <v-card-actions class="sender-btnwrapper">
+                  <v-btn
+                    class="btn-primary mr-2"
+                    text
+                    @click="onSubmit"
+                    :loading="loading"
+                  >
+                    Save Sender Details
+                  </v-btn>
+                </v-card-actions>
+              </v-row>
+            </v-form>
+          </v-container>
+          <br />
+          <hr />
+          <br />
+          <label class="form-label-outside"
+            ><h2 style="text-align: left">Invoice Screen Logo</h2></label
+          >
+          <v-container fluid>
+            <v-row>
+              <v-col cols="8">
+                <p style="text-align: left">
+                  Upload a logo to be shown on your invoices. If your new logo
+                  doesn't show up, please clear your cache and refresh the page.
+                </p>
+              </v-col>
+
+              <v-form @click="onSubmitInvoiceLogo">
+                <div v-if="imageData == null" style="padding-bottom: 0px">
+                  <div>
+                    <v-btn
+                      title="Add New select a file"
+                      @click="select_file"
+                      class="placeholder"
+                      color="primary"
+                    >
+                      Choose Invoice Logo
+                    </v-btn>
+                    <input
+                      type="file"
+                      ref="input1"
+                      style="display: none"
+                      @change="previewImage"
+                      accept="image/*"
+                      :disabled="dialog"
+                      :loading="dialog"
+                      class="white--text"
+                      color="purple darken-2"
+                      @click="dialog = true"
+                    />
+                  </div>
+                </div>
+                <div v-else>
+                  <div v-if="imageData != null">
+                    <div v-if="isSpinner" class="pt-12 pb-12 text-center">
+                      <v-progress-circular
+                        indeterminate
+                        color="primary"
+                      ></v-progress-circular>
+                    </div>
+                    <v-img
+                      class="preview"
+                      style="width: 100%; object-fit: cover"
+                      height="200px"
+                      v-if="senderModel.invoice_logo"
+                      :src="senderModel.invoice_logo"
+                    ></v-img>
+                    <v-btn
+                      title="Remove logo"
+                      @click="reset"
+                      class="placeholder"
+                      color="primary"
+                    >
+                      Remove Logo
+                    </v-btn>
+                    <br />
+                  </div>
+                </div>
               </v-form>
-            </div>
-          </v-col>
-        </v-row>
-      </v-card>
-    </div>
-  </v-container>
+            </v-row>
+          </v-container>
+        </div>
+      </v-card-text>
+    </v-card>
+  </v-main>
 </template>
 <script>
+import { auth, storage, firestore, firebase } from "~/plugins/firebase";
+import { required, maxLength } from "vuelidate/lib/validators";
 import { getUserFromCookie } from "@/helpers";
 import { mapActions, mapGetters } from "vuex";
 // import style from '~/assets/css/style.css'
+import { nanoid } from "nanoid";
 import currencyJson from "~/data/currencies.json";
+import countryJson from "~/data/countries.json";
+import Toaster from "~/services/sweetToaster.js";
 
 export default {
   currencyJson: currencyJson,
+  countryJson: countryJson,
   async asyncData({ req, redirect, route }) {
     if (process.server) {
       const user = getUserFromCookie(req);
@@ -160,20 +273,23 @@ export default {
   layout: "adminlayout",
   components: {},
   data: () => ({
+    isSpinner: true,
+    invoice_logo: "",
+    imageData: null,
+    dialog: false,
+    user_type: "Individual",
     countryCurrencySymbol: {
       currencies: [],
     },
+    countryList: {
+      countries: [],
+    },
+    countries: [],
     currencies: [],
     loading: false,
     alert: false,
-    validationMsg: "",
     verificationMsg: "",
-    verificationAlert: false,
-    recaptchaResponse: null,
-    errorMsg: null,
-    // key: "6LelGLoaAAAAAK8vnmjOcV3j2x-5kQor12GqGT1V",
-    selection: 1,
-    invoiceSenderView: {
+    senderModel: {
       senderName: "",
       senderCountry: "",
       senderAddress1: "",
@@ -182,14 +298,21 @@ export default {
       senderPhone: "",
       senderWebsite: "",
       senderTaxNumber: "",
+      user_type: "Individual",
+      invoice_logo: "",
     },
-    Login_Submitted: false,
     valid: true,
     emailRules: [
-      (v) => !!v.trim() || "E-mail is required",
+      (v) => !!v || "E-mail is required",
       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
   }),
+  validations: {
+    senderModel: {
+      senderCountry: { required },
+      senderEmail: { required, maxLength: maxLength(200) },
+    },
+  },
   computed: {
     ...mapGetters({
       error: "auth/error",
@@ -197,90 +320,100 @@ export default {
       message: "auth/message",
     }),
   },
-  watch: {
-    error(newState, oldState) {
-      if (newState) {
-        this.alert = true;
-        this.validationMsg = newState.message;
-      }
-    },
-    message(value) {
-      if (value) {
-        this.verificationAlert = true;
-        this.verificationMsg = value;
-      }
-    },
-  },
   methods: {
-    reserve() {
-      this.loading = true;
-      setTimeout(() => (this.loading = false), 2000);
-    },
-    validate(response) {
-      this.recaptchaResponse = response;
-      console.log(response, "recaptcha");
-    },
-    recaptchaExpire() {
-      this.recaptchaResponse = null;
-      console.log("expired");
-    },
     ...mapActions({
-      Register: "auth/Register",
-      loginWithGoogle: "auth/logInWithGoogle",
+      addInvoiceDetails: "modules/invoice/addInvoiceDetails",
     }),
     async onSubmit() {
-      this.alert = false;
-      this.verificationAlert = false;
-      if (this.$refs.sender_form.validate()) {
-        if (this.recaptchaResponse) {
-          this.login_submitted = true;
-          const payload = {
-            senderName: this.invoiceSenderView.senderName.trim(),
-            senderCountry: this.invoiceSenderView.senderCountry.trim(),
-            senderAddress1: this.invoiceSenderView.senderAddress1.trim(),
-            senderEmail: this.invoiceSenderView.senderEmail.trim(),
-            senderAddress2: this.invoiceSenderView.senderAddress2.trim(),
-            senderPhone: this.invoiceSenderView.senderPhone.trim(),
-            senderWebsite: this.invoiceSenderView.senderWebsite.trim(),
-            senderTaxNumber: this.invoiceSenderView.senderTaxNumber.trim(),
-          };
-          await this.Register(payload);
-          this.$refs.sender_form.reset();
-          this.$refs.sender_form.resetValidation();
-          this.$refs.register_recaptcha.reset();
-        } else {
-          this.errorMsg = "Please verify that you are a Human.";
-        }
+      this.$v.$touch();
+      if (this.$v.senderModel.$error) return;
+      this.loading = true;
+      try {
+        this.senderModel.id = "sender-" + nanoid();
+        await this.addInvoiceDetails(this.senderModel);
+        Toaster.success("Settings Saved", "success");
+        this.loading = false;
+      } catch (error) {
+        this.loading = false;
+        console.log(error, "myerror");
       }
+    },
+    async onSubmitUserType() {
+      this.loading = true;
+      try {
+        this.senderModel.id = "sender-" + nanoid();
+        await this.addInvoiceDetails(this.senderModel);
+        Toaster.success("Settings Saved", "success");
+        this.loading = false;
+      } catch (error) {
+        this.loading = false;
+        console.log(error, "myerror");
+      }
+    },
+    select_file() {
+      this.$refs.input1.click();
+      const post = {
+        photo: this.senderModel.invoice_logo,
+      };
+    },
+    previewImage(event) {
+      this.uploadValue = 0;
+      this.senderModel.invoice_logo = null;
+      this.imageData = event.target.files[0];
+      this.onUpload();
+    },
+    reset() {
+      Toaster.success("Settings Saved", "success");
+      this.senderModel.invoice_logo = null;
+    },
+    onUpload() {
+      this.senderModel.invoice_logo = null;
+      const storageRef = firebase
+        .storage()
+        .ref(`${this.imageData.name}`)
+        .put(this.imageData);
+      storageRef.on(
+        `state_changed`,
+        (snapshot) => {
+          this.uploadValue =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        },
+        (error) => {
+          console.log(error.message);
+        },
+        () => {
+          this.uploadValue = 100;
+          storageRef.snapshot.ref.getDownloadURL().then((url) => {
+            this.isSpinner = true;
+            this.senderModel.invoice_logo = url;
+            this.isSpinner = false;
+            Toaster.success("Settings Saved", "success");
+          });
+        }
+      );
+    },
+    async onSubmitInvoiceLogo() {
+      const formData = new FormData();
+      formData.append("invoiceLogo", this.invoiceLogo.logoImage);
+      await firestore
+        .collection("invoiceLogoImages")
+        .doc(auth().currentUser.uid)
+        .get()
+        .add(formData)
+        .then(() => {
+          this.invoiceLogo.logoImage = "";
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    handleFileUpload(e) {
+      console.log(e);
     },
   },
   mounted() {
     this.currencies = currencyJson;
+    this.countries = countryJson;
   },
 };
 </script>
-<style scoped>
-.left-content .logo-head span.aletter {
-  line-height: 46px;
-  font-size: 42px !important;
-  font-weight: bold;
-  font-family: "Pompiere", cursive !important;
-}
-.logo-head {
-  font-size: 32px;
-  color: #01b0ee !important;
-  font-family: "Pompiere", cursive;
-  letter-spacing: 1px;
-}
-.left-content {
-  text-align: center;
-  padding: 20px 40px;
-  border-bottom: 1px solid #ddd;
-  background: #f9f9f9;
-  border-radius: 5px 5px 0 0;
-}
-.alert-msg-error {
-  background: #f33434 !important;
-  margin: 10px !important;
-}
-</style>

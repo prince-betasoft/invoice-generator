@@ -1,5 +1,6 @@
 import { auth, firestore, firebase } from "~/plugins/firebase";
-import { nanoid } from "nanoid";
+import Toaster from "~/services/sweetToaster.js";
+
 export default {
   namespaced: true,
   state() {
@@ -110,15 +111,7 @@ export default {
           this.$router.push("/profile/dashboard");
         } else {
           auth().signOut();
-          this.$swal.fire({
-            toast: true,
-            position: "top-end",
-            title: "Account doesn't exit",
-            icon: "error",
-            showConfirmButton: false,
-            timerProgressBar: true,
-            timer: 3000,
-          });
+          Toaster.error("Account doesn't exit", "error");
         }
       } catch (error) {}
     },
