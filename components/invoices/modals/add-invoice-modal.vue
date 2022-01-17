@@ -14,13 +14,13 @@
         <v-card-text>
           <v-container>
             <v-row>
-              <template v-slot:activator="{ on, attrs }">
+              <!-- <template v-slot:activator="{ on, attrs }">
                 <div v-bind="attrs" v-on="on">
                   <div>
-                    {{ InvoiceTypeView.invoiceType }}
+                    {{ invoiceTypeModel.invoiceType }}
                   </div>
                 </div>
-              </template>
+              </template> -->
               <v-form @click="onSubmitInvoice">
                 <v-row>
                   <v-col cols="12" lg="12">
@@ -57,12 +57,13 @@
   </v-row>
 </template>
 <script>
-import { required, maxLength } from "vuelidate/lib/validators";
 import { nanoid } from "nanoid";
 import { mapActions, mapGetters } from "vuex";
+import Toaster from "~/services/sweetToaster.js";
+
 export default {
   props: {
-    addInvoiceModal: {
+    ShowAddInvoiceModal: {
       required: false,
       default: false,
       type: Boolean,
@@ -116,7 +117,7 @@ export default {
   computed: {
     InvoiceDialog: {
       get() {
-        return this.addInvoiceModal;
+        return this.ShowAddInvoiceModal;
       },
       set() {
         return false;
@@ -139,15 +140,7 @@ export default {
         this.invoiceTypeModel.id = "invoiceType-" + nanoid();
         await this.addInvoiceDetails(this.invoiceTypeModel);
         this.closeModal();
-        this.$swal.fire({
-          toast: true,
-          position: "top-end",
-          title: "Invoice Type added successfully",
-          icon: "success",
-          showConfirmButton: false,
-          timerProgressBar: true,
-          timer: 3000,
-        });
+        Toaster.success("Invoice Type added successfully!", "success");
         this.loading = false;
       } catch (error) {
         this.loading = false;

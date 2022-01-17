@@ -4,20 +4,17 @@
     <v-main>
       <nuxt />
     </v-main>
-    <FooterSection />
   </v-app>
 </template>
 
 <script>
 // import FrontStyle from "@/assets/css/style.css"
 import { mapActions, mapGetters } from "vuex";
-import FooterSection from "@/components/footer.vue";
 import HeaderSection from "@/components/header.vue";
 
 export default {
   components: {
     // FrontStyle,
-    FooterSection,
     HeaderSection,
   },
   data: () => ({

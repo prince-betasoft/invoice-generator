@@ -194,7 +194,6 @@ export default {
     }),
     logout() {
       Toaster.success(" Successfully logged out", "success");
-
       this.logoutUser();
     },
     goBack() {

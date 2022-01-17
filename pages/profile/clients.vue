@@ -22,9 +22,10 @@
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
-import AddClientModal from "@/components/invoices/add-client-modal";
+import AddClientModal from "@/components/invoices/modals/add-client-modal";
 import { auth, storage, firestore, firebase } from "~/plugins/firebase";
 import { getUserFromCookie } from "../../helpers/index";
+
 export default {
   components: { AddClientModal },
   layout: "adminlayout",

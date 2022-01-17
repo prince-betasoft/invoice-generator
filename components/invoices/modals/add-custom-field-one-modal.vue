@@ -86,6 +86,8 @@ import { required, maxLength } from "vuelidate/lib/validators";
 import { nanoid } from "nanoid";
 import { mapActions, mapGetters } from "vuex";
 import currencyJson from "~/data/currencies.json";
+import Toaster from "~/services/sweetToaster.js";
+
 export default {
   currencyJson: currencyJson,
   props: {
@@ -154,15 +156,7 @@ export default {
         this.customFieldOne.id = "customFieldOne-" + nanoid();
         await this.addInvoiceDetails(this.customFieldOne);
         this.closeModal();
-        this.$swal.fire({
-          toast: true,
-          position: "top-end",
-          title: "Details added successfully",
-          icon: "success",
-          showConfirmButton: false,
-          timerProgressBar: true,
-          timer: 3000,
-        });
+        Toaster.success("Details added successfully!", "success");
         this.loading = false;
       } catch (error) {
         this.loading = false;

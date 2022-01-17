@@ -2,61 +2,49 @@
   <v-row justify="center">
     <v-dialog v-model="isVisible" persistent max-width="600px">
       <v-card class="addnew-client">
+        <v-card-title>
+          <span class="headline">New Client</span>
+        </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
-              <v-col cols="12" sm="6" md="8" lg="8" class="pl-0 py-0 pt-3">
-                <label class="form-label-outside">Company/ Client Name</label>
+              <v-col cols="12" class="pl-0 py-0 pt-3">
+                <label class="form-label-outside">Name / Company Name*</label>
                 <v-text-field
-                  v-model="senderModel.senderCompanyName"
+                  v-model="clientModel.clientCompanyName"
                   required
                   outlined
                   hide-details="auto"
                   dense
                 ></v-text-field>
                 <div
-                  v-if="$v.senderModel.senderCompanyName.$error"
+                  v-if="$v.clientModel.clientCompanyName.$error"
                   style="color: red"
                   class=""
                 >
-                  <span v-if="!$v.senderModel.senderCompanyName.required"
-                    >Please complete this mandatory field</span
+                  <span v-if="!$v.clientModel.clientCompanyName.required"
+                    >Please complete this mandatory field.</span
                   >
-                  <span v-if="!$v.senderModel.senderCompanyName.maxLength"
+                  <span v-if="!$v.clientModel.clientCompanyName.maxLength"
                     >You have reached your maximum limit of characters
                     allowed</span
                   >
                 </div>
               </v-col>
-              <v-col cols="12" sm="6" md="4" lg="4" class="pl-0 py-0 pt-3">
-                <label class="form-label-outside">Country</label>
-                <v-select
-                  v-model="senderModel.senderCountry"
-                  :items="currencies"
-                  outlined
-                  item-text="name"
-                  item-value="id"
-                  hide-details="auto"
-                ></v-select>
-              </v-col>
               <v-col cols="12" lg="6" class="pl-0 py-0 pt-3">
                 <label class="form-label-outside">First Name</label>
                 <v-text-field
-                  v-model="senderModel.senderFirstName"
+                  v-model="clientModel.clientFirstName"
                   outlined
-                  required
                   hide-details="auto"
                   dense
                 ></v-text-field>
                 <div
-                  v-if="$v.senderModel.senderFirstName.$error"
+                  v-if="$v.clientModel.clientFirstName.$error"
                   style="color: red"
                   class=""
                 >
-                  <span v-if="!$v.senderModel.senderEmail.required"
-                    >Please complete this mandatory field</span
-                  >
-                  <span v-if="!$v.senderModel.senderFirstName.maxLength"
+                  <span v-if="!$v.clientModel.clientFirstName.maxLength"
                     >You have reached your maximum limit of characters
                     allowed</span
                   >
@@ -66,102 +54,83 @@
               <v-col cols="12" lg="6" class="pl-0 py-0 pt-3">
                 <label class="form-label-outside">Last Name</label>
                 <v-text-field
-                  v-model="senderModel.senderLastName"
-                  outlined
-                  required
-                  hide-details="auto"
-                  dense
-                ></v-text-field>
-                <div
-                  v-if="$v.senderModel.senderLastName.$error"
-                  style="color: red"
-                  class=""
-                >
-                  <span v-if="!$v.senderModel.senderEmail.required"
-                    >Please complete this mandatory field</span
-                  >
-                  <span v-if="!$v.senderModel.senderLastName.maxLength"
-                    >You have reached your maximum limit of characters
-                    allowed</span
-                  >
-                </div>
-              </v-col>
-              <v-col cols="12" lg="6" class="pl-0 py-0 pt-3">
-                <div class="registraction-inpu-modal">
-                  <i class="fa fa-pencil"></i>
-                  <input
-                    type="value"
-                    class="form-control"
-                    v-model="senderModel.taxRegistrationNumber"
-                    placeholder="Tax Registration Number"
-                    hide-details="auto"
-                  />
-                  <div
-                    v-if="$v.senderModel.taxRegistrationNumber.$error"
-                    style="color: red"
-                    class=""
-                  >
-                    <span v-if="!$v.senderModel.taxRegistrationNumber.maxLength"
-                      >You have reached your maximum limit of characters
-                      allowed</span
-                    >
-                  </div>
-                </div>
-                <v-text-field
-                  outlined
-                  class="form-control"
-                  v-model="senderModel.senderTaxNumber"
-                  hide-details="auto"
-                ></v-text-field>
-                <div
-                  v-if="$v.senderModel.senderTaxNumber.$error"
-                  style="color: red"
-                  class=""
-                >
-                  <span v-if="!$v.senderModel.senderTaxNumber.maxLength"
-                    >You have reached your maximum limit of characters
-                    allowed</span
-                  >
-                </div>
-              </v-col>
-              <v-col cols="12" lg="6" class="pl-0 py-0 pt-3">
-                <label class="form-label-outside">Email Address</label>
-                <v-text-field
-                  v-model="senderModel.senderEmail"
-                  required
+                  v-model="clientModel.clientLastName"
                   outlined
                   hide-details="auto"
                   dense
                 ></v-text-field>
-                <div
-                  v-if="$v.senderModel.senderEmail.$error"
-                  style="color: red"
-                  class=""
-                >
-                  <span v-if="!$v.senderModel.senderEmail.required"
-                    >Please complete this mandatory field</span
-                  >
-                  <span v-if="!$v.senderModel.senderEmail.maxLength"
-                    >You have reached your maximum limit of characters
-                    allowed</span
-                  >
-                </div>
-              </v-col>
 
+                <div
+                  v-if="$v.clientModel.clientLastName.$error"
+                  style="color: red"
+                  class=""
+                >
+                  <span v-if="!$v.clientModel.clientLastName.maxLength"
+                    >You have reached your maximum limit of characters
+                    allowed</span
+                  >
+                </div>
+              </v-col>
+              <v-col cols="12" lg="8" class="pl-0 py-0 pt-3">
+                <label class="form-label-outside">Email Address*</label>
+                <v-text-field
+                  v-model="clientModel.clientEmail"
+                  required
+                  :rules="emailRules"
+                  outlined
+                  hide-details="auto"
+                  dense
+                ></v-text-field>
+                <div
+                  v-if="$v.clientModel.clientEmail.$error"
+                  style="color: red"
+                  class=""
+                >
+                  <span v-if="!$v.clientModel.clientEmail.required"
+                    >Please complete this mandatory field.</span
+                  >
+                  <span v-if="!$v.clientModel.clientEmail.maxLength"
+                    >You have reached your maximum limit of characters
+                    allowed</span
+                  >
+                </div>
+              </v-col>
+              <v-col cols="12" sm="6" md="4" lg="4" class="pl-0 py-0 pt-3">
+                <label class="form-label-outside">Country*</label>
+                <v-select
+                  v-model="clientModel.clientCountry"
+                  :items="countries"
+                  outlined
+                  required
+                  item-text="name"
+                  item-value="id"
+                  hide-details="auto"
+                ></v-select>
+                <div
+                  v-if="$v.clientModel.clientCountry.$error"
+                  style="color: red"
+                  class=""
+                >
+                  <span v-if="!$v.clientModel.clientCountry.required"
+                    >Please complete this mandatory field.</span
+                  >
+                </div>
+              </v-col>
               <v-col cols="12" lg="6" class="pl-0 py-0 pt-3">
                 <label class="form-label-outside">Address Line 1</label>
                 <v-text-field
-                  v-model="senderModel.senderAddress1"
+                  v-model="clientModel.clientAddress1"
                   outlined
                   hide-details="auto"
                   dense
                 ></v-text-field>
+
                 <div
-                  v-if="$v.senderModel.senderAddress1.$error"
+                  v-if="$v.clientModel.clientAddress1.$error"
                   style="color: red"
                   class=""
                 >
-                  <span v-if="!$v.senderModel.senderAddress1.maxLength"
+                  <span v-if="!$v.clientModel.clientAddress1.maxLength"
                     >You have reached your maximum limit of characters
                     allowed</span
                   >
@@ -170,17 +139,18 @@
               <v-col cols="12" lg="6" class="pl-0 py-0 pt-3">
                 <label class="form-label-outside">Address Line 2</label>
                 <v-text-field
-                  v-model="senderModel.senderAddress2"
+                  v-model="clientModel.clientAddress2"
                   outlined
                   hide-details="auto"
                   dense
                 ></v-text-field>
+
                 <div
-                  v-if="$v.senderModel.senderAddress2.$error"
+                  v-if="$v.clientModel.clientAddress2.$error"
                   style="color: red"
                   class=""
                 >
-                  <span v-if="!$v.senderModel.senderAddress2.maxLength"
+                  <span v-if="!$v.clientModel.clientAddress2.maxLength"
                     >You have reached your maximum limit of characters
                     allowed</span
                   >
@@ -189,7 +159,8 @@
               <v-col cols="12" lg="6" class="pl-0 py-0 pt-3">
                 <label class="form-label-outside">Phone</label>
                 <v-text-field
-                  v-model="senderModel.senderPhone"
+                  v-model="clientModel.clientPhone"
+                  required
                   outlined
                   onselectstart="return false"
                   onpaste="return false;"
@@ -203,35 +174,37 @@
                   @keypress="onlyNumbers"
                 ></v-text-field>
                 <div
-                  v-if="$v.senderModel.senderPhone.$error"
+                  v-if="$v.clientModel.clientPhone.$error"
                   style="color: red"
                   class=""
                 >
-                  <span v-if="!$v.senderModel.senderPhone.maxLength"
-                    >You have reached your maximum limit of characters
-                    allowed</span
+                  <span v-if="!$v.clientModel.clientPhone.maxLength"
+                    >Phone Number must be less than 16 characters</span
                   >
                 </div>
               </v-col>
               <v-col cols="12" lg="6" class="pl-0 py-0 pt-3">
-                <label class="form-label-outside">Website</label>
+                <label class="form-label-outside">Extra Data</label>
                 <v-text-field
-                  v-model="senderModel.senderWebsite"
+                  v-model="clientModel.clientExtraData"
                   outlined
                   hide-details="auto"
                   dense
                 ></v-text-field>
                 <div
-                  v-if="$v.senderModel.senderWebsite.$error"
+                  v-if="$v.clientModel.clientExtraData.$error"
                   style="color: red"
                   class=""
                 >
-                  <span v-if="!$v.senderModel.senderWebsite.maxLength"
+                  <span v-if="!$v.clientModel.clientExtraData.maxLength"
                     >You have reached your maximum limit of characters
                     allowed</span
                   >
                 </div>
               </v-col>
+            </v-row>
+            <v-row>
+              <small>*indicates required field</small>
             </v-row>
           </v-container>
         </v-card-text>
@@ -256,10 +229,14 @@ import { required, maxLength } from "vuelidate/lib/validators";
 import { nanoid } from "nanoid";
 import { mapActions, mapGetters } from "vuex";
 import currencyJson from "~/data/currencies.json";
+import countryJson from "~/data/countries.json";
+import Toaster from "~/services/sweetToaster.js";
+
 export default {
   currencyJson: currencyJson,
+  countryJson: countryJson,
   props: {
-    ShowAddSenderModal: {
+    ShowAddClientModal: {
       required: false,
       default: false,
       type: Boolean,
@@ -269,42 +246,46 @@ export default {
     countryCurrencySymbol: {
       currencies: [],
     },
-    currencies: [],
-    senderModel: {
-      senderCompanyName: "",
-      senderCountry: "",
-      senderFirstName: "",
-      senderLastName: "",
-      taxRegistrationNumber: "",
-      senderTaxNumber: "",
-      senderEmail: "",
-      senderAddress1: "",
-      senderAddress2: "",
-      senderPhone: "",
-      senderWebsite: "",
-      isDeleted: false,
-      slug: "",
+    countryList: {
+      countries: [],
     },
+    currencies: [],
+    countries: [],
+    clientModel: {
+      clientCompanyName: "",
+      clientFirstName: "",
+      clientLastName: "",
+      clientEmail: "",
+      clientCountry: "",
+      clientAddress1: "",
+      clientAddress2: "",
+      clientPhone: "",
+      clientExtraData: "",
+      isDeleted: false,
+    },
+    emailRules: [
+      (v) => !!v || "",
+      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+    ],
     loading: false,
   }),
   validations: {
-    senderModel: {
-      senderCompanyName: { required, maxLength: maxLength(50) },
-      senderFirstName: { required, maxLength: maxLength(50) },
-      senderLastName: { required, maxLength: maxLength(50) },
-      taxRegistrationNumber: { maxLength: maxLength(50) },
-      senderTaxNumber: { maxLength: maxLength(50) },
-      senderEmail: { required, maxLength: maxLength(200) },
-      senderAddress1: { maxLength: maxLength(200) },
-      senderAddress2: { maxLength: maxLength(200) },
-      senderPhone: { maxLength: maxLength(16) },
-      senderWebsite: { maxLength: maxLength(200) },
+    clientModel: {
+      clientCompanyName: { required, maxLength: maxLength(50) },
+      clientFirstName: { maxLength: maxLength(50) },
+      clientLastName: { maxLength: maxLength(50) },
+      clientEmail: { required, maxLength: maxLength(50) },
+      clientCountry: { required, maxLength: maxLength(50) },
+      clientAddress1: { maxLength: maxLength(200) },
+      clientAddress2: { maxLength: maxLength(200) },
+      clientPhone: { maxLength: maxLength(16) },
+      clientExtraData: { maxLength: maxLength(200) },
     },
   },
   computed: {
     isVisible: {
       get() {
-        return this.ShowAddSenderModal;
+        return this.ShowAddClientModal;
       },
       set() {
         return false;
@@ -322,17 +303,16 @@ export default {
       }
     },
     closeModal() {
-      (this.senderModel.senderCompanyName = ""),
-        (this.senderModel.senderFirstName = ""),
-        (this.senderModel.senderLastName = ""),
-        (this.senderModel.taxRegistrationNumber = ""),
-        (this.senderModel.senderTaxNumber = ""),
-        (this.senderModel.senderEmail = ""),
-        (this.senderModel.senderAddress1 = ""),
-        (this.senderModel.senderAddress2 = ""),
-        (this.senderModel.senderPhone = ""),
-        (this.senderModel.senderWebsite = ""),
-        this.$v.senderModel.$reset(),
+      (this.clientModel.clientCompanyName = ""),
+        (this.clientModel.clientFirstName = ""),
+        (this.clientModel.clientLastName = ""),
+        (this.clientModel.clientEmail = ""),
+        (this.clientModel.clientCountry = ""),
+        (this.clientModel.clientAddress1 = ""),
+        (this.clientModel.clientAddress2 = ""),
+        (this.clientModel.clientPhone = ""),
+        (this.clientModel.clientExtraData = ""),
+        this.$v.clientModel.$reset(),
         this.$emit("close");
     },
     ...mapActions({
@@ -340,22 +320,22 @@ export default {
     }),
     async onSubmit() {
       this.$v.$touch();
-      if (this.$v.senderModel.$error) return;
+      if (this.$v.clientModel.$error) return;
       this.loading = true;
       try {
-        this.senderModel.id = "sender-" + nanoid();
-        await this.addInvoiceDetails(this.senderModel);
+        this.clientModel.id = "clients-" + nanoid();
+        await this.addInvoiceDetails(this.clientModel);
         this.closeModal();
-        this.$swal.fire({
-          toast: true,
-          position: "top-end",
-          title: "Sender added successfully",
-          icon: "success",
-          showConfirmButton: false,
-          timerProgressBar: true,
-          timer: 3000,
-        });
+        Toaster.success("Client added successfully!", "success");
         this.loading = false;
+        setTimeout(() => {
+          if (process.client) {
+            window.open(
+              window.location.origin + "/profile/client/" + this.clientModel.id,
+              "_blank"
+            );
+          }
+        }, 1500);
       } catch (error) {
         this.loading = false;
         console.log(error, "myerror");
@@ -364,6 +344,7 @@ export default {
   },
   mounted() {
     this.currencies = currencyJson;
+    this.countries = countryJson;
   },
 };
 </script>
