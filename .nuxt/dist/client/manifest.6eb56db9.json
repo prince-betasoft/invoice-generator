@@ -1,6 +1,6 @@
 {
-  "name": "invoice-builder",
-  "short_name": "invoice-builder",
+  "name": "Free-invoice-builder",
+  "short_name": "Free-invoice-builder",
   "description": "```bash\r # install dependencies\r $ npm install",
   "icons": [
     {

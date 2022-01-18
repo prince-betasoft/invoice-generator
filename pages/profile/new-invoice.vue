@@ -772,14 +772,14 @@
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
-import AddClientModal from "@/components/invoices/modals/add-client-modal";
+import addClientModal from "@/components/invoices/modals/add-client-modal";
 import addInvoiceModal from "~/components/invoices/modals/add-invoice-modal.vue";
 import addCustomFieldOneModal from "~/components/invoices/modals/add-custom-field-one-modal.vue";
 import addCustomFieldTwoModal from "~/components/invoices/modals/add-custom-field-two-modal.vue";
 import addCustomFieldThreeModal from "~/components/invoices/modals/add-custom-field-three-modal.vue";
 import addPaymentDetailsModal from "~/components/invoices/modals/add-payment-details-modal.vue";
-import AddSenderModal from "~/components/invoices/modals/add-sender-modal.vue";
-import AddTaxModal from "@/components/invoices/modals/add-client-modal";
+import addSenderModal from "~/components/invoices/modals/add-sender-modal.vue";
+import addTaxModal from "@/components/invoices/modals/add-client-modal";
 import { auth, storage, firestore, firebase } from "~/plugins/firebase";
 import { getUserFromCookie } from "../../helpers/index";
 import VueCtkDateTimePicker from "vue-ctk-date-time-picker";
@@ -791,14 +791,14 @@ import Toaster from "~/services/sweetToaster.js";
 export default {
   currencyJson: currencyJson,
   components: {
-    AddClientModal,
+    addClientModal,
     addInvoiceModal,
     addPaymentDetailsModal,
     addCustomFieldOneModal,
     addCustomFieldTwoModal,
     addCustomFieldThreeModal,
-    AddSenderModal,
-    AddTaxModal,
+    addSenderModal,
+    addTaxModal,
     VueCtkDateTimePicker,
   },
   layout: "adminlayout",
@@ -881,8 +881,8 @@ export default {
       invoiceNumber: "001",
       invoiceTerms: "",
       defaultTemplete: "Blank Template",
-      invoiceDate: new Date(),
-      dueDate: new Date(),
+      invoiceDate: "",
+      dueDate: "",
       currencySymbol: "United States Dollar",
     },
     newItemsTaxRate: [
@@ -912,7 +912,9 @@ export default {
   computed: {
     ...mapGetters({
       current_user: "auth/getAuthUser",
+      sender_details: "fetch-data/getSenderDetails",
     }),
+
     subTotal: function () {
       var total = this.items.reduce(function (accumulator, items) {
         return accumulator + items.rate * items.quantity;
@@ -1071,6 +1073,7 @@ export default {
     ...mapActions({
       addInvoiceDetails: "modules/invoice/addInvoiceDetails",
       logoutUser: "auth/logout",
+      //  senderDetails: "fetch-data/getSenderDetails",
     }),
     deleteinvoiceField() {
       Toaster.success("Invoice deleted successfully!", "success");

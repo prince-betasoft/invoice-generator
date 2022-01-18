@@ -15,19 +15,10 @@ export default {
       {
         name: "description",
         hid: "description",
-        content: "Invoice Builder, build interesting Invoices.",
+        content: "Invoice Builder",
       },
     ],
-    // link: [{ rel: 'icon', type: 'image/x-icon', href: '/fav.png' }],
-    script: [
-      {
-        hid: "recaptcha",
-        src:
-          "https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit",
-        defer: true,
-        async: true,
-      },
-    ],
+    link: [{ rel: "icon", href: "/invoice-logo.svg" }],
     script: [
       {
         type: "text/javascript",

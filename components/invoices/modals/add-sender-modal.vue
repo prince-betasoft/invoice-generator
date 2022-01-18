@@ -295,7 +295,6 @@ export default {
       senderPhone: "",
       senderWebsite: "",
       isDeleted: false,
-      slug: "",
     },
     emailRules: [
       (v) => !!v || "Please complete this mandatory field",
@@ -370,7 +369,6 @@ export default {
         await this.addInvoiceDetails(this.senderModel);
         this.closeModal();
         Toaster.success("Sender added successfully", "success");
-        console.log("im here", this.senderModel);
         this.loading = false;
       } catch (error) {
         this.loading = false;

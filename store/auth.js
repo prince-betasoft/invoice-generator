@@ -84,7 +84,6 @@ export default {
         commit("setError", error);
       }
     },
-
     async current_user({ commit, dispatch }, payload) {
       await firestore
         .collection("users")
@@ -94,27 +93,7 @@ export default {
           commit("current_user", snapshot.data());
         });
     },
-    async logInWithGoogle({ commit, dispatch }, payload) {
-      let validEmail = ["admin@gmail.com", "admin@admin.com"];
 
-      commit("clearError");
-      try {
-        let googleUser = null;
-        const { user: authUser } = await auth().signInWithPopup(
-          new auth.GoogleAuthProvider()
-        );
-        googleUser = authUser;
-        if (validEmail.indexOf(googleUser.email) !== -1) {
-          let user = {
-            email: googleUser.email,
-          };
-          this.$router.push("/profile/dashboard");
-        } else {
-          auth().signOut();
-          Toaster.error("Account doesn't exit", "error");
-        }
-      } catch (error) {}
-    },
     logout({ commit, dispatch }) {
       auth().signOut();
       commit("loggedInUser", false);

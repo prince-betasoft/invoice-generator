@@ -1,5 +1,5 @@
 {
-  "title": "invoice-builder",
+  "title": "Free-invoice-builder",
   "meta": [
     {
       "hid": "charset",
@@ -18,7 +18,7 @@
     {
       "hid": "apple-mobile-web-app-title",
       "name": "apple-mobile-web-app-title",
-      "content": "invoice-builder"
+      "content": "Free-invoice-builder"
     },
     {
       "hid": "description",
@@ -35,13 +35,13 @@
       "hid": "og:title",
       "name": "og:title",
       "property": "og:title",
-      "content": "invoice-builder"
+      "content": "Free-invoice-builder"
     },
     {
       "hid": "og:site_name",
       "name": "og:site_name",
       "property": "og:site_name",
-      "content": "invoice-builder"
+      "content": "Free-invoice-builder"
     },
     {
       "hid": "og:description",
@@ -64,7 +64,7 @@
     },
     {
       "rel": "manifest",
-      "href": "/_nuxt/manifest.a845bb86.json",
+      "href": "/_nuxt/manifest.6eb56db9.json",
       "hid": "manifest"
     }
   ],
