@@ -14,7 +14,6 @@ export default function ({ store, redirect, route }) {
   }
 
   if (conditions.notSignedIn) {
-    console.log("not signed in");
     return redirect("/login");
   }
 
@@ -23,7 +22,7 @@ export default function ({ store, redirect, route }) {
       route.matched.some(
         (record) =>
           record.path !== "/login" &&
-          record.path !== "/:storyId/:storySlug" &&
+          record.path !== "/:clientId/:clientSlug" &&
           record.path !== ""
       )
     ) {

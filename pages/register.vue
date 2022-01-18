@@ -150,8 +150,6 @@ export default {
     verificationMsg: "",
     verificationAlert: false,
     errorMsg: null,
-    // key: "6LelGLoaAAAAAK8vnmjOcV3j2x-5kQor12GqGT1V",
-    selection: 1,
     loginForm: {
       first_name: "",
       last_name: "",

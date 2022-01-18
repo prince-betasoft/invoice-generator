@@ -38,9 +38,6 @@ export default {
       redirect("/login");
     }
   },
-  data: () => ({
-    isActive: false,
-  }),
   data() {
     return {
       clientModel: {},
@@ -49,11 +46,6 @@ export default {
   computed: {
     ...mapGetters({
       current_user: "auth/getAuthUser",
-    }),
-  },
-  methods: {
-    ...mapActions({
-      softDelete: "modules/client/softDelete",
     }),
   },
 };

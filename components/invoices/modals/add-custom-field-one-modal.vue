@@ -26,6 +26,7 @@
                     >
                   </div>
                 </v-col>
+
                 <v-col cols="12" lg="12" class="pl-0 py-0 pt-3">
                   <label class="form-label-outside">Value</label>
 

@@ -18,6 +18,7 @@ let store = {};
   store.modules = store.modules || {}
 
   resolveStoreModules(require('..\\store\\auth.js'), 'auth.js')
+  resolveStoreModules(require('..\\store\\fetch-data.js'), 'fetch-data.js')
   resolveStoreModules(require('..\\store\\main.js'), 'main.js')
   resolveStoreModules(require('..\\store\\modules\\invoice.js'), 'modules/invoice.js')
 
@@ -27,6 +28,7 @@ let store = {};
     // Whenever any Vuex module is updated...
     module.hot.accept([
       '..\\store\\auth.js',
+      '..\\store\\fetch-data.js',
       '..\\store\\main.js',
       '..\\store\\modules\\invoice.js',
     ], () => {

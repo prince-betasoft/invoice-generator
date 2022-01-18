@@ -328,14 +328,6 @@ export default {
         this.closeModal();
         Toaster.success("Client added successfully!", "success");
         this.loading = false;
-        setTimeout(() => {
-          if (process.client) {
-            window.open(
-              window.location.origin + "/profile/client/" + this.clientModel.id,
-              "_blank"
-            );
-          }
-        }, 1500);
       } catch (error) {
         this.loading = false;
         console.log(error, "myerror");
