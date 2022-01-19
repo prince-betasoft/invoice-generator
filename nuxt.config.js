@@ -5,7 +5,7 @@ export default {
   telemetry: false,
   target: "server",
   ssr: true,
-  serverMiddleware: ["~/server-middleware/logger"],
+  // serverMiddleware: ["~/server-middleware/logger"],
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: "%s - Invoice Builder",
