@@ -2,16 +2,12 @@
   <div>
     <v-container>
       <client-only>
-        <v-toolbar flat>
-          <v-toolbar-title>All Clients</v-toolbar-title>
-          <v-spacer></v-spacer>
-        </v-toolbar>
-        <v-toolbar flat>
-          <v-spacer></v-spacer>
-          <v-btn elevation="2" class="new-client" @click="openAddClientModal"
-            >New Client</v-btn
-          >
-        </v-toolbar>
+        Clients
+        <div class="dashboard-sidebar-logo-wrapper"></div>
+        <h3>Create your first client now</h3>
+        <v-btn class="download-btn" @click="openAddClientModal"
+          >New Client</v-btn
+        >
         <add-client-modal
           :ShowAddClientModal="ShowAddClientModal"
           @close="ShowAddClientModal = false"
@@ -20,6 +16,7 @@
     </v-container>
   </div>
 </template>
+
 <script>
 import { mapActions, mapGetters } from "vuex";
 import addClientModal from "@/components/invoices/modals/add-client-modal";
@@ -73,10 +70,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.light-blue {
-  background-color: #277cee !important;
-  border-color: #277cee !important;
-}
-</style>

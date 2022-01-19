@@ -117,6 +117,7 @@
                           @click="openAddSenderModal"
                           >From
                         </v-btn>
+                        <!-- {{ this.sender_details }} -->
                         <!-- <div class="sender-contentbodywrapper">
                           <span><i class="fas fa-user"></i></span>
                           <h5>Sender Name</h5>
@@ -143,6 +144,7 @@
                           @click="openAddClientModal"
                           >To
                         </v-btn>
+
                         <!-- <div class="recipientbackground-wrapper">
                             <span><i class="fas fa-user"></i></span>
                             <h5>Recipient Name</h5>
@@ -913,8 +915,8 @@ export default {
     ...mapGetters({
       current_user: "auth/getAuthUser",
       sender_details: "fetch-data/getSenderDetails",
+      clients_details: "fetch-data/getClientDetails",
     }),
-
     subTotal: function () {
       var total = this.items.reduce(function (accumulator, items) {
         return accumulator + items.rate * items.quantity;
@@ -927,7 +929,6 @@ export default {
           accumulator + items.rate * items.quantity * (items.Taxrate / 100)
         );
       }, 0);
-
       // var total = this.subTotal * (items.Taxrate / 100);
       return total;
     },
@@ -936,10 +937,19 @@ export default {
       return total;
     },
   },
-  mounted() {
+  async mounted() {
     this.currencies = currencyJson;
+    await this.listSenderDetails();
+    await this.listClientDetails();
   },
   methods: {
+    ...mapActions({
+      listSenderDetails: "fetch-data/fetchAllSenderDetails",
+      listClientDetails: "fetch-data/fetchAllClientDetails",
+      addInvoiceDetails: "modules/invoice/addInvoiceDetails",
+      logoutUser: "auth/logout",
+    }),
+
     remove(items) {
       const index = this.newItemsTaxRate.indexOf(items.name);
       if (index >= 0) this.newItemsTaxRate.splice(index, 1);
@@ -1070,11 +1080,7 @@ export default {
           this.addCustomFieldThreeModal = true;
         });
     },
-    ...mapActions({
-      addInvoiceDetails: "modules/invoice/addInvoiceDetails",
-      logoutUser: "auth/logout",
-      //  senderDetails: "fetch-data/getSenderDetails",
-    }),
+
     deleteinvoiceField() {
       Toaster.success("Invoice deleted successfully!", "success");
       this.logoutUser();
@@ -1086,7 +1092,7 @@ export default {
       this.loading = true;
       try {
         this.invoiceAllDetails.id = "invoiceType-" + nanoid();
-        await this.addInvoiceDetails(this.invoiceAllDetails);
+        // await this.addInvoiceDetails(this.invoiceAllDetails);
         this.onSubmitInvoiceBuild();
         Toaster.success("Invoice Type added successfully", "success");
         this.loading = false;
@@ -1139,6 +1145,10 @@ export default {
       console.log(id);
       return "TimeStamp";
     },
+  },
+
+  async created() {
+    await this.listClientDetails();
   },
 };
 </script>
