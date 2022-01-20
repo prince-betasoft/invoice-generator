@@ -1937,7 +1937,7 @@ button.account-btn-wrapper:hover {
 }
 .due-content-heading {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
 }
 .due-content-heading h4 {

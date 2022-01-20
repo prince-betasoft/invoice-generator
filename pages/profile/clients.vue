@@ -2,16 +2,27 @@
   <div>
     <v-container>
       <client-only>
-        Clients
-        <div class="dashboard-sidebar-logo-wrapper"></div>
-        <h3>Create your first client now</h3>
-        <v-btn class="download-btn" @click="openAddClientModal"
-          >New Client</v-btn
-        >
-        <add-client-modal
-          :ShowAddClientModal="ShowAddClientModal"
-          @close="ShowAddClientModal = false"
-        />
+        <h3>Clients</h3>
+        <v-card class="addnew-invoice">
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col lg="6"> <div></div></v-col>
+                <v-col lg="6">
+                  <div class="dashboard-sidebar-logo-wrapper"></div>
+                  <h3>Create your first client now</h3>
+                  <v-btn class="btn-primary" @click="openAddClientModal"
+                    >New Client</v-btn
+                  >
+                </v-col>
+              </v-row>
+              <add-client-modal
+                :ShowAddClientModal="ShowAddClientModal"
+                @close="ShowAddClientModal = false"
+              />
+            </v-container>
+          </v-card-text>
+        </v-card>
       </client-only>
     </v-container>
   </div>

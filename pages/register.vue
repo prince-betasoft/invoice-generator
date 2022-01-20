@@ -131,7 +131,6 @@ import { getUserFromCookie } from "@/helpers";
 import { mapActions, mapGetters } from "vuex";
 import Toaster from "~/services/sweetToaster.js";
 
-// import style from '~/assets/css/style.css'
 export default {
   async asyncData({ req, redirect, route }) {
     if (process.server) {
