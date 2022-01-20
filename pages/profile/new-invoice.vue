@@ -289,6 +289,7 @@
                                   required
                                   class="form-control"
                                   outlined
+                                  :rules="taxRules"
                                   hide-details="auto"
                                   v-model="items[index].itemName"
                                 ></v-text-field>
@@ -298,6 +299,7 @@
                                   required
                                   hide-details="auto"
                                   outlined
+                                  :rules="taxRules"
                                   @keypress="onlyNumbers"
                                   maxlength="10"
                                   class="form-control"
@@ -843,7 +845,6 @@ export default {
     addCustomFieldThreeModal: false,
     ShowAddSenderModal: false,
     ShowAddInvoiceModal: false,
-    dialogDelete: false,
     isHiddenCompanyInfo: true,
     isHiddenClientInfo: true,
     isHiddenDescription: true,
@@ -897,7 +898,6 @@ export default {
         name: "+New Tax Rate",
       },
     ],
-    invoiceClientView: {},
     items: [
       {
         itemName: "",
@@ -910,6 +910,10 @@ export default {
     ],
     item: [],
     loading: false,
+    taxRules: [
+      (v) => !!v || "",
+      (v) => v.length <= 20 || "Name must be less than 20 characters",
+    ],
   }),
   computed: {
     ...mapGetters({
@@ -929,7 +933,6 @@ export default {
           accumulator + items.rate * items.quantity * (items.Taxrate / 100)
         );
       }, 0);
-      // var total = this.subTotal * (items.Taxrate / 100);
       return total;
     },
     grandTotal: function () {
@@ -949,7 +952,6 @@ export default {
       addInvoiceDetails: "modules/invoice/addInvoiceDetails",
       logoutUser: "auth/logout",
     }),
-
     remove(items) {
       const index = this.newItemsTaxRate.indexOf(items.name);
       if (index >= 0) this.newItemsTaxRate.splice(index, 1);
@@ -957,7 +959,6 @@ export default {
     onlyNumbers(event) {
       let keyCode = event.keyCode ? event.keyCode : event.which;
       if (keyCode < 48 || keyCode > 57) {
-        // 46 is dot
         event.preventDefault();
       }
     },
@@ -1017,68 +1018,25 @@ export default {
       console.log(e);
     },
     async openAddSenderModal() {
-      await firestore
-        .collection("senderDetails")
-        .doc(auth().currentUser.uid)
-        .get()
-        .then(() => {
-          this.ShowAddSenderModal = true;
-        });
+      this.ShowAddSenderModal = true;
     },
     async addInvoiceDetails() {
-      await firestore
-        .collection("invoicetypes")
-        .doc(auth().currentUser.uid)
-        .get()
-        .then(() => {
-          this.ShowAddInvoiceModal = true;
-        });
+      this.ShowAddInvoiceModal = true;
     },
     async openAddClientModal() {
-      await firestore
-        .collection("clients")
-        .doc(auth().currentUser.uid)
-        .get()
-        .then(() => {
-          this.ShowAddClientModal = true;
-        });
+      this.ShowAddClientModal = true;
     },
-
     async addPaymentDetails() {
-      await firestore
-        .collection("paymentDetails")
-        .doc(auth().currentUser.uid)
-        .get()
-        .then(() => {
-          this.addPaymentDetailsModal = true;
-        });
+      this.addPaymentDetailsModal = true;
     },
     async addCustomFieldOne() {
-      await firestore
-        .collection("customFields")
-        .doc(auth().currentUser.uid)
-        .get()
-        .then(() => {
-          this.addCustomFieldOneModal = true;
-        });
+      this.addCustomFieldOneModal = true;
     },
     async addCustomFieldTwo() {
-      await firestore
-        .collection("customFields")
-        .doc(auth().currentUser.uid)
-        .get()
-        .then(() => {
-          this.addCustomFieldTwoModal = true;
-        });
+      this.addCustomFieldTwoModal = true;
     },
     async addCustomFieldThree() {
-      await firestore
-        .collection("customFields")
-        .doc(auth().currentUser.uid)
-        .get()
-        .then(() => {
-          this.addCustomFieldThreeModal = true;
-        });
+      this.addCustomFieldThreeModal = true;
     },
 
     deleteinvoiceField() {
@@ -1089,15 +1047,19 @@ export default {
       this.items.splice(index, 1);
     },
     async onSubmitAllDetails() {
-      this.loading = true;
-      try {
-        this.invoiceAllDetails.id = "invoiceType-" + nanoid();
-        // await this.addInvoiceDetails(this.invoiceAllDetails);
-        this.onSubmitInvoiceBuild();
-        Toaster.success("Invoice Type added successfully", "success");
-        this.loading = false;
-      } catch (error) {
-        this.loading = false;
+      const check = this.$refs.tax_slip.validate();
+      if (check) {
+        this.loading = true;
+        try {
+          this.invoiceAllDetails.id = "allDetails-" + nanoid();
+          this.onSubmitInvoiceBuild();
+          Toaster.success("Details added successfully", "success");
+          this.loading = false;
+        } catch (error) {
+          this.loading = false;
+        }
+      } else {
+        Toaster.error("Invoice Items: Add at least one invoice item", "error");
       }
     },
     async onSubmitInvoiceBuild() {
@@ -1146,7 +1108,6 @@ export default {
       return "TimeStamp";
     },
   },
-
   async created() {
     await this.listClientDetails();
   },
