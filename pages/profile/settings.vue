@@ -42,6 +42,7 @@
                     v-model="senderModel.senderName"
                     required
                     outlined
+                    maxlength="52"
                     hide-details="auto"
                     dense
                   ></v-text-field>
@@ -85,9 +86,20 @@
                   <v-text-field
                     outlined
                     class="form-control"
+                    maxlength="210"
                     v-model="senderModel.senderAddress1"
                     hide-details="auto"
                   ></v-text-field>
+                  <div
+                    v-if="$v.senderModel.senderAddress1.$error"
+                    style="color: red"
+                    class=""
+                  >
+                    <span v-if="!$v.senderModel.senderAddress1.maxLength"
+                      >You have reached your maximum limit of characters
+                      allowed</span
+                    >
+                  </div>
                 </v-col>
                 <v-col cols="12" lg="6">
                   <label class="form-label-outside">Email*</label>
@@ -95,7 +107,7 @@
                     outlined
                     required
                     class="form-control"
-                    maxlength="200"
+                    maxlength="210"
                     v-model="senderModel.senderEmail"
                     hide-details="auto"
                     :rules="emailRules"
@@ -118,17 +130,28 @@
                   <label class="form-label-outside">Address 2</label>
                   <v-text-field
                     outlined
-                    maxlength="200"
+                    maxlength="210"
                     class="form-control"
                     v-model="senderModel.senderAddress2"
                     hide-details="auto"
                   ></v-text-field>
+                  <div
+                    v-if="$v.senderModel.senderAddress2.$error"
+                    style="color: red"
+                    class=""
+                  >
+                    <span v-if="!$v.senderModel.senderAddress2.maxLength"
+                      >You have reached your maximum limit of characters
+                      allowed</span
+                    >
+                  </div>
                 </v-col>
 
                 <v-col cols="12" lg="6">
                   <label class="form-label-outside">Phone</label>
                   <v-text-field
                     outlined
+                    maxlength="18"
                     onselectstart="return false"
                     onpaste="return false;"
                     onCopy="return false"
@@ -140,15 +163,36 @@
                     v-model="senderModel.senderPhone"
                     hide-details="auto"
                   ></v-text-field>
+                  <div
+                    v-if="$v.senderModel.senderPhone.$error"
+                    style="color: red"
+                    class=""
+                  >
+                    <span v-if="!$v.senderModel.senderPhone.maxLength"
+                      >You have reached your maximum limit of characters
+                      allowed</span
+                    >
+                  </div>
                 </v-col>
                 <v-col cols="12" lg="6">
                   <label class="form-label-outside">Website</label>
                   <v-text-field
                     outlined
+                    maxlength="210"
                     class="form-control"
                     v-model="senderModel.senderWebsite"
                     hide-details="auto"
                   ></v-text-field>
+                  <div
+                    v-if="$v.senderModel.senderWebsite.$error"
+                    style="color: red"
+                    class=""
+                  >
+                    <span v-if="!$v.senderModel.senderWebsite.maxLength"
+                      >You have reached your maximum limit of characters
+                      allowed</span
+                    >
+                  </div>
                 </v-col>
                 <v-col cols="12" lg="6">
                   <label class="form-label-outside">
@@ -157,9 +201,20 @@
                   <v-text-field
                     outlined
                     class="form-control"
+                    maxlength="52"
                     v-model="senderModel.senderTaxNumber"
                     hide-details="auto"
                   ></v-text-field>
+                  <div
+                    v-if="$v.senderModel.senderTaxNumber.$error"
+                    style="color: red"
+                    class=""
+                  >
+                    <span v-if="!$v.senderModel.senderTaxNumber.maxLength"
+                      >You have reached your maximum limit of characters
+                      allowed</span
+                    >
+                  </div>
                 </v-col>
                 <v-card-actions class="sender-btnwrapper">
                   <v-btn
@@ -303,7 +358,7 @@ export default {
     },
     valid: true,
     emailRules: [
-      (v) => !!v || "E-mail is required",
+      (v) => !!v || "",
       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
   }),
@@ -311,6 +366,12 @@ export default {
     senderModel: {
       senderCountry: { required },
       senderEmail: { required, maxLength: maxLength(200) },
+      senderName: { maxLength: maxLength(50) },
+      senderAddress1: { maxLength: maxLength(200) },
+      senderAddress2: { maxLength: maxLength(200) },
+      senderPhone: { maxLength: maxLength(16) },
+      senderWebsite: { maxLength: maxLength(200) },
+      senderTaxNumber: { maxLength: maxLength(50) },
     },
   },
   computed: {

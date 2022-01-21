@@ -162,6 +162,7 @@
                   v-model="clientModel.clientPhone"
                   required
                   outlined
+                  maxlength="17"
                   onselectstart="return false"
                   onpaste="return false;"
                   onCopy="return false"
@@ -303,17 +304,8 @@ export default {
       }
     },
     closeModal() {
-      (this.clientModel.clientCompanyName = ""),
-        (this.clientModel.clientFirstName = ""),
-        (this.clientModel.clientLastName = ""),
-        (this.clientModel.clientEmail = ""),
-        (this.clientModel.clientCountry = ""),
-        (this.clientModel.clientAddress1 = ""),
-        (this.clientModel.clientAddress2 = ""),
-        (this.clientModel.clientPhone = ""),
-        (this.clientModel.clientExtraData = ""),
-        this.$v.clientModel.$reset(),
-        this.$emit("close");
+      this.$emit("fetchClientDetails");
+      this.$emit("close");
     },
     ...mapActions({
       addInvoiceDetails: "modules/invoice/addInvoiceDetails",

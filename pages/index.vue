@@ -7,14 +7,23 @@
             <v-col cols="12" sm="6" md="6">
               <div class="welcome-left">
                 <h2>Online Invoice Generator</h2>
-                <p>
+                <h3>
                   Brand your invoices with your customized business logo for
-                  free. Each invoice created with our online invoice maker can
-                  be customized to the specific client you’re sending it to. You
+                  free.
+                </h3>
+                <p>
+                  Each invoice created with our online invoice maker can be
+                  customized to the specific client you’re sending it to. You
                   can choose to add your company or business logo, add sender
                   info (or set default sender in the settings), add client info,
                   add as many items as you wish such as products with fixed
-                  prices.
+                  prices & services with hourly rates, add taxes and to make
+                  sure to get paid on time add invoice payment terms such as
+                  banking details or payment link and due date. The clean,
+                  user-friendly interface of the invoice generator also lets you
+                  add new clients and manage them easily. Contact, company &
+                  payment details and customized invoice templates can be saved
+                  for recurring invoices.
                 </p>
               </div>
             </v-col>

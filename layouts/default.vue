@@ -10,13 +10,11 @@
 </template>
 
 <script>
-// import FrontStyle from "@/assets/css/style.css"
 import { mapActions, mapGetters } from "vuex";
 import HeaderSection from "@/components/header.vue";
 
 export default {
   components: {
-    // FrontStyle,
     HeaderSection,
   },
   data() {
