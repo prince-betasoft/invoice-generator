@@ -192,6 +192,7 @@
                 <v-text-field
                   v-model="senderModel.senderPhone"
                   outlined
+                  maxlength="17"
                   onselectstart="return false"
                   onpaste="return false;"
                   onCopy="return false"
@@ -272,7 +273,13 @@ export default {
       default: false,
       type: Boolean,
     },
+    // senderName: {
+    //   type: String,
+    //   required: true,
+    //   default: "",
+    // },
   },
+
   data: () => ({
     countryCurrencySymbol: {
       currencies: [],
@@ -336,6 +343,7 @@ export default {
       current_user: "auth/getAuthUser",
     }),
   },
+
   methods: {
     onlyNumbers(event) {
       let keyCode = event.keyCode ? event.keyCode : event.which;
@@ -344,18 +352,8 @@ export default {
       }
     },
     closeModal() {
-      (this.senderModel.senderCompanyName = ""),
-        (this.senderModel.senderFirstName = ""),
-        (this.senderModel.senderLastName = ""),
-        (this.senderModel.taxRegistrationNumber = ""),
-        (this.senderModel.senderTaxNumber = ""),
-        (this.senderModel.senderEmail = ""),
-        (this.senderModel.senderAddress1 = ""),
-        (this.senderModel.senderAddress2 = ""),
-        (this.senderModel.senderPhone = ""),
-        (this.senderModel.senderWebsite = ""),
-        this.$v.senderModel.$reset(),
-        this.$emit("close");
+      this.$emit("fetchSenderDetails");
+      this.$emit("close");
     },
     ...mapActions({
       addInvoiceDetails: "modules/invoice/addInvoiceDetails",
@@ -367,6 +365,7 @@ export default {
       try {
         this.senderModel.id = "sender-" + nanoid();
         await this.addInvoiceDetails(this.senderModel);
+        this.$emit("fetchSenderDetails");
         this.closeModal();
         Toaster.success("Sender added successfully", "success");
         this.loading = false;
@@ -379,6 +378,7 @@ export default {
   mounted() {
     this.currencies = currencyJson;
     this.countries = countryJson;
+    // this.senderModel.senderCompanyName = this.ShowAddSenderModal;
   },
 };
 </script>

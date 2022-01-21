@@ -24,7 +24,7 @@
                   <v-btn
                     class="save-btn"
                     text
-                    @click="onSubmitAllDetails"
+                    @click="saveInvoiceData"
                     :loading="loading"
                   >
                     Save
@@ -150,7 +150,7 @@
                             <h5>Recipient Name</h5>
                             <p>Recipient Contact Details</p>
                           </div> -->
-                        <v-div v-if="!isHiddenClientInfo">
+                        <div v-if="!isHiddenClientInfo">
                           <div class="input-terms-mainwrapper">
                             <input
                               type="value"
@@ -159,7 +159,7 @@
                               hide-details="auto"
                             />
                           </div>
-                        </v-div>
+                        </div>
                       </div>
                     </v-col>
                   </v-row>
@@ -739,14 +739,17 @@
           </v-container>
           <add-client-modal
             :ShowAddClientModal="ShowAddClientModal"
+            @fetchClientDetails="listClientDetails"
             @close="ShowAddClientModal = false"
           />
           <add-invoice-modal
             :ShowAddInvoiceModal="ShowAddInvoiceModal"
             @close="ShowAddInvoiceModal = false"
           />
+          <!-- :sender-name="invoiceAllDetails.invoiceTerms" -->
           <add-sender-modal
             :ShowAddSenderModal="ShowAddSenderModal"
+            @fetchSenderDetails="listSenderDetails"
             @close="ShowAddSenderModal = false"
           />
           <add-tax-modal
@@ -918,8 +921,8 @@ export default {
   computed: {
     ...mapGetters({
       current_user: "auth/getAuthUser",
-      sender_details: "fetch-data/getSenderDetails",
-      clients_details: "fetch-data/getClientDetails",
+      sender_details: "modules/invoice/getSenderDetails",
+      clients_details: "modules/invoice/getClientDetails",
     }),
     subTotal: function () {
       var total = this.items.reduce(function (accumulator, items) {
@@ -944,14 +947,16 @@ export default {
     this.currencies = currencyJson;
     await this.listSenderDetails();
     await this.listClientDetails();
+    // this.$store.dispatch("modules/invoice/sender_details");
   },
   methods: {
     ...mapActions({
-      listSenderDetails: "fetch-data/fetchAllSenderDetails",
-      listClientDetails: "fetch-data/fetchAllClientDetails",
+      listSenderDetails: "modules/invoice/fetchAllSenderDetails",
+      listClientDetails: "modules/invoice/fetchAllClientDetails",
       addInvoiceDetails: "modules/invoice/addInvoiceDetails",
       logoutUser: "auth/logout",
     }),
+
     remove(items) {
       const index = this.newItemsTaxRate.indexOf(items.name);
       if (index >= 0) this.newItemsTaxRate.splice(index, 1);
@@ -1002,17 +1007,9 @@ export default {
     async onSubmitInvoiceLogo() {
       const formData = new FormData();
       formData.append("invoiceLogo", this.invoiceLogo.logoImage);
-      await firestore
-        .collection("invoiceLogoImages")
-        .doc(auth().currentUser.uid)
-        .get()
-        .add(formData)
-        .then(() => {
-          this.invoiceLogo.logoImage = "";
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      Toaster.success("logo added!", "success");
+
+      this.invoiceLogo.logoImage = "";
     },
     handleFileUpload(e) {
       console.log(e);
@@ -1020,6 +1017,7 @@ export default {
     async openAddSenderModal() {
       this.ShowAddSenderModal = true;
     },
+
     async addInvoiceDetails() {
       this.ShowAddInvoiceModal = true;
     },
@@ -1046,18 +1044,36 @@ export default {
     deleteItem: function (index) {
       this.items.splice(index, 1);
     },
-    async onSubmitAllDetails() {
+    onSubmitAllDetails() {
+      var db = firebase.firestore();
+      db.collection("invoiceDetails")
+        .add(this.invoiceAllDetails)
+        .then(() => {
+          const check = this.$refs.tax_slip.validate();
+          if (check) {
+            Toaster.success("Invoice data submitted successfully!", "success");
+            //   this.$router.push("/profile/dashboard");
+            this.invoiceAllDetails.id = "allDetails-" + nanoid();
+            this.onSubmitInvoiceBuild();
+            this.invoiceAllDetails.invoicePayment = "";
+            this.invoiceAllDetails.companyInfo = "";
+            this.invoiceAllDetails.clientInfo = "";
+            this.invoiceAllDetails.invoiceDescription = "";
+            this.invoiceAllDetails.invoiceNumber = "";
+            this.invoiceAllDetails.invoiceDate = "";
+            this.invoiceAllDetails.dueDate = "";
+            this.invoiceAllDetails.currencySymbol = "";
+            this.invoiceAllDetails.invoiceTerms = "";
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    saveInvoiceData() {
       const check = this.$refs.tax_slip.validate();
       if (check) {
-        this.loading = true;
-        try {
-          this.invoiceAllDetails.id = "allDetails-" + nanoid();
-          this.onSubmitInvoiceBuild();
-          Toaster.success("Details added successfully", "success");
-          this.loading = false;
-        } catch (error) {
-          this.loading = false;
-        }
+        this.onSubmitAllDetails();
       } else {
         Toaster.error("Invoice Items: Add at least one invoice item", "error");
       }
@@ -1108,7 +1124,9 @@ export default {
       return "TimeStamp";
     },
   },
+
   async created() {
+    //  this.$store.dispatch("modules/invoice/sender_details");
     await this.listClientDetails();
   },
 };
