@@ -108,10 +108,20 @@
                   </div>
                 </div>
                 <v-text-field
+                  v-model="senderModel.senderTaxNumber"
                   outlined
                   class="form-control"
-                  v-model="senderModel.senderTaxNumber"
+                  maxlength="17"
+                  onselectstart="return false"
+                  onpaste="return false;"
+                  onCopy="return false"
+                  onCut="return false"
+                  onDrag="return false"
+                  onDrop="return false"
+                  autocomplete="off"
                   hide-details="auto"
+                  dense
+                  @keypress="onlyNumbers"
                 ></v-text-field>
                 <div
                   v-if="$v.senderModel.senderTaxNumber.$error"
@@ -254,6 +264,25 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <!-- <v-col cols="6">
+      <div class="invoice-type-innerwrapper">
+        <div>
+          <b>{{ senderModel.senderCompanyName }}</b>
+        </div>
+        <div>
+          {{ senderModel.senderCountry }}
+        </div>
+        <div>
+          {{ senderModel.senderFirstName }}
+        </div>
+        <div>
+          {{ senderModel.senderLastName }}
+        </div>
+        <div>
+          {{ senderModel.senderTaxNumber }}
+        </div>
+      </div>
+    </v-col> -->
   </v-row>
 </template>
 <script>
@@ -379,6 +408,7 @@ export default {
     this.currencies = currencyJson;
     this.countries = countryJson;
     // this.senderModel.senderCompanyName = this.ShowAddSenderModal;
+    // this.senderModel.senderCompanyName = this.senderName;
   },
 };
 </script>

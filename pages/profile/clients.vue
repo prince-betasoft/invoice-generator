@@ -18,6 +18,7 @@
               </v-row>
               <add-client-modal
                 :ShowAddClientModal="ShowAddClientModal"
+                @fetchClientDetails="listClientDetails"
                 @close="ShowAddClientModal = false"
               />
             </v-container>
@@ -31,7 +32,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import addClientModal from "@/components/invoices/modals/add-client-modal";
-import { auth, storage, firestore, firebase } from "~/plugins/firebase";
+import { auth } from "~/plugins/firebase";
 import { getUserFromCookie } from "../../helpers/index";
 
 export default {
@@ -55,29 +56,35 @@ export default {
     }
   },
   data: () => ({
-    dialog: false,
     ShowAddClientModal: false,
-    dialogDelete: false,
   }),
   computed: {
     ...mapGetters({
       current_user: "auth/getAuthUser",
     }),
   },
+  // watch: {
+  //   ShowAddClientModal() {
+  //     if (this.ShowAddClientModal) {
+  //       // this.clientModel = this.clientModel.clientExtraData;
+  //    //   this.listClientDetails();
+  //     }
+  //   },
+  // },
   methods: {
+    ...mapActions({
+      listClientDetails: "modules/invoice/fetchAllClientDetails",
+    }),
     async openAddClientModal() {
-      await firestore
-        .collection("clients")
-        .doc(auth().currentUser.uid)
-        .get()
-        .then(() => {
-          this.ShowAddClientModal = true;
-        });
+      this.ShowAddClientModal = true;
     },
     UpdatedBy(id) {
       console.log(id);
       return "TimeStamp";
     },
+  },
+  async mounted() {
+    await this.listClientDetails();
   },
 };
 </script>
