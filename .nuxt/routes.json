@@ -35,6 +35,13 @@
     "_name": "_121cacf8"
   },
   {
+    "name": "profile-invoice-details",
+    "path": "/profile/invoice-details",
+    "component": "D:\\\\Invoice-Builder\\\\pages\\\\profile\\\\invoice-details.vue",
+    "chunkName": "pages/profile/invoice-details",
+    "_name": "_66679e06"
+  },
+  {
     "name": "profile-new-invoice",
     "path": "/profile/new-invoice",
     "component": "D:\\\\Invoice-Builder\\\\pages\\\\profile\\\\new-invoice.vue",

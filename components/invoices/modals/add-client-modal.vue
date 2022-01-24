@@ -223,6 +223,38 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <!-- <v-card class="addnew-invoice">
+      <v-card-text>
+        <v-container>
+          <v-row>
+            <v-col>
+              <div class="invoice-type-innerwrapper">
+                <div v-if="clientModel.clientCompanyName">
+                  <div>
+                    <b>
+                      {{ clientModel.clientFirstName }}
+                      {{ clientModel.clientLastName }}</b
+                    >
+                  </div>
+                  <div>
+                    {{ clientModel.clientEmail }}
+                  </div>
+                  <div>
+                    {{ clientModel.clientCompanyName }}
+                  </div>
+                  <div>
+                    {{ clientModel.clientAddress1 }}
+                  </div>
+                  <div>
+                    {{ clientModel.clientAddress2 }}
+                  </div>
+                </div>
+              </div>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-card-text>
+    </v-card> -->
   </v-row>
 </template>
 <script>
@@ -296,6 +328,15 @@ export default {
       current_user: "auth/getAuthUser",
     }),
   },
+  // watch: {
+  //   ShowAddClientModal() {
+  //     if (this.ShowAddClientModal) {
+  //       this.clientModel.clientCompanyName =
+  //         this.current_user.first_name + " " + this.current_user.last_name;
+  //         this.client.
+  //     }
+  //   },
+  // },
   methods: {
     onlyNumbers(event) {
       let keyCode = event.keyCode ? event.keyCode : event.which;

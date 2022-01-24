@@ -150,6 +150,7 @@
                 <v-col cols="12" lg="6">
                   <label class="form-label-outside">Phone</label>
                   <v-text-field
+                    v-model="senderModel.senderPhone"
                     outlined
                     maxlength="18"
                     onselectstart="return false"
@@ -160,17 +161,18 @@
                     onDrop="return false"
                     autocomplete="off"
                     class="form-control"
-                    v-model="senderModel.senderPhone"
                     hide-details="auto"
+                    dense
+                    @keypress="onlyNumbers"
                   ></v-text-field>
+
                   <div
                     v-if="$v.senderModel.senderPhone.$error"
                     style="color: red"
                     class=""
                   >
                     <span v-if="!$v.senderModel.senderPhone.maxLength"
-                      >You have reached your maximum limit of characters
-                      allowed</span
+                      >Phone Number must be less than 16 characters</span
                     >
                   </div>
                 </v-col>
@@ -467,6 +469,12 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    onlyNumbers(event) {
+      let keyCode = event.keyCode ? event.keyCode : event.which;
+      if (keyCode < 48 || keyCode > 57) {
+        event.preventDefault();
+      }
     },
     handleFileUpload(e) {
       console.log(e);

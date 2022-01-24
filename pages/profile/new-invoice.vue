@@ -117,6 +117,7 @@
                           @click="openAddSenderModal"
                           >From
                         </v-btn>
+
                         <!-- {{ this.sender_details }} -->
                         <!-- <div class="sender-contentbodywrapper">
                           <span><i class="fas fa-user"></i></span>
@@ -135,6 +136,7 @@
                         </div>
                       </div>
                     </v-col>
+
                     <v-col cols="6">
                       <div class="invoice-type-innerwrapper">
                         <v-btn
@@ -179,6 +181,14 @@
                               @keypress="onlyNumbers"
                               maxlength="20"
                               hide-details="auto"
+                              onselectstart="return false"
+                              onpaste="return false;"
+                              onCopy="return false"
+                              onCut="return false"
+                              onDrag="return false"
+                              onDrop="return false"
+                              autocomplete="off"
+                              dense
                             />
                           </div>
                         </v-col>
@@ -746,12 +756,13 @@
             :ShowAddInvoiceModal="ShowAddInvoiceModal"
             @close="ShowAddInvoiceModal = false"
           />
-          <!-- :sender-name="invoiceAllDetails.invoiceTerms" -->
           <add-sender-modal
             :ShowAddSenderModal="ShowAddSenderModal"
             @fetchSenderDetails="listSenderDetails"
             @close="ShowAddSenderModal = false"
           />
+
+          <!-- :sender-name="invoiceAllDetails.invoiceNumber" -->
           <add-tax-modal
             :ShowAddTaxModal="ShowAddTaxModal"
             @close="ShowAddTaxModal = false"
@@ -878,6 +889,7 @@ export default {
         name: "Designer & Creative Agency Template",
       },
     ],
+
     invoiceAllDetails: {
       invoicePayment: "",
       companyInfo: "",
@@ -922,7 +934,7 @@ export default {
     ...mapGetters({
       current_user: "auth/getAuthUser",
       sender_details: "modules/invoice/getSenderDetails",
-      clients_details: "modules/invoice/getClientDetails",
+      client_details: "modules/invoice/getClientDetails",
     }),
     subTotal: function () {
       var total = this.items.reduce(function (accumulator, items) {
@@ -947,6 +959,7 @@ export default {
     this.currencies = currencyJson;
     await this.listSenderDetails();
     await this.listClientDetails();
+    // console.log("clientdetails-added-here", this._data.clientModel.clientCompanyName);
     // this.$store.dispatch("modules/invoice/sender_details");
   },
   methods: {
@@ -1008,7 +1021,6 @@ export default {
       const formData = new FormData();
       formData.append("invoiceLogo", this.invoiceLogo.logoImage);
       Toaster.success("logo added!", "success");
-
       this.invoiceLogo.logoImage = "";
     },
     handleFileUpload(e) {
@@ -1017,7 +1029,6 @@ export default {
     async openAddSenderModal() {
       this.ShowAddSenderModal = true;
     },
-
     async addInvoiceDetails() {
       this.ShowAddInvoiceModal = true;
     },
@@ -1052,7 +1063,7 @@ export default {
           const check = this.$refs.tax_slip.validate();
           if (check) {
             Toaster.success("Invoice data submitted successfully!", "success");
-            //   this.$router.push("/profile/dashboard");
+            this.$router.push("/profile/invoice-details");
             this.invoiceAllDetails.id = "allDetails-" + nanoid();
             this.onSubmitInvoiceBuild();
             this.invoiceAllDetails.invoicePayment = "";
@@ -1126,7 +1137,7 @@ export default {
   },
 
   async created() {
-    //  this.$store.dispatch("modules/invoice/sender_details");
+    // this.$store.dispatch("modules/invoice/sender_details");
     await this.listClientDetails();
   },
 };

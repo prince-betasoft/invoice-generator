@@ -57,6 +57,7 @@ export default {
       try {
         await firestore
           .collection("invoiceDetails")
+          .where("user_id", "==", this.state.auth.auth_user.id)
           .get()
           .then((snapshot) => {
             dispatch("sender_details");
