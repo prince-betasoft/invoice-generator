@@ -50,7 +50,7 @@
                       <v-text-field
                         v-model="loginForm.first_name"
                         placeholder="First name"
-                        :rules="firstName"
+                        :rules="nameRules"
                         required
                         class="v-label"
                         outlined
@@ -61,7 +61,7 @@
                       <v-text-field
                         v-model="loginForm.last_name"
                         placeholder="Last name"
-                        :rules="firstName"
+                        :rules="nameRules"
                         required
                         class="v-label"
                         outlined
@@ -76,7 +76,7 @@
                     placeholder="Company Name"
                     v-model="loginForm.company_name"
                     class="v-label"
-                    :rules="firstName"
+                    :rules="nameRules"
                     required
                     outlined
                   ></v-text-field>
@@ -160,7 +160,7 @@ export default {
     Login_Submitted: false,
     valid: true,
 
-    firstName: [
+    nameRules: [
       (v) => !!v || "Please complete this mandatory field.",
       (v) => (v && v.length <= 20) || "Name must be less than 20 characters",
     ],

@@ -1527,6 +1527,13 @@ table.summary-table-mainwrapper tbody tr td {
   padding: 0px 0px 18px 15px;
   border: 2px dashed #fff;
 }
+.invoice-type-innerwrapper-one {
+  text-align: left;
+  height: auto !important;
+  position: relative;
+  padding: 0px 0px 44px 15px;
+  border: 2px dashed #fff;
+}
 .select-fileinner-wrapper {
   width: 75px;
 }
@@ -1883,6 +1890,14 @@ button.account-btn-wrapper:hover {
   border: 2px dashed rgba(0, 0, 0, 0.05);
   opacity: 1;
 }
+.bank-template-mainwrapper:hover .invoice-type-innerwrapper-one {
+  border-radius: 3px;
+  cursor: pointer;
+
+  background: rgba(0, 0, 0, 0.015);
+  border: 2px dashed rgba(0, 0, 0, 0.05);
+  opacity: 1;
+}
 .sender-contentbodywrapper {
   position: absolute;
   top: 32px;
@@ -1956,6 +1971,13 @@ button.account-btn-wrapper:hover {
   display: flex;
   align-items: center;
 }
+.invoice-contentwrapper .invoice-type-innerwrapper-one {
+  padding: 0px;
+  width: 124px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
 .invoice-contentwrapper span {
   font-size: 12px;
 }
@@ -2003,6 +2025,9 @@ button.account-btn-wrapper:hover {
   font-weight: 400;
 }
 .invoice-type-innerwrapper:hover {
+  outline: 2px solid #257eff;
+}
+.invoice-type-innerwrapper-one:hover {
   outline: 2px solid #257eff;
 }
 .preview:hover {
@@ -2136,6 +2161,12 @@ label.form-label-outside.taxt-registration-number i {
   width: 27%;
 }
 .invoice-type-innerwrapper.mainwrapper-first-row p {
+  font-size: 14px !important;
+  margin-bottom: 0px !important;
+  color: #888;
+  width: 75px;
+}
+.invoice-type-innerwrapper-one.mainwrapper-first-row p {
   font-size: 14px !important;
   margin-bottom: 0px !important;
   color: #888;

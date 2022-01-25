@@ -1,4 +1,5 @@
 import { auth, firebase, firestore } from "~/plugins/firebase";
+
 export const strict = false;
 export default {
   namespaced: true,
@@ -17,6 +18,7 @@ export default {
       state.fetch_client_details = payload;
     },
   },
+
   actions: {
     async addInvoiceDetails({ dispatch, getters }, payload) {
       const timestamp = firebase.firestore.FieldValue.serverTimestamp();
@@ -53,40 +55,46 @@ export default {
         console.log("Error", error);
       }
     },
-    async fetchAllSenderDetails({ commit, dispatch, rootState }) {
+    async fetchAllSenderDetails({ commit }) {
+      try {
+        await firestore
+          .collection("invoiceDetails")
+          .get()
+          .then((snapshot) => {
+            const data = snapshot.docs.map((doc) => ({
+              id: doc.id,
+              ...doc.data(),
+            }));
+            commit("sender_details", data);
+            console.log("sender here", data);
+          });
+      } catch (error) {
+        console.log("Error", error);
+      }
+    },
+    async fetchAllClientDetails({ commit }, payload) {
+      //  const id = auth().currentUser.uid;
       try {
         await firestore
           .collection("invoiceDetails")
           .where("user_id", "==", this.state.auth.auth_user.id)
+          // .doc(id)
+          // .doc(auth().currentUser.uid)
           .get()
           .then((snapshot) => {
-            dispatch("sender_details");
             const data = snapshot.docs.map((doc) => ({
+              id: doc.id,
               ...doc.data(),
             }));
-            commit("sender_details", data);
+            commit("client_details");
+            console.log("client here", data);
+            console.log("client id", data[0].id);
+            console.log("details", this.state.auth.auth_user.id);
           });
       } catch (error) {
         console.log("Error", error);
       }
     },
-
-    async fetchAllClientDetails({ commit, dispatch, rootState }) {
-      try {
-        await firestore
-          .collection("invoiceDetails")
-          .get()
-          .then((snapshot) => {
-            const data = snapshot.docs.map((doc) => ({
-              ...doc.data(),
-            }));
-            commit("client_details", data);
-          });
-      } catch (error) {
-        console.log("Error", error);
-      }
-    },
-
     async sender_details({ commit, dispatch }, payload) {
       await firestore
         .collection("invoiceDetails")

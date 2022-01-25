@@ -223,7 +223,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <!-- <v-card class="addnew-invoice">
+    <v-card class="addnew-invoice">
       <v-card-text>
         <v-container>
           <v-row>
@@ -254,7 +254,7 @@
           </v-row>
         </v-container>
       </v-card-text>
-    </v-card> -->
+    </v-card>
   </v-row>
 </template>
 <script>
@@ -264,6 +264,7 @@ import { mapActions, mapGetters } from "vuex";
 import currencyJson from "~/data/currencies.json";
 import countryJson from "~/data/countries.json";
 import Toaster from "~/services/sweetToaster.js";
+import { auth, storage, firestore, firebase } from "~/plugins/firebase";
 
 export default {
   currencyJson: currencyJson,
@@ -328,15 +329,6 @@ export default {
       current_user: "auth/getAuthUser",
     }),
   },
-  // watch: {
-  //   ShowAddClientModal() {
-  //     if (this.ShowAddClientModal) {
-  //       this.clientModel.clientCompanyName =
-  //         this.current_user.first_name + " " + this.current_user.last_name;
-  //         this.client.
-  //     }
-  //   },
-  // },
   methods: {
     onlyNumbers(event) {
       let keyCode = event.keyCode ? event.keyCode : event.which;
@@ -351,6 +343,7 @@ export default {
     ...mapActions({
       addInvoiceDetails: "modules/invoice/addInvoiceDetails",
     }),
+
     async onSubmit() {
       this.$v.$touch();
       if (this.$v.clientModel.$error) return;

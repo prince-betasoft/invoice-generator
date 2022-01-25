@@ -109,7 +109,7 @@
                   </v-row>
                   <v-row>
                     <v-col cols="6">
-                      <div class="invoice-type-innerwrapper">
+                      <div class="invoice-type-innerwrapper-one">
                         <v-btn
                           class="form-label-outside"
                           style="text-transform: uppercase; font-size: 11px"
@@ -117,14 +117,51 @@
                           @click="openAddSenderModal"
                           >From
                         </v-btn>
-
                         <!-- {{ this.sender_details }} -->
-                        <!-- <div class="sender-contentbodywrapper">
+                        <div class="sender-contentbodywrapper">
                           <span><i class="fas fa-user"></i></span>
                           <h5>Sender Name</h5>
                           <p>Sender Contact Details</p>
+                        </div>
+                        <br />
+                        <br />
+                        <!-- {{ sender_details[0] }} -->
+                        <!-- <div>
+                          <b>{{ sender_details[0].senderCompanyName }}</b>
+                        </div>
+                        <div>
+                          {{ sender_details[0].senderCountry }}
+                        </div>
+                        <div>
+                          {{ sender_details[0].senderFirstName }}
+                        </div>
+                        <div>
+                          {{ sender_details[0].senderLastName }}
+                        </div>
+                        <div>
+                          {{ sender_details[0].taxRegistrationNumber }}
+                        </div>
+                        <div>
+                          {{ sender_details[0].senderTaxNumber }}
+                        </div>
+                        <div>
+                          {{ sender_details[0].senderEmail }}
+                        </div>
+                        <div>
+                          {{ sender_details[0].senderAddress1 }}
+                        </div>
+                        <div>
+                          {{ sender_details[0].senderAddress2 }}
+                        </div>
+                        <div>
+                          {{ sender_details[0].senderPhone }}
+                        </div>
+                        <div>
+                          {{ sender_details[0].senderWebsite }}
                         </div> -->
                         <div v-if="!isHiddenCompanyInfo">
+                          <br />
+                          <br />
                           <div class="input-terms-mainwrapper">
                             <input
                               type="value"
@@ -136,9 +173,8 @@
                         </div>
                       </div>
                     </v-col>
-
                     <v-col cols="6">
-                      <div class="invoice-type-innerwrapper">
+                      <div class="invoice-type-innerwrapper-one">
                         <v-btn
                           class="form-label-outside"
                           style="text-transform: uppercase; font-size: 11px"
@@ -147,12 +183,49 @@
                           >To
                         </v-btn>
 
-                        <!-- <div class="recipientbackground-wrapper">
-                            <span><i class="fas fa-user"></i></span>
-                            <h5>Recipient Name</h5>
-                            <p>Recipient Contact Details</p>
-                          </div> -->
+                        <div class="recipientbackground-wrapper">
+                          <span><i class="fas fa-user"></i></span>
+                          <h5>Recipient Name</h5>
+                          <p>Recipient Contact Details</p>
+                        </div>
+                        <br />
+                        <br />
+                        <!-- {{ client_details }} -->
+
+                        <!-- {{ client_details[0].clientAddress1 }}
+                        {{ client_details.clientAddress1 }} -->
+
+                        <!-- <div>
+                          <b>{{ client_details[0].clientCompanyName }}</b>
+                        </div>
+                        <div>
+                          {{ client_details[0].clientFirstName }}
+                        </div>
+                        <div>
+                          {{ client_details[0].clientLastName }}
+                        </div>
+                        <div>
+                          {{ client_details[0].clientEmail }}
+                        </div>
+                        <div>
+                          {{ client_details[0].clientCountry }}
+                        </div>
+                        <div>
+                          {{ client_details[0].clientAddress1 }}
+                        </div>
+                        <div>
+                          {{ client_details[0].clientAddress2 }}
+                        </div>
+                        <div>
+                          {{ client_details[0].clientPhone }}
+                        </div>
+                        <div>
+                          {{ client_details[0].clientExtraData }}
+                        </div> -->
+
                         <div v-if="!isHiddenClientInfo">
+                          <br />
+                          <br />
                           <div class="input-terms-mainwrapper">
                             <input
                               type="value"
@@ -761,7 +834,6 @@
             @fetchSenderDetails="listSenderDetails"
             @close="ShowAddSenderModal = false"
           />
-
           <!-- :sender-name="invoiceAllDetails.invoiceNumber" -->
           <add-tax-modal
             :ShowAddTaxModal="ShowAddTaxModal"
@@ -889,7 +961,6 @@ export default {
         name: "Designer & Creative Agency Template",
       },
     ],
-
     invoiceAllDetails: {
       invoicePayment: "",
       companyInfo: "",
@@ -1047,7 +1118,6 @@ export default {
     async addCustomFieldThree() {
       this.addCustomFieldThreeModal = true;
     },
-
     deleteinvoiceField() {
       Toaster.success("Invoice deleted successfully!", "success");
       this.logoutUser();
@@ -1135,7 +1205,6 @@ export default {
       return "TimeStamp";
     },
   },
-
   async created() {
     // this.$store.dispatch("modules/invoice/sender_details");
     await this.listClientDetails();
