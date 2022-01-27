@@ -15,3 +15,4 @@ You can directly use them in pages and other components without the need to impo
 - `<InvoicesModalsAddInvoiceModal>` | `<invoices-modals-add-invoice-modal>` (components/invoices/modals/add-invoice-modal.vue)
 - `<InvoicesModalsAddPaymentDetailsModal>` | `<invoices-modals-add-payment-details-modal>` (components/invoices/modals/add-payment-details-modal.vue)
 - `<InvoicesModalsAddSenderModal>` | `<invoices-modals-add-sender-modal>` (components/invoices/modals/add-sender-modal.vue)
+- `<InvoicesModalsEditSenderModal>` | `<invoices-modals-edit-sender-modal>` (components/invoices/modals/edit-sender-modal.vue)

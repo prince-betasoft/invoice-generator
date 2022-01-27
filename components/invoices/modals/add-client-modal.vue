@@ -223,38 +223,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-card class="addnew-invoice">
-      <v-card-text>
-        <v-container>
-          <v-row>
-            <v-col>
-              <div class="invoice-type-innerwrapper">
-                <div v-if="clientModel.clientCompanyName">
-                  <div>
-                    <b>
-                      {{ clientModel.clientFirstName }}
-                      {{ clientModel.clientLastName }}</b
-                    >
-                  </div>
-                  <div>
-                    {{ clientModel.clientEmail }}
-                  </div>
-                  <div>
-                    {{ clientModel.clientCompanyName }}
-                  </div>
-                  <div>
-                    {{ clientModel.clientAddress1 }}
-                  </div>
-                  <div>
-                    {{ clientModel.clientAddress2 }}
-                  </div>
-                </div>
-              </div>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-card-text>
-    </v-card>
   </v-row>
 </template>
 <script>
