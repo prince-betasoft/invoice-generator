@@ -264,25 +264,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <!-- <v-col cols="6">
-      <div class="invoice-type-innerwrapper">
-        <div>
-          <b>{{ senderModel.senderCompanyName }}</b>
-        </div>
-        <div>
-          {{ senderModel.senderCountry }}
-        </div>
-        <div>
-          {{ senderModel.senderFirstName }}
-        </div>
-        <div>
-          {{ senderModel.senderLastName }}
-        </div>
-        <div>
-          {{ senderModel.senderTaxNumber }}
-        </div>
-      </div>
-    </v-col> -->
   </v-row>
 </template>
 <script>
@@ -407,8 +388,6 @@ export default {
   mounted() {
     this.currencies = currencyJson;
     this.countries = countryJson;
-    // this.senderModel.senderCompanyName = this.ShowAddSenderModal;
-    // this.senderModel.senderCompanyName = this.senderName;
   },
 };
 </script>

@@ -117,7 +117,6 @@
                           @click="openAddSenderModal"
                           >From
                         </v-btn>
-                        <!-- {{ this.sender_details }} -->
                         <div class="sender-contentbodywrapper">
                           <span><i class="fas fa-user"></i></span>
                           <h5>Sender Name</h5>
@@ -125,40 +124,7 @@
                         </div>
                         <br />
                         <br />
-                        <!-- {{ sender_details[0] }} -->
-                        <!-- <div>
-                          <b>{{ sender_details[0].senderCompanyName }}</b>
-                        </div>
-                        <div>
-                          {{ sender_details[0].senderCountry }}
-                        </div>
-                        <div>
-                          {{ sender_details[0].senderFirstName }}
-                        </div>
-                        <div>
-                          {{ sender_details[0].senderLastName }}
-                        </div>
-                        <div>
-                          {{ sender_details[0].taxRegistrationNumber }}
-                        </div>
-                        <div>
-                          {{ sender_details[0].senderTaxNumber }}
-                        </div>
-                        <div>
-                          {{ sender_details[0].senderEmail }}
-                        </div>
-                        <div>
-                          {{ sender_details[0].senderAddress1 }}
-                        </div>
-                        <div>
-                          {{ sender_details[0].senderAddress2 }}
-                        </div>
-                        <div>
-                          {{ sender_details[0].senderPhone }}
-                        </div>
-                        <div>
-                          {{ sender_details[0].senderWebsite }}
-                        </div> -->
+                        <!-- {{ sender_details }} -->
                         <div v-if="!isHiddenCompanyInfo">
                           <br />
                           <br />
@@ -182,7 +148,6 @@
                           @click="openAddClientModal"
                           >To
                         </v-btn>
-
                         <div class="recipientbackground-wrapper">
                           <span><i class="fas fa-user"></i></span>
                           <h5>Recipient Name</h5>
@@ -191,38 +156,6 @@
                         <br />
                         <br />
                         <!-- {{ client_details }} -->
-
-                        <!-- {{ client_details[0].clientAddress1 }}
-                        {{ client_details.clientAddress1 }} -->
-
-                        <!-- <div>
-                          <b>{{ client_details[0].clientCompanyName }}</b>
-                        </div>
-                        <div>
-                          {{ client_details[0].clientFirstName }}
-                        </div>
-                        <div>
-                          {{ client_details[0].clientLastName }}
-                        </div>
-                        <div>
-                          {{ client_details[0].clientEmail }}
-                        </div>
-                        <div>
-                          {{ client_details[0].clientCountry }}
-                        </div>
-                        <div>
-                          {{ client_details[0].clientAddress1 }}
-                        </div>
-                        <div>
-                          {{ client_details[0].clientAddress2 }}
-                        </div>
-                        <div>
-                          {{ client_details[0].clientPhone }}
-                        </div>
-                        <div>
-                          {{ client_details[0].clientExtraData }}
-                        </div> -->
-
                         <div v-if="!isHiddenClientInfo">
                           <br />
                           <br />
@@ -745,7 +678,11 @@
                               Please save the invoice before attempting to make
                               a copy
                             </p>
-                            <v-btn color="primary" text @click="copyItem()">
+                            <v-btn
+                              color="primary"
+                              text
+                              @click="copyInvoiceData()"
+                            >
                               Ok
                             </v-btn>
                           </v-card-text>
@@ -920,6 +857,7 @@ export default {
     imageData: null,
     dialog: false,
     getlink: false,
+    senderData: {},
     copyinvoice: false,
     deleteinvoice: false,
     ShowAddClientModal: false,
@@ -1030,8 +968,6 @@ export default {
     this.currencies = currencyJson;
     await this.listSenderDetails();
     await this.listClientDetails();
-    // console.log("clientdetails-added-here", this._data.clientModel.clientCompanyName);
-    // this.$store.dispatch("modules/invoice/sender_details");
   },
   methods: {
     ...mapActions({
@@ -1040,7 +976,6 @@ export default {
       addInvoiceDetails: "modules/invoice/addInvoiceDetails",
       logoutUser: "auth/logout",
     }),
-
     remove(items) {
       const index = this.newItemsTaxRate.indexOf(items.name);
       if (index >= 0) this.newItemsTaxRate.splice(index, 1);
@@ -1165,7 +1100,7 @@ export default {
         tax_slip: this.items,
       };
       var db = firebase.firestore();
-      db.collection("invoiceTaxDetails")
+      db.collection("invoiceDetails")
         .add(payload)
         .then(() => {
           console.log("Items", this.items);
@@ -1187,7 +1122,7 @@ export default {
         });
       }
     },
-    copyItem() {
+    copyInvoiceData() {
       let url = window.location.origin + "/";
       // let url = window.location.origin + "/" + item.id ;
       navigator.clipboard
@@ -1206,7 +1141,6 @@ export default {
     },
   },
   async created() {
-    // this.$store.dispatch("modules/invoice/sender_details");
     await this.listClientDetails();
   },
 };

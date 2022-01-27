@@ -18,7 +18,6 @@ export default {
       state.fetch_client_details = payload;
     },
   },
-
   actions: {
     async addInvoiceDetails({ dispatch, getters }, payload) {
       const timestamp = firebase.firestore.FieldValue.serverTimestamp();
@@ -42,15 +41,18 @@ export default {
         var str = payload.customFieldTwo;
         var str = payload.customFieldThree;
         str = str;
-        var db = firebase.firestore();
-        db.collection("invoiceDetails")
-          .add(payload)
-          .then(() => {
-            console.log("Data Added Successfully!", payload);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        const statsRef = firestore
+          .collection("invoiceDetails")
+          .doc("--stats--");
+        const userRef = firestore
+          .collection("users")
+          .doc(auth().currentUser.uid);
+        const batch = firestore.batch();
+        const invoiceRef = firestore
+          .collection("invoiceDetails")
+          .doc(payload.id);
+        batch.set(invoiceRef, payload);
+        await batch.commit();
       } catch (error) {
         console.log("Error", error);
       }
@@ -59,6 +61,7 @@ export default {
       try {
         await firestore
           .collection("invoiceDetails")
+          .where("user_id", "==", this.state.auth.auth_user.id)
           .get()
           .then((snapshot) => {
             const data = snapshot.docs.map((doc) => ({
@@ -72,14 +75,27 @@ export default {
         console.log("Error", error);
       }
     },
+
+    // async fetchAllSenderDetails({ commit }) {
+    //   try {
+    //     await firestore
+    //       .collection("invoiceDetails")
+    //       .doc(this.senderModel)
+    //       .get()
+    //       .then((snapshot) => {
+    //         const data = snapshot.data();
+    //         commit("sender_details", data);
+    //         console.log("sender details here", data);
+    //       });
+    //   } catch (error) {
+    //     console.log("Error", error);
+    //   }
+    // },
     async fetchAllClientDetails({ commit }, payload) {
-      //  const id = auth().currentUser.uid;
       try {
         await firestore
           .collection("invoiceDetails")
           .where("user_id", "==", this.state.auth.auth_user.id)
-          // .doc(id)
-          // .doc(auth().currentUser.uid)
           .get()
           .then((snapshot) => {
             const data = snapshot.docs.map((doc) => ({
@@ -89,7 +105,6 @@ export default {
             commit("client_details");
             console.log("client here", data);
             console.log("client id", data[0].id);
-            console.log("details", this.state.auth.auth_user.id);
           });
       } catch (error) {
         console.log("Error", error);
@@ -101,6 +116,7 @@ export default {
         .doc(payload)
         .get()
         .then((snapshot) => {
+          console.log("ur here23");
           commit("sender_details", snapshot.data());
         });
     },
