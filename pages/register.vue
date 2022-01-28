@@ -208,7 +208,6 @@ export default {
       this.verificationAlert = false;
       const check = this.$refs.register_form.validate();
       if (check) {
-        Toaster.success("Registered Successfully!", "success");
         this.login_submitted = true;
         const payload = {
           user_type: this.loginForm.user_type,

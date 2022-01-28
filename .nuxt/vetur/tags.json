@@ -25,8 +25,5 @@
   },
   "InvoicesModalsAddSenderModal": {
     "description": "Auto imported from components/invoices/modals/add-sender-modal.vue"
-  },
-  "InvoicesModalsEditSenderModal": {
-    "description": "Auto imported from components/invoices/modals/edit-sender-modal.vue"
   }
 }

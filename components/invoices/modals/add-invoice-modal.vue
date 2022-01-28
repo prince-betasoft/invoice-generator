@@ -57,7 +57,7 @@
   </v-row>
 </template>
 <script>
-import { nanoid } from "nanoid";
+import { auth } from "~/plugins/firebase";
 import { mapActions, mapGetters } from "vuex";
 import Toaster from "~/services/sweetToaster.js";
 
@@ -129,16 +129,17 @@ export default {
   },
   methods: {
     closeModal() {
+      this.$emit("fetchInvoiceTypeDetails");
       this.$emit("close");
     },
     ...mapActions({
-      addInvoiceDetails: "modules/invoice/addInvoiceDetails",
+      addInvoiceTypeDetails: "modules/invoice/addInvoiceTypeDetails",
     }),
     async onSubmitInvoice() {
       this.loading = true;
       try {
-        this.invoiceTypeModel.id = "invoiceType-" + nanoid();
-        await this.addInvoiceDetails(this.invoiceTypeModel);
+        this.invoiceTypeModel.id = auth().currentUser.uid;
+        await this.addInvoiceTypeDetails(this.invoiceTypeModel);
         this.closeModal();
         Toaster.success("Invoice Type added successfully!", "success");
         this.loading = false;

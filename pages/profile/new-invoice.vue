@@ -103,7 +103,16 @@
                         class="invoice-type-innerwrapper mainwrapper-first-row"
                         style="padding-bottom: 30px"
                       >
-                        <v-btn text @click="addInvoiceDetails">Invoice </v-btn>
+                        <div v-if="invoice_type_details">
+                          <v-btn text @click="addInvoiceDetails">
+                            {{ invoice_type_details.invoiceType }}</v-btn
+                          >
+                        </div>
+                        <div v-else>
+                          <v-btn text @click="addInvoiceDetails">
+                            Invoice</v-btn
+                          >
+                        </div>
                       </div>
                     </v-col>
                   </v-row>
@@ -117,16 +126,47 @@
                           @click="openAddSenderModal"
                           >From
                         </v-btn>
-                        <div class="sender-contentbodywrapper">
-                          <span><i class="fas fa-user"></i></span>
-                          <h5>Sender Name</h5>
-                          <p>Sender Contact Details</p>
+                        <div v-if="sender_details">
+                          <div>
+                            <b>{{ sender_details.senderCompanyName }}</b>
+                          </div>
+                          <div>
+                            {{ sender_details.senderFirstName }}
+                            {{ sender_details.senderLastName }}
+                          </div>
+                          <div>
+                            {{ sender_details.senderAddress1 }}
+                          </div>
+                          <div>
+                            {{ sender_details.senderAddress2 }}
+                          </div>
+                          <div>
+                            {{ sender_details.senderCountry }}
+                          </div>
+                          <div>
+                            {{ sender_details.senderEmail }}
+                          </div>
+                          <div>
+                            {{ sender_details.senderPhone }}
+                          </div>
+                          <div>
+                            {{ sender_details.senderWebsite }}
+                          </div>
+                          <div>
+                            {{ sender_details.taxRegistrationNumber }}
+                          </div>
+                          <div>
+                            {{ sender_details.senderTaxNumber }}
+                          </div>
                         </div>
-                        <br />
-                        <br />
-                        <!-- {{ sender_details }} -->
+                        <div v-else>
+                          <div class="sender-contentbodywrapper">
+                            <span><i class="fas fa-user"></i></span>
+                            <h5>Sender Name</h5>
+                            <p>Sender Contact Details</p>
+                          </div>
+                        </div>
                         <div v-if="!isHiddenCompanyInfo">
-                          <br />
                           <br />
                           <div class="input-terms-mainwrapper">
                             <input
@@ -135,6 +175,63 @@
                               v-model="invoiceAllDetails.companyInfo"
                               hide-details="auto"
                             />
+                          </div>
+                        </div>
+                        <div v-if="custom_field_one_details">
+                          <div
+                            v-if="
+                              custom_field_one_details.displayLocation ==
+                              'Sender'
+                            "
+                          >
+                            <div>
+                              <b>{{ custom_field_one_details.fieldName }}</b>
+                              <br />
+                              {{ custom_field_one_details.fieldValue }}
+                            </div>
+                          </div>
+                        </div>
+                        <div v-if="custom_field_two_details">
+                          <div
+                            v-if="
+                              custom_field_two_details.displayLocation ==
+                              'Sender'
+                            "
+                          >
+                            <div>
+                              <b>{{ custom_field_two_details.fieldName }}</b>
+                              <br />
+                              {{ custom_field_two_details.fieldValue }}
+                            </div>
+                          </div>
+                        </div>
+                        <div v-if="custom_field_three_details">
+                          <div
+                            v-if="
+                              custom_field_three_details.displayLocation ==
+                              'Sender'
+                            "
+                          >
+                            <div>
+                              <b>{{ custom_field_three_details.fieldName }}</b>
+                              <br />
+                              {{ custom_field_three_details.fieldValue }}
+                            </div>
+                          </div>
+                        </div>
+                        <div v-if="payment_details">
+                          <div
+                            v-if="payment_details.displayLocation == 'Sender'"
+                          >
+                            <div>
+                              <b>{{ payment_details.paymentTypeHeading }}</b>
+                              <br />
+                              {{ payment_details.paymentType }}
+                              <br />
+                              <b>{{ payment_details.paymentDetailsHeading }}</b>
+                              <br />
+                              {{ payment_details.paymentDetails }}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -148,16 +245,43 @@
                           @click="openAddClientModal"
                           >To
                         </v-btn>
-                        <div class="recipientbackground-wrapper">
-                          <span><i class="fas fa-user"></i></span>
-                          <h5>Recipient Name</h5>
-                          <p>Recipient Contact Details</p>
+                        <div v-if="client_details">
+                          <div>
+                            <b>{{ client_details.clientCompanyName }}</b>
+                          </div>
+                          <div>
+                            {{ client_details.clientFirstName }}
+                          </div>
+                          <div>
+                            {{ client_details.clientLastName }}
+                          </div>
+                          <div>
+                            {{ client_details.clientEmail }}
+                          </div>
+                          <div>
+                            {{ client_details.clientCountry }}
+                          </div>
+                          <div>
+                            {{ client_details.clientAddress1 }}
+                          </div>
+                          <div>
+                            {{ client_details.clientAddress2 }}
+                          </div>
+                          <div>
+                            {{ client_details.clientPhone }}
+                          </div>
+                          <div>
+                            {{ client_details.clientExtraData }}
+                          </div>
                         </div>
-                        <br />
-                        <br />
-                        <!-- {{ client_details }} -->
+                        <div v-else>
+                          <div class="recipientbackground-wrapper">
+                            <span><i class="fas fa-user"></i></span>
+                            <h5>Recipient Name</h5>
+                            <p>Recipient Contact Details</p>
+                          </div>
+                        </div>
                         <div v-if="!isHiddenClientInfo">
-                          <br />
                           <br />
                           <div class="input-terms-mainwrapper">
                             <input
@@ -166,6 +290,64 @@
                               v-model="invoiceAllDetails.clientInfo"
                               hide-details="auto"
                             />
+                          </div>
+                        </div>
+                        <div v-if="custom_field_one_details">
+                          <div
+                            v-if="
+                              custom_field_one_details.displayLocation ==
+                              'Receiver'
+                            "
+                          >
+                            <div>
+                              <b>{{ custom_field_one_details.fieldName }}</b>
+                              <br />
+                              {{ custom_field_one_details.fieldValue }}
+                            </div>
+                          </div>
+                        </div>
+                        <div v-if="custom_field_two_details">
+                          <div
+                            v-if="
+                              custom_field_two_details.displayLocation ==
+                              'Receiver'
+                            "
+                          >
+                            <div>
+                              <b>{{ custom_field_two_details.fieldName }}</b>
+                              <br />
+                              {{ custom_field_two_details.fieldValue }}
+                            </div>
+                          </div>
+                        </div>
+                        <div v-if="custom_field_three_details">
+                          <div
+                            v-if="
+                              custom_field_three_details.displayLocation ==
+                              'Receiver'
+                            "
+                          >
+                            <div>
+                              <b>{{ custom_field_three_details.fieldName }}</b>
+                              <br />
+                              {{ custom_field_three_details.fieldValue }}
+                            </div>
+                          </div>
+                        </div>
+                        <div v-if="payment_details">
+                          <div
+                            v-if="payment_details.displayLocation == 'Receiver'"
+                          >
+                            <div>
+                              <br />
+                              <b>{{ payment_details.paymentTypeHeading }}</b>
+                              <br />
+                              {{ payment_details.paymentType }}
+                              <br />
+                              <b>{{ payment_details.paymentDetailsHeading }}</b>
+                              <br />
+                              {{ payment_details.paymentDetails }}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -258,6 +440,63 @@
                     </v-col>
                   </v-row>
                   <v-row></v-row>
+                  <div v-if="custom_field_one_details">
+                    <div
+                      v-if="
+                        custom_field_one_details.displayLocation ==
+                        'Description'
+                      "
+                    >
+                      <div>
+                        <b>{{ custom_field_one_details.fieldName }}</b>
+                        <br />
+                        {{ custom_field_one_details.fieldValue }}
+                      </div>
+                    </div>
+                  </div>
+                  <div v-if="custom_field_two_details">
+                    <div
+                      v-if="
+                        custom_field_two_details.displayLocation ==
+                        'Description'
+                      "
+                    >
+                      <div>
+                        <b>{{ custom_field_two_details.fieldName }}</b>
+                        <br />
+                        {{ custom_field_two_details.fieldValue }}
+                      </div>
+                    </div>
+                  </div>
+                  <div v-if="custom_field_three_details">
+                    <div
+                      v-if="
+                        custom_field_three_details.displayLocation ==
+                        'Description'
+                      "
+                    >
+                      <div>
+                        <b>{{ custom_field_three_details.fieldName }}</b>
+                        <br />
+                        {{ custom_field_three_details.fieldValue }}
+                      </div>
+                    </div>
+                  </div>
+                  <div v-if="payment_details">
+                    <div
+                      v-if="payment_details.displayLocation == 'Description'"
+                    >
+                      <div>
+                        <b>{{ payment_details.paymentTypeHeading }}</b>
+                        <br />
+                        {{ payment_details.paymentType }}
+                        <br />
+                        <b>{{ payment_details.paymentDetailsHeading }}</b>
+                        <br />
+                        {{ payment_details.paymentDetails }}
+                      </div>
+                    </div>
+                  </div>
                   <v-col v-if="!isHiddenDescription" cols="12">
                     <v-col cols="12">
                       <div class="input-terms-mainwrapper">
@@ -560,6 +799,54 @@
                       </v-row>
                     </div>
                   </v-row>
+                  <div v-if="custom_field_one_details">
+                    <div
+                      v-if="custom_field_one_details.displayLocation == 'Terms'"
+                    >
+                      <div>
+                        <b>{{ custom_field_one_details.fieldName }}</b>
+                        <br />
+                        {{ custom_field_one_details.fieldValue }}
+                      </div>
+                    </div>
+                  </div>
+                  <div v-if="custom_field_two_details">
+                    <div
+                      v-if="custom_field_two_details.displayLocation == 'Terms'"
+                    >
+                      <div>
+                        <b>{{ custom_field_two_details.fieldName }}</b>
+                        <br />
+                        {{ custom_field_two_details.fieldValue }}
+                      </div>
+                    </div>
+                  </div>
+                  <div v-if="custom_field_three_details">
+                    <div
+                      v-if="
+                        custom_field_three_details.displayLocation == 'Terms'
+                      "
+                    >
+                      <div>
+                        <b>{{ custom_field_three_details.fieldName }}</b>
+                        <br />
+                        {{ custom_field_three_details.fieldValue }}
+                      </div>
+                    </div>
+                  </div>
+                  <div v-if="payment_details">
+                    <div v-if="payment_details.displayLocation == 'Terms'">
+                      <div>
+                        <b>{{ payment_details.paymentTypeHeading }}</b>
+                        <br />
+                        {{ payment_details.paymentType }}
+                        <br />
+                        <b>{{ payment_details.paymentDetailsHeading }}</b>
+                        <br />
+                        {{ payment_details.paymentDetails }}
+                      </div>
+                    </div>
+                  </div>
                   <v-row>
                     <v-col cols="12">
                       <div class="input-terms-mainwrapper">
@@ -597,6 +884,7 @@
                     </div>
                   </v-col>
                   <hr />
+
                   <div class="addpayment-line-wrapper">
                     <ul>
                       <li>
@@ -605,6 +893,7 @@
                           Add payment details
                         </v-btn>
                       </li>
+
                       <v-form @click="onSubmitAllDetails">
                         <li @click="isHiddenCompanyInfo = !isHiddenCompanyInfo">
                           <v-icon>mdi-pencil-outline </v-icon>
@@ -764,6 +1053,7 @@
           />
           <add-invoice-modal
             :ShowAddInvoiceModal="ShowAddInvoiceModal"
+            @fetchInvoiceTypeDetails="listAddInvoiceTypeDetails"
             @close="ShowAddInvoiceModal = false"
           />
           <add-sender-modal
@@ -771,25 +1061,24 @@
             @fetchSenderDetails="listSenderDetails"
             @close="ShowAddSenderModal = false"
           />
-          <!-- :sender-name="invoiceAllDetails.invoiceNumber" -->
-          <add-tax-modal
-            :ShowAddTaxModal="ShowAddTaxModal"
-            @close="ShowAddTaxModal = false"
-          />
           <add-payment-details-modal
             :addPaymentDetailsModal="addPaymentDetailsModal"
+            @fetchPaymentDetails="listPaymentDetails"
             @close="addPaymentDetailsModal = false"
           />
           <add-custom-field-one-modal
             :addCustomFieldOneModal="addCustomFieldOneModal"
+            @fetchCustomFieldOneDetails="listCustomFieldOneDetails"
             @close="addCustomFieldOneModal = false"
           />
           <add-custom-field-two-modal
             :addCustomFieldTwoModal="addCustomFieldTwoModal"
+            @fetchCustomFieldTwoDetails="listCustomFieldTwoDetails"
             @close="addCustomFieldTwoModal = false"
           />
           <add-custom-field-three-modal
             :addCustomFieldThreeModal="addCustomFieldThreeModal"
+            @fetchCustomFieldThreeDetails="listCustomFieldThreeDetails"
             @close="addCustomFieldThreeModal = false"
           />
         </v-app>
@@ -861,7 +1150,6 @@ export default {
     copyinvoice: false,
     deleteinvoice: false,
     ShowAddClientModal: false,
-    ShowAddTaxModal: false,
     addInvoiceModal: false,
     addPaymentDetailsModal: false,
     addCustomFieldOneModal: false,
@@ -944,6 +1232,11 @@ export default {
       current_user: "auth/getAuthUser",
       sender_details: "modules/invoice/getSenderDetails",
       client_details: "modules/invoice/getClientDetails",
+      invoice_type_details: "modules/invoice/getInvoiceTypeDetails",
+      custom_field_one_details: "modules/invoice/getCustomFieldOneDetails",
+      custom_field_two_details: "modules/invoice/getCustomFieldTwoDetails",
+      custom_field_three_details: "modules/invoice/getCustomFieldThreeDetails",
+      payment_details: "modules/invoice/getPaymentDetails",
     }),
     subTotal: function () {
       var total = this.items.reduce(function (accumulator, items) {
@@ -968,12 +1261,23 @@ export default {
     this.currencies = currencyJson;
     await this.listSenderDetails();
     await this.listClientDetails();
+    await this.listAddInvoiceTypeDetails();
+    await this.listPaymentDetails();
+    await this.listCustomFieldOneDetails();
+    await this.listCustomFieldTwoDetails();
+    await this.listCustomFieldThreeDetails();
   },
   methods: {
     ...mapActions({
       listSenderDetails: "modules/invoice/fetchAllSenderDetails",
       listClientDetails: "modules/invoice/fetchAllClientDetails",
       addInvoiceDetails: "modules/invoice/addInvoiceDetails",
+      listAddInvoiceTypeDetails: "modules/invoice/fetchAllInvoiceTypeDetails",
+      listPaymentDetails: "modules/invoice/fetchAllPaymentDetails",
+      listCustomFieldOneDetails: "modules/invoice/fetchCustomFieldOneDetails",
+      listCustomFieldTwoDetails: "modules/invoice/fetchCustomFieldTwoDetails",
+      listCustomFieldThreeDetails:
+        "modules/invoice/fetchCustomFieldThreeDetails",
       logoutUser: "auth/logout",
     }),
     remove(items) {
@@ -1033,6 +1337,7 @@ export default {
       console.log(e);
     },
     async openAddSenderModal() {
+      //  this.$emit("fetchSenderDetails");
       this.ShowAddSenderModal = true;
     },
     async addInvoiceDetails() {
@@ -1067,10 +1372,10 @@ export default {
         .then(() => {
           const check = this.$refs.tax_slip.validate();
           if (check) {
-            Toaster.success("Invoice data submitted successfully!", "success");
             this.$router.push("/profile/invoice-details");
+            //  this.invoiceAllDetails.id = auth().currentUser.uid;
             this.invoiceAllDetails.id = "allDetails-" + nanoid();
-            this.onSubmitInvoiceBuild();
+            console.log("desktop", this.invoiceAllDetails.id);
             this.invoiceAllDetails.invoicePayment = "";
             this.invoiceAllDetails.companyInfo = "";
             this.invoiceAllDetails.clientInfo = "";
@@ -1080,6 +1385,7 @@ export default {
             this.invoiceAllDetails.dueDate = "";
             this.invoiceAllDetails.currencySymbol = "";
             this.invoiceAllDetails.invoiceTerms = "";
+            this.onSubmitInvoiceBuild();
           }
         })
         .catch((error) => {
@@ -1089,7 +1395,18 @@ export default {
     saveInvoiceData() {
       const check = this.$refs.tax_slip.validate();
       if (check) {
+        Toaster.success("Invoice data submitted successfully!", "success");
         this.onSubmitAllDetails();
+        // setTimeout(() => {
+        //   if (process.client) {
+        //     window.open(
+        //       window.location.origin +
+        //         "/profile/client/" +
+        //         this.invoiceAllDetails.id,
+        //       "_blank"
+        //     );
+        //   }
+        // }, 1500);
       } else {
         Toaster.error("Invoice Items: Add at least one invoice item", "error");
       }

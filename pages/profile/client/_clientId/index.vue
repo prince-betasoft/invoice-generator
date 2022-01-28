@@ -7,10 +7,8 @@
             <div class="admin-left-content">
               <v-list-item class="grow user-profile px-0">
                 <v-list-item-content class="user-info">
-                  <p>Client Details</p>
-                  <v-list-item-title class="pt-2">{{
-                    clientModel.clientFirstName
-                  }}</v-list-item-title>
+                  <p>Invoice Number</p>
+                  <v-list-item-title class="pt-2"></v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
               <div class="divider mt-2"></div>

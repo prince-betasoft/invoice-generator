@@ -120,7 +120,7 @@
 </template>
 <script>
 import { required, maxLength } from "vuelidate/lib/validators";
-import { nanoid } from "nanoid";
+import { auth } from "~/plugins/firebase";
 import { mapActions, mapGetters } from "vuex";
 import currencyJson from "~/data/currencies.json";
 import Toaster from "~/services/sweetToaster.js";
@@ -186,16 +186,17 @@ export default {
   },
   methods: {
     closeModal() {
+      this.$emit("fetchPaymentDetails");
       this.$emit("close");
     },
     ...mapActions({
-      addInvoiceDetails: "modules/invoice/addInvoiceDetails",
+      addPaymentDetails: "modules/invoice/addPaymentDetails",
     }),
     async onSubmitPaymentDetails() {
       this.loading = true;
       try {
-        this.paymentDetailsModal.id = "paymentDetail-" + nanoid();
-        await this.addInvoiceDetails(this.paymentDetailsModal);
+        this.paymentDetailsModal.id = auth().currentUser.uid;
+        await this.addPaymentDetails(this.paymentDetailsModal);
         this.closeModal();
         Toaster.success("Payment details added successfully!", "success");
         this.loading = false;
