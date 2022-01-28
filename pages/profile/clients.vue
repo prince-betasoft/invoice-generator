@@ -63,14 +63,6 @@ export default {
       current_user: "auth/getAuthUser",
     }),
   },
-  // watch: {
-  //   ShowAddClientModal() {
-  //     if (this.ShowAddClientModal) {
-  //       // this.clientModel = this.clientModel.clientExtraData;
-  //    //   this.listClientDetails();
-  //     }
-  //   },
-  // },
   methods: {
     ...mapActions({
       listClientDetails: "modules/invoice/fetchAllClientDetails",
