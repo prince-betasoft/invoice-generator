@@ -84,8 +84,8 @@
 </template>
 <script>
 import { required, maxLength } from "vuelidate/lib/validators";
-import { nanoid } from "nanoid";
 import { mapActions, mapGetters } from "vuex";
+import { auth } from "~/plugins/firebase";
 import currencyJson from "~/data/currencies.json";
 import Toaster from "~/services/sweetToaster.js";
 
@@ -146,16 +146,17 @@ export default {
   },
   methods: {
     closeModal() {
+      this.$emit("fetchCustomFieldOneDetails");
       this.$emit("close");
     },
     ...mapActions({
-      addInvoiceDetails: "modules/invoice/addInvoiceDetails",
+      addCustomFieldOneDetails: "modules/invoice/addCustomFieldOneDetails",
     }),
     async onSubmitFieldOne() {
       this.loading = true;
       try {
-        this.customFieldOne.id = "customFieldOne-" + nanoid();
-        await this.addInvoiceDetails(this.customFieldOne);
+        this.customFieldOne.id = auth().currentUser.uid;
+        await this.addCustomFieldOneDetails(this.customFieldOne);
         this.closeModal();
         Toaster.success("Details added successfully!", "success");
         this.loading = false;

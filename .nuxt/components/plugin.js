@@ -9,8 +9,7 @@ const components = {
   InvoicesModalsAddCustomFieldTwoModal: () => import('../..\\components\\invoices\\modals\\add-custom-field-two-modal.vue' /* webpackChunkName: "components/invoices-modals-add-custom-field-two-modal" */).then(c => c.default || c),
   InvoicesModalsAddInvoiceModal: () => import('../..\\components\\invoices\\modals\\add-invoice-modal.vue' /* webpackChunkName: "components/invoices-modals-add-invoice-modal" */).then(c => c.default || c),
   InvoicesModalsAddPaymentDetailsModal: () => import('../..\\components\\invoices\\modals\\add-payment-details-modal.vue' /* webpackChunkName: "components/invoices-modals-add-payment-details-modal" */).then(c => c.default || c),
-  InvoicesModalsAddSenderModal: () => import('../..\\components\\invoices\\modals\\add-sender-modal.vue' /* webpackChunkName: "components/invoices-modals-add-sender-modal" */).then(c => c.default || c),
-  InvoicesModalsEditSenderModal: () => import('../..\\components\\invoices\\modals\\edit-sender-modal.vue' /* webpackChunkName: "components/invoices-modals-edit-sender-modal" */).then(c => c.default || c)
+  InvoicesModalsAddSenderModal: () => import('../..\\components\\invoices\\modals\\add-sender-modal.vue' /* webpackChunkName: "components/invoices-modals-add-sender-modal" */).then(c => c.default || c)
 }
 
 for (const name in components) {

@@ -227,12 +227,11 @@
 </template>
 <script>
 import { required, maxLength } from "vuelidate/lib/validators";
-import { nanoid } from "nanoid";
 import { mapActions, mapGetters } from "vuex";
 import currencyJson from "~/data/currencies.json";
 import countryJson from "~/data/countries.json";
 import Toaster from "~/services/sweetToaster.js";
-import { auth, storage, firestore, firebase } from "~/plugins/firebase";
+import { auth } from "~/plugins/firebase";
 
 export default {
   currencyJson: currencyJson,
@@ -309,7 +308,7 @@ export default {
       this.$emit("close");
     },
     ...mapActions({
-      addInvoiceDetails: "modules/invoice/addInvoiceDetails",
+      addClientDetails: "modules/invoice/addClientDetails",
     }),
 
     async onSubmit() {
@@ -317,8 +316,8 @@ export default {
       if (this.$v.clientModel.$error) return;
       this.loading = true;
       try {
-        this.clientModel.id = "clients-" + nanoid();
-        await this.addInvoiceDetails(this.clientModel);
+        this.clientModel.id = auth().currentUser.uid;
+        await this.addClientDetails(this.clientModel);
         this.closeModal();
         Toaster.success("Client added successfully!", "success");
         this.loading = false;

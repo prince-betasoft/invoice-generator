@@ -22,6 +22,7 @@
     "link-prevue": "^1.2.0",
     "nuxt": "^2.15.3",
     "nuxt-seo": "^1.5.0",
+    "puppeteer": "^13.1.2",
     "slugify": "^1.5.0",
     "vee-validate": "^3.4.5",
     "vue-client-only": "^2.0.0",

@@ -46,13 +46,13 @@ export default {
           payload.email,
           payload.password
         );
-
         await firestore
           .collection("users")
           .doc(user.uid)
           .get()
           .then((doc) => {
             dispatch("current_user", user.uid);
+            Toaster.success(" Successfully logged in", "success");
             this.$router.push("/profile/dashboard");
           });
       } catch (error) {
@@ -78,10 +78,11 @@ export default {
         delete payload.password;
         await firestore.collection("users").doc(user.uid).set(payload);
         commit("setLoading", false);
+        Toaster.success("Registered Successfully!", "success");
+        this.$router.push("/profile/dashboard");
       } catch (error) {
         commit("setLoading", false);
-        console.log(error, "err");
-        commit("setError", error);
+        //  commit("setError", error);
       }
     },
     async current_user({ commit, dispatch }, payload) {

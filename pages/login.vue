@@ -151,7 +151,6 @@ export default {
       this.verificationAlert = false;
       const check = this.$refs.login_form.validate();
       if (check) {
-        Toaster.success(" Successfully logged in", "success");
         this.login_submitted = true;
         await this.login(this.loginForm);
         // this.$refs.login_form.reset();
