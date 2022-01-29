@@ -301,7 +301,6 @@ export default {
           .then((snapshot) => {
             const data = snapshot.data();
             commit("sender_details", data);
-            console.log("sender here", data);
           });
       } catch (error) {
         console.log("Error", error);
@@ -317,7 +316,6 @@ export default {
           .then((snapshot) => {
             const data = snapshot.data();
             commit("payment_details", data);
-            console.log("payment details here", data);
           });
       } catch (error) {
         console.log("Error", error);
@@ -332,7 +330,6 @@ export default {
           .then((snapshot) => {
             const data = snapshot.data();
             commit("invoice_type_details", data);
-            console.log("invoice-type here", data);
           });
       } catch (error) {
         console.log("Error", error);
@@ -347,7 +344,6 @@ export default {
           .then((snapshot) => {
             const data = snapshot.data();
             commit("client_details", data);
-            console.log("client here", data);
           });
       } catch (error) {
         console.log("Error", error);
@@ -362,7 +358,6 @@ export default {
           .then((snapshot) => {
             const data = snapshot.data();
             commit("custom_field_one_details", data);
-            console.log("custom field one here", data);
           });
       } catch (error) {
         console.log("Error", error);
@@ -377,7 +372,6 @@ export default {
           .then((snapshot) => {
             const data = snapshot.data();
             commit("custom_field_two_details", data);
-            console.log("custom field two here", data);
           });
       } catch (error) {
         console.log("Error", error);
@@ -392,7 +386,6 @@ export default {
           .then((snapshot) => {
             const data = snapshot.data();
             commit("custom_field_three_details", data);
-            console.log("custom field here", data);
           });
       } catch (error) {
         console.log("Error", error);
