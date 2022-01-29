@@ -17,6 +17,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "cookieparser": "^0.1.0",
     "core-js": "^3.9.1",
+    "express": "^4.17.1",
     "js-cookie": "^2.2.1",
     "jwt-decode": "^3.1.2",
     "link-prevue": "^1.2.0",

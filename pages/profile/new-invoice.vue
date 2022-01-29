@@ -1146,7 +1146,6 @@ export default {
     imageData: null,
     dialog: false,
     getlink: false,
-    senderData: {},
     copyinvoice: false,
     deleteinvoice: false,
     ShowAddClientModal: false,
@@ -1165,26 +1164,6 @@ export default {
       {
         value: "0",
         name: "Blank Template",
-      },
-      {
-        value: "1",
-        name: "Web-Developer Template",
-      },
-      {
-        value: "2",
-        name: "Marketing Template",
-      },
-      {
-        value: "3",
-        name: "Travel Agency Template",
-      },
-      {
-        value: "4",
-        name: "Consulting Agency Template",
-      },
-      {
-        value: "5",
-        name: "Designer & Creative Agency Template",
       },
     ],
     invoiceAllDetails: {
@@ -1337,7 +1316,6 @@ export default {
       console.log(e);
     },
     async openAddSenderModal() {
-      //  this.$emit("fetchSenderDetails");
       this.ShowAddSenderModal = true;
     },
     async addInvoiceDetails() {
@@ -1375,7 +1353,6 @@ export default {
             this.$router.push("/profile/invoice-details");
             //  this.invoiceAllDetails.id = auth().currentUser.uid;
             this.invoiceAllDetails.id = "allDetails-" + nanoid();
-            console.log("desktop", this.invoiceAllDetails.id);
             this.invoiceAllDetails.invoicePayment = "";
             this.invoiceAllDetails.companyInfo = "";
             this.invoiceAllDetails.clientInfo = "";
@@ -1448,8 +1425,8 @@ export default {
           Toaster.success("Link copied!", "success");
           this.copyinvoice = false;
         })
-        .catch(() => {
-          console.log("link copied!");
+        .catch((error) => {
+          console.log("link copied!", error);
         });
     },
     UpdatedBy(id) {
