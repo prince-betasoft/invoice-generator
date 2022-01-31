@@ -283,11 +283,6 @@ export default {
       default: false,
       type: Boolean,
     },
-    // senderName: {
-    //   type: String,
-    //   required: true,
-    //   default: "",
-    // },
   },
 
   data: () => ({
