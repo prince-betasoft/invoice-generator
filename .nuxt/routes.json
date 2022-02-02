@@ -36,6 +36,12 @@
     "chunkName": "pages/profile/invoice-details"
   },
   {
+    "name": "profile-invoices-api",
+    "path": "/profile/invoices-api",
+    "component": "D:\\\\Invoice-Builder\\\\pages\\\\profile\\\\invoices-api.vue",
+    "chunkName": "pages/profile/invoices-api"
+  },
+  {
     "name": "profile-new-invoice",
     "path": "/profile/new-invoice",
     "component": "D:\\\\Invoice-Builder\\\\pages\\\\profile\\\\new-invoice.vue",

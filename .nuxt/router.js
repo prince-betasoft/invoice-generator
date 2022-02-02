@@ -10,6 +10,7 @@ const _d4f8a444 = () => interopDefault(import('..\\pages\\profile\\all-invoices.
 const _0bb31d28 = () => interopDefault(import('..\\pages\\profile\\clients.vue' /* webpackChunkName: "pages/profile/clients" */))
 const _121cacf8 = () => interopDefault(import('..\\pages\\profile\\dashboard.vue' /* webpackChunkName: "pages/profile/dashboard" */))
 const _66679e06 = () => interopDefault(import('..\\pages\\profile\\invoice-details.vue' /* webpackChunkName: "pages/profile/invoice-details" */))
+const _af841b02 = () => interopDefault(import('..\\pages\\profile\\invoices-api.vue' /* webpackChunkName: "pages/profile/invoices-api" */))
 const _6d9b1964 = () => interopDefault(import('..\\pages\\profile\\new-invoice.vue' /* webpackChunkName: "pages/profile/new-invoice" */))
 const _e5dc7c22 = () => interopDefault(import('..\\pages\\profile\\settings.vue' /* webpackChunkName: "pages/profile/settings" */))
 const _c9eee038 = () => interopDefault(import('..\\pages\\profile\\client\\_clientId\\index.vue' /* webpackChunkName: "pages/profile/client/_clientId/index" */))
@@ -50,6 +51,10 @@ export const routerOptions = {
     path: "/profile/invoice-details",
     component: _66679e06,
     name: "profile-invoice-details"
+  }, {
+    path: "/profile/invoices-api",
+    component: _af841b02,
+    name: "profile-invoices-api"
   }, {
     path: "/profile/new-invoice",
     component: _6d9b1964,

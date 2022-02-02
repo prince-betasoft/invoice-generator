@@ -311,7 +311,7 @@ import { required, maxLength } from "vuelidate/lib/validators";
 import { getUserFromCookie } from "@/helpers";
 import { mapActions, mapGetters } from "vuex";
 // import style from '~/assets/css/style.css'
-import { nanoid } from "nanoid";
+// import { nanoid } from "nanoid";
 import currencyJson from "~/data/currencies.json";
 import countryJson from "~/data/countries.json";
 import Toaster from "~/services/sweetToaster.js";
@@ -392,25 +392,26 @@ export default {
       if (this.$v.senderModel.$error) return;
       this.loading = true;
       try {
-        this.senderModel.id = "sender-" + nanoid();
+        //   this.senderModel.id = "sender-" + nanoid();
+        this.senderModel.id = auth().currentUser.uid;
         await this.addInvoiceDetails(this.senderModel);
         Toaster.success("Settings Saved", "success");
         this.loading = false;
       } catch (error) {
         this.loading = false;
-        console.log(error, "myerror");
+        console.log(error, "error");
       }
     },
     async onSubmitUserType() {
       this.loading = true;
       try {
-        this.senderModel.id = "sender-" + nanoid();
+        this.senderModel.id = auth().currentUser.uid;
         await this.addInvoiceDetails(this.senderModel);
         Toaster.success("Settings Saved", "success");
         this.loading = false;
       } catch (error) {
         this.loading = false;
-        console.log(error, "myerror");
+        console.log(error, "error");
       }
     },
     select_file() {

@@ -363,6 +363,7 @@ export default {
         console.log("Error", error);
       }
     },
+
     async fetchCustomFieldTwoDetails({ commit }) {
       try {
         await firestore
