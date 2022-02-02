@@ -269,6 +269,7 @@
 <script>
 import { required, maxLength } from "vuelidate/lib/validators";
 import { auth } from "~/plugins/firebase";
+// import { nanoid } from "nanoid";
 import { mapActions, mapGetters } from "vuex";
 import currencyJson from "~/data/currencies.json";
 import countryJson from "~/data/countries.json";
@@ -369,6 +370,7 @@ export default {
       this.loading = true;
       try {
         this.senderModel.id = auth().currentUser.uid;
+        //this.senderModel.id = "sender-" + nanoid();
         await this.addSenderDetails(this.senderModel);
         this.$emit("fetchSenderDetails");
         this.closeModal();
@@ -376,7 +378,7 @@ export default {
         this.loading = false;
       } catch (error) {
         this.loading = false;
-        console.log(error, "myerror");
+        console.log(error, "error");
       }
     },
   },
