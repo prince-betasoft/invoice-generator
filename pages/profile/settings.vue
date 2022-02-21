@@ -396,6 +396,7 @@ export default {
         this.senderModel.id = auth().currentUser.uid;
         await this.addInvoiceDetails(this.senderModel);
         Toaster.success("Settings Saved", "success");
+        console.log("data added succesfully for profile", this.senderModel);
         this.loading = false;
       } catch (error) {
         this.loading = false;

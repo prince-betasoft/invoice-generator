@@ -121,7 +121,6 @@ export default {
     isLoggedIn(state) {
       if (process.server) {
         const user = auth().currentUser;
-        console.log("user from auth", user);
         if (user) {
           return true;
         }

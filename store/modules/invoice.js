@@ -200,6 +200,7 @@ export default {
         console.log("Error", error);
       }
     },
+
     async addInvoiceTypeDetails({ dispatch, getters }, payload) {
       const timestamp = firebase.firestore.FieldValue.serverTimestamp();
       try {
