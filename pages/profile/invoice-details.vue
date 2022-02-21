@@ -46,12 +46,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="item in invoices" :key="item.name">
+                <!-- <tr v-for="item in invoices" :key="item.name">
                   <td>{{ item.invoiceNumber }}</td>
                   <td>{{ item.totalAmount }}</td>
                   <td>{{ item.invoiceDate }}</td>
                   <td>{{ item.invoiceDueDate }}</td>
-                </tr>
+                </tr> -->
               </tbody>
             </template>
           </v-simple-table>
@@ -65,26 +65,7 @@ export default {
   layout: "adminlayout",
   data() {
     return {
-      invoices: [
-        {
-          invoiceNumber: "001",
-          totalAmount: 159,
-          invoiceDate: 159,
-          invoiceDueDate: 159,
-        },
-        {
-          invoiceNumber: "001",
-          totalAmount: 159,
-          invoiceDate: 159,
-          invoiceDueDate: 159,
-        },
-        {
-          invoiceNumber: "001",
-          totalAmount: 159,
-          invoiceDate: 159,
-          invoiceDueDate: 159,
-        },
-      ],
+      invoices: [],
     };
   },
 };

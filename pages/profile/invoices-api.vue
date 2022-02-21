@@ -53,7 +53,6 @@ export default {
         .then((resp) => {
           this.loading = false;
           if (resp.data.status === "success") {
-            console.log("sender details fetched from API");
             this.invoicesList = resp.data.data;
             this.totalInvoices = resp.data;
           }
