@@ -183,6 +183,7 @@
                     maxlength="210"
                     class="form-control"
                     v-model="senderModel.senderWebsite"
+                    :rules="websiteRules"
                     hide-details="auto"
                   ></v-text-field>
                   <div
@@ -362,6 +363,12 @@ export default {
     emailRules: [
       (v) => !!v || "",
       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+    ],
+    websiteRules: [
+      (v) =>
+        /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm.test(
+          v
+        ) || "URL must be valid",
     ],
   }),
   validations: {

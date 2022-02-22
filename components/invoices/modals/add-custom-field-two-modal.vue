@@ -152,6 +152,7 @@ export default {
     }),
     async onSubmitFieldTwo() {
       this.loading = true;
+
       try {
         this.customFieldTwo.id = auth().currentUser.uid;
         await this.addCustomFieldTwoDetails(this.customFieldTwo);

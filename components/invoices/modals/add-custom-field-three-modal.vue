@@ -157,6 +157,7 @@ export default {
         await this.addCustomFieldThreeDetails(this.customFieldThree);
         this.closeModal();
         Toaster.success("Details added successfully!", "success");
+        // console.log("customFieldThreeDetails", this.customFieldThree);
         this.loading = false;
       } catch (error) {
         this.loading = false;
