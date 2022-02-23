@@ -21,6 +21,13 @@
     "_name": "_d4f8a444"
   },
   {
+    "name": "profile-client-details",
+    "path": "/profile/client-details",
+    "component": "D:\\\\Invoice-Builder\\\\pages\\\\profile\\\\client-details.vue",
+    "chunkName": "pages/profile/client-details",
+    "_name": "_0de5b2e8"
+  },
+  {
     "name": "profile-clients",
     "path": "/profile/clients",
     "component": "D:\\\\Invoice-Builder\\\\pages\\\\profile\\\\clients.vue",

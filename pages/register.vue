@@ -129,7 +129,6 @@
 <script>
 import { getUserFromCookie } from "@/helpers";
 import { mapActions, mapGetters } from "vuex";
-import Toaster from "~/services/sweetToaster.js";
 
 export default {
   async asyncData({ req, redirect, route }) {
@@ -201,7 +200,7 @@ export default {
     },
     ...mapActions({
       Register: "auth/Register",
-      loginWithGoogle: "auth/logInWithGoogle",
+      // loginWithGoogle: "auth/logInWithGoogle",
     }),
     async onSubmit() {
       this.alert = false;

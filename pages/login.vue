@@ -144,7 +144,7 @@ export default {
     },
     ...mapActions({
       login: "auth/logIn",
-      loginWithGoogle: "auth/logInWithGoogle",
+      // loginWithGoogle: "auth/logInWithGoogle",
     }),
     async onSubmit() {
       this.alert = false;

@@ -10,7 +10,7 @@
         <h1 v-else>
           {{ otherError }}
         </h1>
-        <p>Back to <NuxtLink to="/profile/dashboard">home</NuxtLink></p>
+        <p>Back to <NuxtLink to="/profile/dashboard">Home</NuxtLink></p>
       </div>
     </div>
   </v-app>
