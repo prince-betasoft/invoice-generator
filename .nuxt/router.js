@@ -7,6 +7,7 @@ import scrollBehavior from './router.scrollBehavior.js'
 const _20ecfd68 = () => interopDefault(import('..\\pages\\login.vue' /* webpackChunkName: "pages/login" */))
 const _1e22f7e0 = () => interopDefault(import('..\\pages\\register.vue' /* webpackChunkName: "pages/register" */))
 const _d4f8a444 = () => interopDefault(import('..\\pages\\profile\\all-invoices.vue' /* webpackChunkName: "pages/profile/all-invoices" */))
+const _0de5b2e8 = () => interopDefault(import('..\\pages\\profile\\client-details.vue' /* webpackChunkName: "pages/profile/client-details" */))
 const _0bb31d28 = () => interopDefault(import('..\\pages\\profile\\clients.vue' /* webpackChunkName: "pages/profile/clients" */))
 const _121cacf8 = () => interopDefault(import('..\\pages\\profile\\dashboard.vue' /* webpackChunkName: "pages/profile/dashboard" */))
 const _66679e06 = () => interopDefault(import('..\\pages\\profile\\invoice-details.vue' /* webpackChunkName: "pages/profile/invoice-details" */))
@@ -39,6 +40,10 @@ export const routerOptions = {
     path: "/profile/all-invoices",
     component: _d4f8a444,
     name: "profile-all-invoices"
+  }, {
+    path: "/profile/client-details",
+    component: _0de5b2e8,
+    name: "profile-client-details"
   }, {
     path: "/profile/clients",
     component: _0bb31d28,

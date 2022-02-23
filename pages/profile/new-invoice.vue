@@ -1374,16 +1374,16 @@ export default {
       if (check) {
         Toaster.success("Invoice data submitted successfully!", "success");
         this.onSubmitAllDetails();
-        // setTimeout(() => {
-        //   if (process.client) {
-        //     window.open(
-        //       window.location.origin +
-        //         "/profile/client/" +
-        //         this.invoiceAllDetails.id,
-        //       "_blank"
-        //     );
-        //   }
-        // }, 1500);
+        setTimeout(() => {
+          if (process.client) {
+            window.open(
+              window.location.origin +
+                "/profile/client/" +
+                this.invoiceAllDetails.id,
+              "_blank"
+            );
+          }
+        }, 1500);
       } else {
         Toaster.error("Invoice Items: Add at least one invoice item", "error");
       }
