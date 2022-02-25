@@ -45,14 +45,7 @@
                   <th class="text-left">Due Date</th>
                 </tr>
               </thead>
-              <tbody>
-                <!-- <tr v-for="item in invoices" :key="item.name">
-                  <td>{{ item.invoiceNumber }}</td>
-                  <td>{{ item.totalAmount }}</td>
-                  <td>{{ item.invoiceDate }}</td>
-                  <td>{{ item.invoiceDueDate }}</td>
-                </tr> -->
-              </tbody>
+              <tbody></tbody>
             </template>
           </v-simple-table>
         </v-row>
