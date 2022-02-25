@@ -1306,6 +1306,7 @@ export default {
         }
       );
     },
+
     async onSubmitInvoiceLogo() {
       const formData = new FormData();
       formData.append("invoiceLogo", this.invoiceLogo.logoImage);
@@ -1416,6 +1417,7 @@ export default {
         });
       }
     },
+
     copyInvoiceData() {
       let url = window.location.origin + "/";
       // let url = window.location.origin + "/" + item.id ;

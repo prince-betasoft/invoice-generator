@@ -319,7 +319,7 @@ export default {
         this.clientModel.id = auth().currentUser.uid;
         await this.addClientDetails(this.clientModel);
         this.closeModal();
-        this.$router.push("/profile/client-details");
+        //   this.$router.push("/profile/client-details");
         Toaster.success("Client added successfully!", "success");
         this.loading = false;
       } catch (error) {

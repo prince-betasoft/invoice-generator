@@ -1,6 +1,6 @@
 <template>
   <div class="loginpage">
-    <nuxt />
+    <nuxt />ddd
   </div>
 </template>
 <style scoped></style>

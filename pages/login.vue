@@ -92,6 +92,7 @@ export default {
       }
     }
   },
+
   layout: "auth",
   components: {},
   data: () => ({
